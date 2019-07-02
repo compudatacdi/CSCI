@@ -76,9 +76,9 @@
     <Key2>App.QuoteEntry.QuoteForm</Key2>
     <Key3 />
     <Description />
-    <LastUpdated>2019-06-21T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2019-07-02T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-EBlackwelder</LastUpdatedBy>
-    <Version>6/21/2019 10:54:13 A</Version>
+    <Version>7/2/2019 9:52:10 AM</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -183,8 +183,8 @@ jb
 [19289-Manager: 1/15/2019 9:46:03 AM]</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>9938292077</SysRevID>
-    <SysRowID>581f2f74-6551-4e76-a1b3-e9e3b5a038ae</SysRowID>
+    <SysRevID>2124420428</SysRevID>
+    <SysRowID>433c1aec-1de7-4e77-903f-028fa9fae0b7</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
     <OnMenu>true</OnMenu>
@@ -1409,6 +1409,8 @@ jb
 //
 //	eb1 06/21/19 eric blackwelder @ compudata
 //		modify logic for Apply Color to only target lines that are flagged as paintable
+//	eb2 07/02/19 eric blackwelder @ compudata
+//		get inside salesperson logic to work with new quotes
 //
 // **************************************************
 
@@ -3426,7 +3428,6 @@ private void CallQuoteAdapterGetNewQuoteHedMscMethod(int QuoteNum, double FtCost
 	private void oTrans_adapter_AfterAdapterMethod(object sender, AfterAdapterMethodArgs args)
 	{
 		
-		
          string s1 = args.MethodName;
          string s2 = "GetCustomerinfo";
          string s3 = "Update";    
@@ -3435,6 +3436,12 @@ private void CallQuoteAdapterGetNewQuoteHedMscMethod(int QuoteNum, double FtCost
                {
                   NewQuote = true;
                
+					//eb2:
+	                EpiDataView edv = oTrans.Factory("QuoteHed");
+					string SalesCode = edv.dataView[edv.Row]["SalesRepCode"].ToString();
+					//MessageBox.Show(SalesCode);
+					edv.dataView[edv.Row]["ShortChar02"] = GetInsidesalesPerson(SalesCode);
+					oTrans.Update();      
 				}
 
        if(String.Compare(s1, s3, true)== 0)
@@ -3451,7 +3458,7 @@ private void CallQuoteAdapterGetNewQuoteHedMscMethod(int QuoteNum, double FtCost
 //	                    InstallHold.ReadOnly = true;
 //	                    EngHold = (EpiCheckBox)csm.GetNativeControlReference("c54ea008-cadf-40d4-adc3-6f3fd61554de");
 //	                    EngHold.ReadOnly = true;
-	                
+
 	                    NewQuote = false;
                     }
                    NewQuote = false;
@@ -4135,6 +4142,8 @@ private string GetInsideSalesRep(string SalesRepCode)
 		}
 	}
 }
+
+
 
 
 
@@ -13805,7 +13814,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblSalesperson&lt;/ControlName&gt;
     &lt;Key&gt;3ef0fd31-8113-43c2-85b8-7c2eded02dc8&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -13817,7 +13826,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;cmbSalesperson&lt;/ControlName&gt;
     &lt;Key&gt;d5955392-45f5-4621-a65e-18638a6b90ba&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -13949,7 +13958,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblCurrentStage&lt;/ControlName&gt;
     &lt;Key&gt;2dad444d-9008-4daf-b389-79d4022d53f5&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -14009,7 +14018,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;txtCurrentStage&lt;/ControlName&gt;
     &lt;Key&gt;adb4132f-55ee-47d1-b4c0-2ee188bfc184&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -14069,7 +14078,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblTaskSet&lt;/ControlName&gt;
     &lt;Key&gt;be6625f7-3ed1-4c8a-aa4c-9f87b5fd4ca5&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -14129,7 +14138,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;cboTaskSet&lt;/ControlName&gt;
     &lt;Key&gt;229d2313-661d-4568-a7ea-3028ba08bdab&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16265,7 +16274,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpRating&lt;/ControlName&gt;
     &lt;Key&gt;a6a22b5b-dda6-4070-b412-d5c7285d89b0&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16397,7 +16406,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpAmounts&lt;/ControlName&gt;
     &lt;Key&gt;642bd9f0-0ce0-44f3-b615-4f18b492596d&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -17657,7 +17666,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;baqInsideRep&lt;/ControlName&gt;
     &lt;Key&gt;7c6220e1-1c3e-4e27-b20e-19b2b8503251&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -19073,7 +19082,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpQuote&lt;/ControlName&gt;
     &lt;Key&gt;3eaf7d71-eb69-4fa8-b82e-8c514a7d2c31&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -19613,7 +19622,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpShipToAddress&lt;/ControlName&gt;
     &lt;Key&gt;714aba24-c076-420f-a942-b996376f0fde&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47139,6 +47148,78 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;Key&gt;b4888395-8a78-4e5b-bd43-63b324f1f4b5&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;Anchor&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;Top, Left&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;40&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;404&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;125&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
