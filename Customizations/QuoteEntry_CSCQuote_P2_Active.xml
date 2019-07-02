@@ -78,7 +78,7 @@
     <Description />
     <LastUpdated>2019-07-02T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-EBlackwelder</LastUpdatedBy>
-    <Version>7/2/2019 9:52:10 AM</Version>
+    <Version>7/2/2019 1:05:39 PM</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -180,11 +180,19 @@ Version: w3.2.300.0
 *----------------------------------------------------------*
 
 jb
-[19289-Manager: 1/15/2019 9:46:03 AM]</CommentText>
+[19289-Manager: 1/15/2019 9:46:03 AM]
+
+JDS -  changed date on Joe's customization tab to 6.10.2019
+[19289-LCurcio: 6/10/2019 2:56:20 PM]
+
+JDS - moved this code here from 3rd db where it was called CSCQuote_P2.
+
+JDS - Then I changed some consmetic stuff and changed the date stamp
+[19289-LCurcio: 7/1/2019 7:39:58 PM]</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>2124420428</SysRevID>
-    <SysRowID>433c1aec-1de7-4e77-903f-028fa9fae0b7</SysRowID>
+    <SysRevID>9940384350</SysRevID>
+    <SysRowID>869376b0-acf6-4f45-a120-405cd132722c</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
     <OnMenu>true</OnMenu>
@@ -2408,11 +2416,10 @@ private void CallDynamicQueryPainLn(int QuoteNum, int CustNum, string PntColor, 
 				                         
 				             {
 								//eb1:
-								//if (item["PartNum"].ToString() == QuotePart &amp;amp;&amp;amp; Convert.ToInt32(item["QuoteLine"]) == QuoteLn &amp;amp;&amp;amp; Convert.ToInt32(item["DisplaySeq"])==  LnSeq )
+				                //if (item["PartNum"].ToString() == QuotePart &amp;amp;&amp;amp; Convert.ToInt32(item["QuoteLine"]) == QuoteLn &amp;amp;&amp;amp; Convert.ToInt32(item["DisplaySeq"])==  LnSeq )
 								if ((item["PartNum"].ToString() == QuotePart &amp;amp;&amp;amp; Convert.ToInt32(item["QuoteLine"]) == QuoteLn &amp;amp;&amp;amp; Convert.ToInt32(item["DisplaySeq"])==  LnSeq )
 								&amp;amp;&amp;amp; ((bool)item["CheckBox01"] == true))
-
-								{
+				                    {  
 		                            
 					                   item.BeginEdit(); 
 					                   item["CheckBox01"] = Paintable;
@@ -2422,7 +2429,7 @@ private void CallDynamicQueryPainLn(int QuoteNum, int CustNum, string PntColor, 
 		                           
 		                         
 		                  
-								}
+			                   }
 			
 			                 }
 			 
@@ -3428,13 +3435,14 @@ private void CallQuoteAdapterGetNewQuoteHedMscMethod(int QuoteNum, double FtCost
 	private void oTrans_adapter_AfterAdapterMethod(object sender, AfterAdapterMethodArgs args)
 	{
 		
+		
          string s1 = args.MethodName;
          string s2 = "GetCustomerinfo";
          string s3 = "Update";    
 		
 		if(String.Compare(s1, s2, true)== 0)
                {
-                  NewQuote = true;
+					NewQuote = true;
                
 					//eb2:
 	                EpiDataView edv = oTrans.Factory("QuoteHed");
@@ -3458,7 +3466,7 @@ private void CallQuoteAdapterGetNewQuoteHedMscMethod(int QuoteNum, double FtCost
 //	                    InstallHold.ReadOnly = true;
 //	                    EngHold = (EpiCheckBox)csm.GetNativeControlReference("c54ea008-cadf-40d4-adc3-6f3fd61554de");
 //	                    EngHold.ReadOnly = true;
-
+	                
 	                    NewQuote = false;
                     }
                    NewQuote = false;
@@ -4073,6 +4081,7 @@ private string GetInsideSalesRep(string SalesRepCode)
           double MisclAmt =  Convert.ToDouble(edv.dataView[edv.Row]["DocTotalMiscAmt"]);
           double eTax =  Convert.ToDouble(edv.dataView[edv.Row]["DocTax"]);//TotalQuote
           double TotalAmt =  Convert.ToDouble(edv.dataView[edv.Row]["TotalQuote"]);
+//MessageBox.Show(PotentialAmt.ToString());
 		switch (args.Column.ColumnName)
 		{
 			case "MiscCode":
@@ -4142,6 +4151,9 @@ private string GetInsideSalesRep(string SalesRepCode)
 		}
 	}
 }
+
+
+
 
 
 
@@ -4970,7 +4982,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;quoteLinePanel1&lt;/ControlName&gt;
     &lt;Key&gt;2f79fd4a-b329-477d-b741-aed428550339&lt;/Key&gt;
     &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;929&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;952&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -4982,7 +4994,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;quoteLinePanel1&lt;/ControlName&gt;
     &lt;Key&gt;2f79fd4a-b329-477d-b741-aed428550339&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;929&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;952&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -4994,7 +5006,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;quoteLinePanel1&lt;/ControlName&gt;
     &lt;Key&gt;2f79fd4a-b329-477d-b741-aed428550339&lt;/Key&gt;
     &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;698&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;580&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -5006,7 +5018,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;quoteLinePanel1&lt;/ControlName&gt;
     &lt;Key&gt;2f79fd4a-b329-477d-b741-aed428550339&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;698&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;580&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -5678,7 +5690,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpQty&lt;/ControlName&gt;
     &lt;Key&gt;f86877d2-f41d-4353-8d2f-b50a70b4979a&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -5774,7 +5786,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpPart&lt;/ControlName&gt;
     &lt;Key&gt;4ed61c35-c491-416f-a1f0-817b3aa06091&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -5882,7 +5894,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;eugQuoteQtys&lt;/ControlName&gt;
     &lt;Key&gt;b4888395-8a78-4e5b-bd43-63b324f1f4b5&lt;/Key&gt;
     &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;319&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;330&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -5894,7 +5906,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;eugQuoteQtys&lt;/ControlName&gt;
     &lt;Key&gt;b4888395-8a78-4e5b-bd43-63b324f1f4b5&lt;/Key&gt;
     &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;133&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;120&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -5906,7 +5918,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;eugQuoteQtys&lt;/ControlName&gt;
     &lt;Key&gt;b4888395-8a78-4e5b-bd43-63b324f1f4b5&lt;/Key&gt;
     &lt;PropertyName&gt;Anchor&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;Top, Bottom, Left, Right&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;Top, Left&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -5918,7 +5930,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;eugQuoteQtys&lt;/ControlName&gt;
     &lt;Key&gt;b4888395-8a78-4e5b-bd43-63b324f1f4b5&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;319&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;330&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -5930,7 +5942,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;eugQuoteQtys&lt;/ControlName&gt;
     &lt;Key&gt;b4888395-8a78-4e5b-bd43-63b324f1f4b5&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;133&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;120&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -5966,7 +5978,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiGroupBoxC5&lt;/ControlName&gt;
     &lt;Key&gt;a5cd4b61-eb3e-480f-967e-baa22101c4ba&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -9734,7 +9746,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblShowKitDtls&lt;/ControlName&gt;
     &lt;Key&gt;c5fa96a1-6135-4d2f-921c-dcd8ae2642be-1&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;649&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;710&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -9806,7 +9818,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpTax&lt;/ControlName&gt;
     &lt;Key&gt;870041cd-a218-475a-9411-9f879bc7297f&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10010,7 +10022,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiLabelC5&lt;/ControlName&gt;
     &lt;Key&gt;755bd7da-e183-4404-b037-788d5aed04b2&lt;/Key&gt;
     &lt;PropertyName&gt;Text&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;CSCI : 04-22-2019&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;CSCI : 07-01-2019&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10022,7 +10034,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiGroupBoxC6&lt;/ControlName&gt;
     &lt;Key&gt;4969e6f4-a4ee-4868-818c-da3781c127c3&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10214,7 +10226,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiPntMtlLn&lt;/ControlName&gt;
     &lt;Key&gt;20a03909-6fa4-41b4-8a87-4ed2bd1b6f41&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10334,7 +10346,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiReComputeQtyBtnLn&lt;/ControlName&gt;
     &lt;Key&gt;d553e19b-db95-40b2-8f30-da90070a7934&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10454,7 +10466,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiApplyAllLnBtn&lt;/ControlName&gt;
     &lt;Key&gt;b74a8901-0ad8-4fa8-a69c-b6dcec95503b&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10526,7 +10538,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;baqComboC1&lt;/ControlName&gt;
     &lt;Key&gt;289c2bed-dbc6-4a42-a618-0a5870228509&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -13814,7 +13826,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblSalesperson&lt;/ControlName&gt;
     &lt;Key&gt;3ef0fd31-8113-43c2-85b8-7c2eded02dc8&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -13826,7 +13838,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;cmbSalesperson&lt;/ControlName&gt;
     &lt;Key&gt;d5955392-45f5-4621-a65e-18638a6b90ba&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -13958,7 +13970,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblCurrentStage&lt;/ControlName&gt;
     &lt;Key&gt;2dad444d-9008-4daf-b389-79d4022d53f5&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -14018,7 +14030,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;txtCurrentStage&lt;/ControlName&gt;
     &lt;Key&gt;adb4132f-55ee-47d1-b4c0-2ee188bfc184&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -14078,7 +14090,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblTaskSet&lt;/ControlName&gt;
     &lt;Key&gt;be6625f7-3ed1-4c8a-aa4c-9f87b5fd4ca5&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -14138,7 +14150,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;cboTaskSet&lt;/ControlName&gt;
     &lt;Key&gt;229d2313-661d-4568-a7ea-3028ba08bdab&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -14906,7 +14918,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblExpectedCalc&lt;/ControlName&gt;
     &lt;Key&gt;251194fe-603a-4db3-8a98-59987a19ff57&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -14918,7 +14930,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;currExpected&lt;/ControlName&gt;
     &lt;Key&gt;ae846fd1-1da9-4a60-8b95-816ab431dbda&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;9&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15050,7 +15062,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblDiscount&lt;/ControlName&gt;
     &lt;Key&gt;a31b5151-8320-42e4-8d7a-1685bb8e37ef&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15926,7 +15938,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiFreightLnBtn&lt;/ControlName&gt;
     &lt;Key&gt;4639a984-e57f-4f6e-8178-aeecbdd741c1&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16274,7 +16286,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpRating&lt;/ControlName&gt;
     &lt;Key&gt;a6a22b5b-dda6-4070-b412-d5c7285d89b0&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16406,7 +16418,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpAmounts&lt;/ControlName&gt;
     &lt;Key&gt;642bd9f0-0ce0-44f3-b615-4f18b492596d&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -17666,7 +17678,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;baqInsideRep&lt;/ControlName&gt;
     &lt;Key&gt;7c6220e1-1c3e-4e27-b20e-19b2b8503251&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -19622,7 +19634,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpShipToAddress&lt;/ControlName&gt;
     &lt;Key&gt;714aba24-c076-420f-a942-b996376f0fde&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46775,7 +46787,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblTotal&lt;/ControlName&gt;
     &lt;Key&gt;411bd96e-7e39-444e-b461-f172b2eda250&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46787,7 +46799,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;currTotalQuote&lt;/ControlName&gt;
     &lt;Key&gt;818132fb-f3ec-4689-9dd3-c582650ee7ac&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46799,7 +46811,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblTotal&lt;/ControlName&gt;
     &lt;Key&gt;411bd96e-7e39-444e-b461-f172b2eda250&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;164&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;165&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46811,7 +46823,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblTotal&lt;/ControlName&gt;
     &lt;Key&gt;411bd96e-7e39-444e-b461-f172b2eda250&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;58&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;55&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46847,7 +46859,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;currTotalQuote&lt;/ControlName&gt;
     &lt;Key&gt;818132fb-f3ec-4689-9dd3-c582650ee7ac&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;180&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;177&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46859,7 +46871,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;currTotalQuote&lt;/ControlName&gt;
     &lt;Key&gt;818132fb-f3ec-4689-9dd3-c582650ee7ac&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;164&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;165&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46871,7 +46883,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;currTotalQuote&lt;/ControlName&gt;
     &lt;Key&gt;818132fb-f3ec-4689-9dd3-c582650ee7ac&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;180&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;177&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46883,7 +46895,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;currTotalQuote&lt;/ControlName&gt;
     &lt;Key&gt;818132fb-f3ec-4689-9dd3-c582650ee7ac&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;164&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;165&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46895,7 +46907,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblTax&lt;/ControlName&gt;
     &lt;Key&gt;5c83c7af-9977-4096-a717-7c829aec274a&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46907,7 +46919,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;currTax&lt;/ControlName&gt;
     &lt;Key&gt;6be9ce8b-c588-4042-83c1-6a5ed53902fd&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46919,7 +46931,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblTax&lt;/ControlName&gt;
     &lt;Key&gt;5c83c7af-9977-4096-a717-7c829aec274a&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;142&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;140&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46931,7 +46943,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblTax&lt;/ControlName&gt;
     &lt;Key&gt;5c83c7af-9977-4096-a717-7c829aec274a&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;54&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;55&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46967,7 +46979,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblPotential&lt;/ControlName&gt;
     &lt;Key&gt;e0830f78-81d2-4d88-a8ce-e325e1c399cd&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46979,7 +46991,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;currTotPotential&lt;/ControlName&gt;
     &lt;Key&gt;85583b07-7522-4640-8794-53363f79f637&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46991,7 +47003,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblPotential&lt;/ControlName&gt;
     &lt;Key&gt;e0830f78-81d2-4d88-a8ce-e325e1c399cd&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;91&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;90&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47003,7 +47015,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblPotential&lt;/ControlName&gt;
     &lt;Key&gt;e0830f78-81d2-4d88-a8ce-e325e1c399cd&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;54&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;55&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47111,7 +47123,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;eugQuoteQtys&lt;/ControlName&gt;
     &lt;Key&gt;b4888395-8a78-4e5b-bd43-63b324f1f4b5&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;9&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47147,7 +47159,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;eugQuoteQtys&lt;/ControlName&gt;
     &lt;Key&gt;b4888395-8a78-4e5b-bd43-63b324f1f4b5&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;9&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47156,8 +47168,176 @@ private string GetInsideSalesRep(string SalesRepCode)
   &lt;/Properties&gt;
   &lt;Properties&gt;
     &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
-    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;ControlName&gt;lblMiscCharges&lt;/ControlName&gt;
+    &lt;Key&gt;14c1c1f9-1797-4866-824c-815717b1f381&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;currTotalMiscCharges&lt;/ControlName&gt;
+    &lt;Key&gt;370abd68-b1fb-4634-9941-56ae0b90aee4&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblMiscCharges&lt;/ControlName&gt;
+    &lt;Key&gt;14c1c1f9-1797-4866-824c-815717b1f381&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;115&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblMiscCharges&lt;/ControlName&gt;
+    &lt;Key&gt;14c1c1f9-1797-4866-824c-815717b1f381&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;54&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblMiscCharges&lt;/ControlName&gt;
+    &lt;Key&gt;14c1c1f9-1797-4866-824c-815717b1f381&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;116&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblMiscCharges&lt;/ControlName&gt;
+    &lt;Key&gt;14c1c1f9-1797-4866-824c-815717b1f381&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;21&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;currTotPotential&lt;/ControlName&gt;
+    &lt;Key&gt;85583b07-7522-4640-8794-53363f79f637&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;177&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;currTotPotential&lt;/ControlName&gt;
+    &lt;Key&gt;85583b07-7522-4640-8794-53363f79f637&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;90&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;currTotPotential&lt;/ControlName&gt;
+    &lt;Key&gt;85583b07-7522-4640-8794-53363f79f637&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;177&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;currTotPotential&lt;/ControlName&gt;
+    &lt;Key&gt;85583b07-7522-4640-8794-53363f79f637&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;90&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;currTax&lt;/ControlName&gt;
+    &lt;Key&gt;6be9ce8b-c588-4042-83c1-6a5ed53902fd&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;177&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;currTax&lt;/ControlName&gt;
+    &lt;Key&gt;6be9ce8b-c588-4042-83c1-6a5ed53902fd&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;140&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;currTax&lt;/ControlName&gt;
+    &lt;Key&gt;6be9ce8b-c588-4042-83c1-6a5ed53902fd&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;177&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;currTax&lt;/ControlName&gt;
+    &lt;Key&gt;6be9ce8b-c588-4042-83c1-6a5ed53902fd&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;140&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpLine&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
@@ -47168,8 +47348,8 @@ private string GetInsideSalesRep(string SalesRepCode)
   &lt;/Properties&gt;
   &lt;Properties&gt;
     &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
-    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;ControlName&gt;grpLine&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
     &lt;PropertyName&gt;Anchor&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;Top, Left&lt;/PropertyValue&gt;
     &lt;Company /&gt;
@@ -47180,10 +47360,10 @@ private string GetInsideSalesRep(string SalesRepCode)
   &lt;/Properties&gt;
   &lt;Properties&gt;
     &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
-    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;ControlName&gt;grpLine&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;40&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47192,8 +47372,8 @@ private string GetInsideSalesRep(string SalesRepCode)
   &lt;/Properties&gt;
   &lt;Properties&gt;
     &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
-    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;ControlName&gt;grpLine&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
@@ -47204,10 +47384,10 @@ private string GetInsideSalesRep(string SalesRepCode)
   &lt;/Properties&gt;
   &lt;Properties&gt;
     &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
-    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;ControlName&gt;grpLine&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;404&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;816&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47216,10 +47396,82 @@ private string GetInsideSalesRep(string SalesRepCode)
   &lt;/Properties&gt;
   &lt;Properties&gt;
     &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
-    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;ControlName&gt;grpLine&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;125&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;36&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;txtPartNumber&lt;/ControlName&gt;
+    &lt;Key&gt;4afda8ce-6b6d-4359-9b29-919838a22e98&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;btnConfigureOn&lt;/ControlName&gt;
+    &lt;Key&gt;0ede0512-a9c2-428c-abc4-fbc22c9ef9b9&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;btnConfigureOn&lt;/ControlName&gt;
+    &lt;Key&gt;0ede0512-a9c2-428c-abc4-fbc22c9ef9b9&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;48&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;btnConfigureOn&lt;/ControlName&gt;
+    &lt;Key&gt;0ede0512-a9c2-428c-abc4-fbc22c9ef9b9&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;339&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;btnConfigureOn&lt;/ControlName&gt;
+    &lt;Key&gt;0ede0512-a9c2-428c-abc4-fbc22c9ef9b9&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;137&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;btnConfigureOn&lt;/ControlName&gt;
+    &lt;Key&gt;0ede0512-a9c2-428c-abc4-fbc22c9ef9b9&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;22&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
