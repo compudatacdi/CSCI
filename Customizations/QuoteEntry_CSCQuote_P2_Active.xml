@@ -76,9 +76,9 @@
     <Key2>App.QuoteEntry.QuoteForm</Key2>
     <Key3 />
     <Description />
-    <LastUpdated>2019-07-02T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2019-07-05T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-EBlackwelder</LastUpdatedBy>
-    <Version>7/2/2019 1:05:39 PM</Version>
+    <Version>7/5/2019 4:11:25 PM</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -191,7 +191,7 @@ JDS - Then I changed some consmetic stuff and changed the date stamp
 [19289-LCurcio: 7/1/2019 7:39:58 PM]</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>9940384350</SysRevID>
+    <SysRevID>9940706776</SysRevID>
     <SysRowID>869376b0-acf6-4f45-a120-405cd132722c</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -2357,7 +2357,10 @@ private void epiApplyAllLnBtn_Click(object sender, System.EventArgs args)
          {
            Cursor.Current = Cursors.WaitCursor;
             oTrans.PushStatusText("Wait Updating...", false);
-            CallDynamicQueryPainLn(QuoteNo,CustNum, PntColor,DisplaySeq);
+			//eb1:
+            //CallDynamicQueryPainLn(QuoteNo,CustNum, PntColor,DisplaySeq);
+            CallDynamicQueryPainLn(QuoteNo, CustNum, PntColor, DisplaySeq, true);
+
           
            oTrans.PushStatusText("", false);
            Cursor.Current = Cursors.Default;
@@ -2366,7 +2369,9 @@ private void epiApplyAllLnBtn_Click(object sender, System.EventArgs args)
 }
 
 
-private void CallDynamicQueryPainLn(int QuoteNum, int CustNum, string PntColor, int DisplaySeq)
+//eb1:
+//private void CallDynamicQueryPainLn(int QuoteNum, int CustNum, string PntColor, int DisplaySeq)
+private void CallDynamicQueryPainLn(int QuoteNum, int CustNum, string PntColor, int DisplaySeq, bool ApplyButtonHit)
 	{
 		try
 		{
@@ -2417,20 +2422,28 @@ private void CallDynamicQueryPainLn(int QuoteNum, int CustNum, string PntColor, 
 				             {
 								//eb1:
 				                //if (item["PartNum"].ToString() == QuotePart &amp;amp;&amp;amp; Convert.ToInt32(item["QuoteLine"]) == QuoteLn &amp;amp;&amp;amp; Convert.ToInt32(item["DisplaySeq"])==  LnSeq )
-								if ((item["PartNum"].ToString() == QuotePart &amp;amp;&amp;amp; Convert.ToInt32(item["QuoteLine"]) == QuoteLn &amp;amp;&amp;amp; Convert.ToInt32(item["DisplaySeq"])==  LnSeq )
+								if (ApplyButtonHit
+								&amp;amp;&amp;amp; (item["PartNum"].ToString() == QuotePart &amp;amp;&amp;amp; Convert.ToInt32(item["QuoteLine"]) == QuoteLn &amp;amp;&amp;amp; Convert.ToInt32(item["DisplaySeq"])==  LnSeq )
 								&amp;amp;&amp;amp; ((bool)item["CheckBox01"] == true))
-				                    {  
+				                {  
 		                            
 					                   item.BeginEdit(); 
 					                   item["CheckBox01"] = Paintable;
 					                   item["ShortChar02"] = PntColor;
 					                   item["RowMod"] ="U";
 					                   item. EndEdit();
-		                           
-		                         
-		                  
 			                   }
 			
+								//eb1:
+				                if (!ApplyButtonHit
+								&amp;amp;&amp;amp; (item["PartNum"].ToString() == QuotePart &amp;amp;&amp;amp; Convert.ToInt32(item["QuoteLine"]) == QuoteLn &amp;amp;&amp;amp; Convert.ToInt32(item["DisplaySeq"])==  LnSeq ))
+				                {		                            
+					                   item.BeginEdit(); 
+					                   item["CheckBox01"] = Paintable;
+					                   item["RowMod"] ="U";
+					                   item. EndEdit();
+			                   }
+
 			                 }
 			 
 			              }
@@ -3435,11 +3448,36 @@ private void CallQuoteAdapterGetNewQuoteHedMscMethod(int QuoteNum, double FtCost
 	private void oTrans_adapter_AfterAdapterMethod(object sender, AfterAdapterMethodArgs args)
 	{
 		
+		//eb1: test message
+		//MessageBox.Show(args.MethodName.ToString());
 		
          string s1 = args.MethodName;
          string s2 = "GetCustomerinfo";
          string s3 = "Update";    
 		
+		//eb1:
+		if (args.MethodName.ToString() == "GetKitComponents")
+		{
+			if (edvQuoteDtl.dataView.Count &amp;gt; 0)
+			{
+				if (edvQuoteDtl.CurrentDataRow != null)
+				{
+					EpiDataView edv = oTrans.Factory("QuoteDtl");
+					int DisplaySeq = Convert.ToInt32(edv.dataView[edv.Row]["DisplaySeq"]);
+					int QuoteNo = Convert.ToInt32(edv.dataView[edv.Row]["QuoteNum"]);
+					int CustNum = Convert.ToInt32(edv.dataView[edv.Row]["CustNum"]);
+
+					Cursor.Current = Cursors.WaitCursor;
+		            oTrans.PushStatusText("Wait Updating...", false);
+		            CallDynamicQueryPainLn(QuoteNo, CustNum, "", DisplaySeq, false);
+	
+				}
+	
+			}
+	    
+		}
+
+
 		if(String.Compare(s1, s2, true)== 0)
                {
 					NewQuote = true;
@@ -4151,6 +4189,8 @@ private string GetInsideSalesRep(string SalesRepCode)
 		}
 	}
 }
+
+
 
 
 
@@ -9746,7 +9786,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblShowKitDtls&lt;/ControlName&gt;
     &lt;Key&gt;c5fa96a1-6135-4d2f-921c-dcd8ae2642be-1&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;710&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;649&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16286,7 +16326,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpRating&lt;/ControlName&gt;
     &lt;Key&gt;a6a22b5b-dda6-4070-b412-d5c7285d89b0&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16418,7 +16458,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpAmounts&lt;/ControlName&gt;
     &lt;Key&gt;642bd9f0-0ce0-44f3-b615-4f18b492596d&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -19094,7 +19134,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpQuote&lt;/ControlName&gt;
     &lt;Key&gt;3eaf7d71-eb69-4fa8-b82e-8c514a7d2c31&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -19634,7 +19674,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpShipToAddress&lt;/ControlName&gt;
     &lt;Key&gt;714aba24-c076-420f-a942-b996376f0fde&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47472,6 +47512,90 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;Key&gt;0ede0512-a9c2-428c-abc4-fbc22c9ef9b9&lt;/Key&gt;
     &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;22&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;Anchor&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;Top, Left&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;40&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;404&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;685ca82b-77f9-42d1-b8ca-5d1682329764&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;125&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;btnShipToCust&lt;/ControlName&gt;
+    &lt;Key&gt;1df97b3d-2388-45b9-84bf-d30c155e884d&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
