@@ -76,9 +76,9 @@
     <Key2>App.QuoteEntry.QuoteForm</Key2>
     <Key3 />
     <Description />
-    <LastUpdated>2019-07-05T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2019-07-08T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-EBlackwelder</LastUpdatedBy>
-    <Version>7/5/2019 4:11:25 PM</Version>
+    <Version>7/8/2019 1:49:40 PM</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -191,7 +191,7 @@ JDS - Then I changed some consmetic stuff and changed the date stamp
 [19289-LCurcio: 7/1/2019 7:39:58 PM]</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>9940706776</SysRevID>
+    <SysRevID>9941027714</SysRevID>
     <SysRowID>869376b0-acf6-4f45-a120-405cd132722c</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1419,6 +1419,8 @@ JDS - Then I changed some consmetic stuff and changed the date stamp
 //		modify logic for Apply Color to only target lines that are flagged as paintable
 //	eb2 07/02/19 eric blackwelder @ compudata
 //		get inside salesperson logic to work with new quotes
+//	eb3 07/08/19 eric blackwelder @ compudata
+//		make apply color button save data first
 //
 // **************************************************
 
@@ -1447,6 +1449,10 @@ using Ice.Lib.Searches;
 using Ice.UI.FormFunctions;
 using System.Drawing;
 using System.Reflection;
+//eb3:
+using Infragistics.Win.UltraWinToolbars;
+using System.Reflection;
+
 
 public class Script
 {
@@ -2343,6 +2349,15 @@ private void epiApplyAllLnBtn_Click(object sender, System.EventArgs args)
 
 	// ** Place Event Handling Code Here **
       
+	 	//eb3:
+ 		Infragistics.Win.UltraWinToolbars.UltraToolbarsManager utmX = baseToolbarsManager;
+ 		Infragistics.Win.UltraWinToolbars.ToolBase ctrlX = baseToolbarsManager.Tools["SaveTool"];
+ 		utmX.GetType().InvokeMember("FireEvent", 
+			BindingFlags.Instance | BindingFlags.InvokeMethod | BindingFlags.NonPublic, null, 
+			utmX, new object[] { ToolbarEventIds.ToolClick, 
+			new ToolClickEventArgs(ctrlX, null) });
+
+
          EpiDataView edv = oTrans.Factory("QuoteDtl");
          string PntColor = edv.dataView[edv.Row]["ShortChar02"].ToString();
          edv.dataView[edv.Row]["ShortChar02"]=PntColor;
@@ -3741,7 +3756,8 @@ private string GetInsideSalesRep(string SalesRepCode)
 
 	private void oTrans_adapter_BeforeAdapterMethod(object sender, BeforeAdapterMethodArgs args)
 	{
-	  //  MessageBox.Show(args.MethodName.ToString());   
+	    //MessageBox.Show(args.MethodName.ToString());   
+
 		switch (args.MethodName)
 		{
 			case "GetNewSalesKit":
@@ -4189,6 +4205,7 @@ private string GetInsideSalesRep(string SalesRepCode)
 		}
 	}
 }
+
 
 
 
@@ -5730,7 +5747,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpQty&lt;/ControlName&gt;
     &lt;Key&gt;f86877d2-f41d-4353-8d2f-b50a70b4979a&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -5826,7 +5843,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpPart&lt;/ControlName&gt;
     &lt;Key&gt;4ed61c35-c491-416f-a1f0-817b3aa06091&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6018,7 +6035,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiGroupBoxC5&lt;/ControlName&gt;
     &lt;Key&gt;a5cd4b61-eb3e-480f-967e-baa22101c4ba&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10074,7 +10091,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiGroupBoxC6&lt;/ControlName&gt;
     &lt;Key&gt;4969e6f4-a4ee-4868-818c-da3781c127c3&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10266,7 +10283,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiPntMtlLn&lt;/ControlName&gt;
     &lt;Key&gt;20a03909-6fa4-41b4-8a87-4ed2bd1b6f41&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10386,7 +10403,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiReComputeQtyBtnLn&lt;/ControlName&gt;
     &lt;Key&gt;d553e19b-db95-40b2-8f30-da90070a7934&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10506,7 +10523,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiApplyAllLnBtn&lt;/ControlName&gt;
     &lt;Key&gt;b74a8901-0ad8-4fa8-a69c-b6dcec95503b&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10578,7 +10595,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;baqComboC1&lt;/ControlName&gt;
     &lt;Key&gt;289c2bed-dbc6-4a42-a618-0a5870228509&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15030,7 +15047,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblUnitPrice&lt;/ControlName&gt;
     &lt;Key&gt;7a20a0f6-0064-4318-b9da-f33b1aaa603a&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15042,7 +15059,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;currUnitPrice&lt;/ControlName&gt;
     &lt;Key&gt;da1b4ed0-c1bb-4073-b6b3-08a366c128de&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15270,7 +15287,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblPricePer&lt;/ControlName&gt;
     &lt;Key&gt;d58c1e4d-cdc0-4349-a651-247510e084c4&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;9&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15282,7 +15299,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;cboPricePer&lt;/ControlName&gt;
     &lt;Key&gt;85ebc104-942f-4709-b5d7-0a12814e9162&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;9&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15486,7 +15503,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblOrderQty&lt;/ControlName&gt;
     &lt;Key&gt;3384e53c-458c-40d8-b10e-e07cd6a573b5&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15498,7 +15515,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;numOrderQty&lt;/ControlName&gt;
     &lt;Key&gt;692bd57a-dc19-4f78-b4ad-710a74378784&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15978,7 +15995,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiFreightLnBtn&lt;/ControlName&gt;
     &lt;Key&gt;4639a984-e57f-4f6e-8178-aeecbdd741c1&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -45867,7 +45884,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiNewUnitPx&lt;/ControlName&gt;
     &lt;Key&gt;b6b22703-c4ae-48c8-a43f-a10f5e748b97&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;11&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46071,7 +46088,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;epiLabelC14&lt;/ControlName&gt;
     &lt;Key&gt;eb8b6cef-9f84-43ad-a7ff-32eed59a11da&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;11&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46731,7 +46748,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblDiscountAmt&lt;/ControlName&gt;
     &lt;Key&gt;3f9a712a-a1ce-4807-86c3-e3c1685cc582&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -46743,7 +46760,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;currDiscountAmount&lt;/ControlName&gt;
     &lt;Key&gt;66e18b3e-4155-4922-ae99-d32d42a69ea4&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47091,7 +47108,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblDiscPct&lt;/ControlName&gt;
     &lt;Key&gt;af815482-4310-4719-b6db-d9d602854a73&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47103,7 +47120,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;numDiscPct&lt;/ControlName&gt;
     &lt;Key&gt;62fbb5a7-0958-46bb-845a-576e0f2a3357&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47379,7 +47396,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;grpLine&lt;/ControlName&gt;
     &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
