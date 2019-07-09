@@ -78,7 +78,7 @@
     <Description />
     <LastUpdated>2019-07-09T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-EBlackwelder</LastUpdatedBy>
-    <Version>7/9/2019 8:27:51 AM</Version>
+    <Version>7/9/2019 11:45:08 AM</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -191,7 +191,7 @@ JDS - Then I changed some consmetic stuff and changed the date stamp
 [19289-LCurcio: 7/1/2019 7:39:58 PM]</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>9941093278</SysRevID>
+    <SysRevID>9941100476</SysRevID>
     <SysRowID>869376b0-acf6-4f45-a120-405cd132722c</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1424,6 +1424,8 @@ JDS - Then I changed some consmetic stuff and changed the date stamp
 //	eb4 07/08/19 eric blackwelder @ compudata
 //		make paintable flag work in regular processing by making existing logic more dynamic
 //		make column order fire when form loads as well
+//	eb5 07/09/19 eric blackwelder @ compudata
+//		prevent creating misc charge of $0
 //
 // **************************************************
 
@@ -2704,11 +2706,17 @@ private void epiReComputeQtyBtnLn_Click(object sender, System.EventArgs args)
 		
 		      // recalculate
 
-                      double QuoteTotalWt  = GetQuoteTotalWeight(QuoteNo);
+                       double QuoteTotalWt  = GetQuoteTotalWeight(QuoteNo);
                        EnterQuoteWeight(QuoteNo, QuoteTotalWt);
                        double FreightCost  = GetCarrierRate(FreightCarrier, SelectedState, QuoteTotalWt);
-				        // need all the weight of the quote. Using Wts, state and Carrier find Cost/wt          
-                         CallQuoteAdapterGetNewQuoteHedMscMethod(QuoteNo, Math.Round(FreightCost, 2) );    
+				       // need all the weight of the quote. Using Wts, state and Carrier find Cost/wt          
+                       //eb5:
+					   //CallQuoteAdapterGetNewQuoteHedMscMethod(QuoteNo, Math.Round(FreightCost, 2) );    
+					   if(FreightCost &amp;gt; 0)
+					   {
+					   	CallQuoteAdapterGetNewQuoteHedMscMethod(QuoteNo, Math.Round(FreightCost, 2) );    
+					   }
+
 				       // EnterFreightRate(QuoteNo, PartNum, Math.Round(FreightCost, 2) );
 		       // }	            
 //		       else
@@ -6039,7 +6047,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;eugQuoteQtys&lt;/ControlName&gt;
     &lt;Key&gt;b4888395-8a78-4e5b-bd43-63b324f1f4b5&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47568,7 +47576,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;txtPartNumber&lt;/ControlName&gt;
     &lt;Key&gt;4afda8ce-6b6d-4359-9b29-919838a22e98&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47580,7 +47588,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;btnConfigureOn&lt;/ControlName&gt;
     &lt;Key&gt;0ede0512-a9c2-428c-abc4-fbc22c9ef9b9&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47713,6 +47721,18 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;Key&gt;1df97b3d-2388-45b9-84bf-d30c155e884d&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;btnPartRev&lt;/ControlName&gt;
+    &lt;Key&gt;b14240eb-b9ba-4ac7-ae02-0976795fec96&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
