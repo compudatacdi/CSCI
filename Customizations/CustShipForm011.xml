@@ -78,7 +78,7 @@
     <Description />
     <LastUpdated>2019-07-09T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-EBlackwelder</LastUpdatedBy>
-    <Version>7/9/2019 12:05:04 PM</Version>
+    <Version>7/9/2019 12:31:00 PM</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -107,7 +107,7 @@ JDS - Realigned the PCID field on the Summary Tab so that it wasn't overtop of t
 [19289-JStauffer: 6/28/2019 6:45:25 PM]</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>9941103245</SysRevID>
+    <SysRevID>9941104652</SysRevID>
     <SysRowID>2adf6b38-56fc-40cb-8e24-b469b790cd2b</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -248,6 +248,14 @@ JDS - Realigned the PCID field on the Summary Tab so that it wasn't overtop of t
 // Custom code for CustShipForm
 // Created: 4/29/2019 11:34:08 PM
 // **************************************************
+//
+//	REVISION LOG
+//
+//	eb1 07/09/19 eric blackwelder @ compudata
+//		eliminate error when entering pcid field on summary tab
+//
+// **************************************************
+
 
 extern alias Erp_Contracts_BO_SalesOrder;
 extern alias Erp_Contracts_BO_OrderRelSearch;
@@ -275,6 +283,9 @@ using Ice.Lib.ExtendedProps;
 using Ice.Lib.Framework;
 using Ice.Lib.Searches;
 using Ice.UI.FormFunctions;
+//
+using Ice.Core;
+using System.Collections.Generic;
 
 public class Script
 {
@@ -351,7 +362,9 @@ public class Script
          Cursor.Current = Cursors.WaitCursor;
          CallDynamicQueryAdapterExecuteByIDMethod( epiPCID_tx.Text);
       
-         edv.dataView[edv.Row]["PCID"] = epiPCID_tx.Text;
+		 //eb1:  there is no PCID field on ShipHead
+         //edv.dataView[edv.Row]["PCID"] = epiPCID_tx.Text;
+
          Cursor.Current  = Cursors.Default;
          epiPCID_tx.Text="";
   
