@@ -76,9 +76,9 @@
     <Key2>App.QuoteEntry.QuoteForm</Key2>
     <Key3 />
     <Description />
-    <LastUpdated>2019-07-08T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2019-07-09T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-EBlackwelder</LastUpdatedBy>
-    <Version>7/8/2019 1:49:40 PM</Version>
+    <Version>7/9/2019 8:27:51 AM</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -191,7 +191,7 @@ JDS - Then I changed some consmetic stuff and changed the date stamp
 [19289-LCurcio: 7/1/2019 7:39:58 PM]</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>9941027714</SysRevID>
+    <SysRevID>9941093278</SysRevID>
     <SysRowID>869376b0-acf6-4f45-a120-405cd132722c</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1421,6 +1421,9 @@ JDS - Then I changed some consmetic stuff and changed the date stamp
 //		get inside salesperson logic to work with new quotes
 //	eb3 07/08/19 eric blackwelder @ compudata
 //		make apply color button save data first
+//	eb4 07/08/19 eric blackwelder @ compudata
+//		make paintable flag work in regular processing by making existing logic more dynamic
+//		make column order fire when form loads as well
 //
 // **************************************************
 
@@ -1452,6 +1455,9 @@ using System.Reflection;
 //eb3:
 using Infragistics.Win.UltraWinToolbars;
 using System.Reflection;
+using Ice.Core;
+using System.Collections.Generic;
+
 
 
 public class Script
@@ -1545,7 +1551,7 @@ public class Script
 //this.btnCallFreight.Click += new System.EventHandler(this.btnCallFreight_Click);
         this.epiReComputeQtyBtn.Click += new System.EventHandler(this.epiReComputeQtyBtn_Click);
 	  
-        
+           
 	}
 
 	public void DestroyCustomCode()
@@ -1578,13 +1584,9 @@ public class Script
         this.SalesKits_Row.EpiRowChanging -= new EpiRowChanging(this.SalesKits_BeforeRowChange);
 	}
 
-	private void edvQuoteDtl_EpiViewNotification(EpiDataView view, EpiNotifyArgs args)
+	//eb4:
+	private void MoveColumns()
 	{
-	
-	 if ((args.NotifyType == EpiTransaction.NotifyType.Initialize))
-			{
-				if ((args.Row &amp;gt; -1))
-				{
 	                QuoteDtlList= (Ice.Lib.Framework.EpiUltraGrid)csm.GetNativeControlReference("73bddcdc-c164-4d92-804b-7309ce973d36-1");
 	                QuoteDtlList.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove;
 	                QuoteDtlList.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 12 ;
@@ -1644,13 +1646,21 @@ public class Script
                    gridLineDtl.DisplayLayout.Bands[0].Columns["CheckBox01"].Header.VisiblePosition = 11 ;
                    gridLineDtl.DisplayLayout.Bands[0].Columns["CheckBox01"].Header.Caption ="Paintable";
 
+	}
 
+	
+	private void edvQuoteDtl_EpiViewNotification(EpiDataView view, EpiNotifyArgs args)
+	{
+	
+	 if ((args.NotifyType == EpiTransaction.NotifyType.Initialize))
+			{
+				if ((args.Row &amp;gt; -1))
+				{
+					//eb4:  move all code into the method being called here:
+					MoveColumns();
 
-
-
-
-	                 }
-	              }
+                 }
+             }
 		
 	}
 
@@ -1663,6 +1673,10 @@ public class Script
        // QuoteForm.CenterToScreen();
        QuoteForm.Location = new Point((Screen.PrimaryScreen.Bounds.Size.Width / 2) - (QuoteForm.Size.Width / 2), (Screen.PrimaryScreen.Bounds.Size.Height / 2) - (QuoteForm.Size.Height / 2));  
 	    // BaqSales.SelectedIndex = 0;
+
+		//eb4:  move all code into the method being called here:
+		MoveColumns();
+
    }
 
 	private void epiGetDetailBtn_Click(object sender, System.EventArgs args)
@@ -1833,12 +1847,11 @@ public class Script
 
 			ds.ExecutionParameter.AddExecutionParameterRow("QuoteNum", QuoteN, "int", false, Guid.Empty, "A");
 
-
 			// Call Adapter method
 			adapterDynamicQuery.ExecuteByID(BAQName, ds);
 
            System.Data.DataSet dsQuote = adapterQuote.GetData(QuoteNum);
-                
+
 			// Lets Loop through our results
 			if (adapterDynamicQuery.QueryResults.Tables["Results"].Rows.Count &amp;gt; 0)
 			{
@@ -1857,12 +1870,12 @@ public class Script
 				             foreach (DataRow item in dsQuote.Tables["QuoteDtl"].Rows)
 				                         
 				             {
-				                  if (item["PartNum"].ToString() == QuotePart &amp;amp;&amp;amp; Convert.ToInt32(item["QuoteLine"]) == QuoteLn  )
+								  if (item["PartNum"].ToString() == QuotePart &amp;amp;&amp;amp; Convert.ToInt32(item["QuoteLine"]) == QuoteLn  )
 				                    {  
 		                  
 					                   item.BeginEdit(); 
 					                   item["CheckBox01"] = Paintable;
-					                   item["ShortChar02"] = PntColor;
+									   item["ShortChar02"] = PntColor;
 					                   item["RowMod"] ="U";
 					                   item. EndEdit();
 		                            }
@@ -1894,6 +1907,70 @@ public class Script
 		}
 	}
 
+	//eb4:
+	private void FillPaintableFlag(int QuoteNum, int CustNum, string PntColor)
+	{
+		// for simplicity and time, i copied/modified existing method for paintable flag in kits
+
+		try
+		{
+           Cursor.Current = Cursors.WaitCursor;
+			// Declare and Initialize EpiDataView Variables
+            EpiDataView edv = oTrans.Factory("QuoteDtl");
+			// Declare and create an instance of the Adapter.
+            QuoteAdapter adapterQuote = new QuoteAdapter(this.oTrans);
+			adapterQuote.BOConnect();
+
+			DynamicQueryAdapter adapterDynamicQuery = new DynamicQueryAdapter(this.oTrans);
+			adapterDynamicQuery.BOConnect();
+           
+            string QuoteN = QuoteNum.ToString();
+			string BAQName = "PaintablePartQRY";
+			Ice.BO.QueryExecutionDataSet ds = new Ice.BO.QueryExecutionDataSet();
+
+			ds.ExecutionParameter.AddExecutionParameterRow("QuoteNum", QuoteN, "int", false, Guid.Empty, "A");
+
+			// Call Adapter method
+			adapterDynamicQuery.ExecuteByID(BAQName, ds);
+
+           System.Data.DataSet dsQuote = adapterQuote.GetData(QuoteNum);
+
+			// Lets Loop through our results
+			if (adapterDynamicQuery.QueryResults.Tables["Results"].Rows.Count &amp;gt; 0)
+			{
+						
+                    foreach (DataRow Qry in adapterDynamicQuery.QueryResults.Tables["Results"].Rows)
+						{
+						
+						    string QuotePart = Qry["Part_PartNum"].ToString();
+		                    int    QuoteLn = Convert.ToInt32(Qry["QuoteDtl_QuoteLine"]);
+		                    bool   Paintable = Convert.ToBoolean(Qry["Part_CheckBox01"]);
+		
+		
+		                 if (dsQuote != null)
+				            {
+				         
+								if((string)edv.dataView[edv.Row]["PartNum"] == QuotePart
+								&amp;amp;&amp;amp; Paintable)
+								{
+									edv.dataView[edv.Row]["CheckBox01"] = true;
+								}
+			 
+			              }
+				}
+			}
+              
+			// Cleanup Adapter Reference
+			adapterDynamicQuery.Dispose();
+            adapterQuote.Dispose();
+                  
+           Cursor.Current = Cursors.Default;
+
+		} catch (System.Exception ex)
+		{
+			ExceptionBox.Show(ex);
+		}
+	}
 
 
 	private void epiApplyColorBtn_Click(object sender, System.EventArgs args)
@@ -1915,7 +1992,11 @@ public class Script
              Cursor.Current = Cursors.WaitCursor;
            
             oTrans.PushStatusText("Wait Updating...", false);
+			
+			////eb4:
             CallDynamicQueryAdapterMethod(QuoteNo,CustNum, PntColor);
+			//FillPaintableFlag(QuoteNo, CustNum, PntColor, true);
+
            //CallQuoteAdapterGetNewQuoteDtlMethod(QuoteNo, CustNum);
            oTrans.PushStatusText("", false);
            Cursor.Current = Cursors.Default;
@@ -3465,6 +3546,7 @@ private void CallQuoteAdapterGetNewQuoteHedMscMethod(int QuoteNum, double FtCost
 		
 		//eb1: test message
 		//MessageBox.Show(args.MethodName.ToString());
+
 		
          string s1 = args.MethodName;
          string s2 = "GetCustomerinfo";
@@ -3485,11 +3567,28 @@ private void CallQuoteAdapterGetNewQuoteHedMscMethod(int QuoteNum, double FtCost
 					Cursor.Current = Cursors.WaitCursor;
 		            oTrans.PushStatusText("Wait Updating...", false);
 		            CallDynamicQueryPainLn(QuoteNo, CustNum, "", DisplaySeq, false);
-	
 				}
-	
-			}
-	    
+			}	    
+		}
+
+		//eb4:
+		if (args.MethodName.ToString() == "ChangePartNum")
+		{
+			if (edvQuoteDtl.dataView.Count &amp;gt; 0)
+			{
+				if (edvQuoteDtl.CurrentDataRow != null)
+				{
+
+					EpiDataView edv = oTrans.Factory("QuoteDtl");
+					int DisplaySeq = Convert.ToInt32(edv.dataView[edv.Row]["DisplaySeq"]);
+					int QuoteNo = Convert.ToInt32(edv.dataView[edv.Row]["QuoteNum"]);
+					int CustNum = Convert.ToInt32(edv.dataView[edv.Row]["CustNum"]);
+
+					Cursor.Current = Cursors.WaitCursor;
+		            oTrans.PushStatusText("Wait Updating...", false);
+					FillPaintableFlag(QuoteNo, CustNum, "");
+				}
+			}	    
 		}
 
 
@@ -4205,6 +4304,7 @@ private string GetInsideSalesRep(string SalesRepCode)
 		}
 	}
 }
+
 
 
 
