@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description>retired</Description>
-    <LastUpdated>2019-06-20T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2019-07-09T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-EBlackwelder</LastUpdatedBy>
-    <Version>6/20/2019 12:55:41 P</Version>
+    <Version>7/9/2019 9:24:45 AM</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -201,11 +201,11 @@ JDS - retired in favor of a newer customizatation
 [19289-JStauffer: 6/19/2019 11:36:10 AM]</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>9938109140</SysRevID>
+    <SysRevID>9941094578</SysRevID>
     <SysRowID>9e656d41-da36-473e-8a7d-3b0d9dd550ba</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
-    <OnMenu>true</OnMenu>
+    <OnMenu>false</OnMenu>
     <Duplicate>true</Duplicate>
     <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
@@ -1055,6 +1055,8 @@ JDS - retired in favor of a newer customizatation
 //
 //	eb1 06/20/19 eric blackwelder @ compudata
 //		comment out code that makes hold flag read only
+//	eb2 07/09/19 eric blackwelder @ compudata
+//		modify logic to move columns
 //
 // **************************************************
 
@@ -1085,6 +1087,9 @@ using Ice.Lib.Framework;
 using Ice.Lib.Searches;
 using Ice.UI.FormFunctions;
 using System.Drawing;
+//eb2:
+using Ice.Core;
+using System.Collections.Generic;
 
 public static class Script
 {
@@ -1116,6 +1121,8 @@ public static class Script
     public static Ice.Lib.Framework.EpiUltraGrid OrderDtlList;
     public static Ice.Lib.Framework.EpiUltraGrid OrderDtlList2;
     public static Ice.Lib.Framework.EpiCheckBox OrderHold;
+	//eb2:
+	public static Ice.Lib.Framework.EpiUltraGrid gridListD;
 
 	private static EpiDataView edvOrderDtl;
 	private static EpiDataView edvSalesKits;
@@ -1200,8 +1207,43 @@ public static class Script
                 Script.OrderDtlList.DisplayLayout.Bands[0].Columns["Character01"].Header.VisiblePosition = 7 ;
                 Script.OrderDtlList.DisplayLayout.Bands[0].Columns["Character01"].Header.Caption ="Group";
 
+
 			}
 		}
+	}
+
+	//eb2:
+	private static void MoveColumns()
+	{
+		//moved code:
+		baqColorCmbo2. ReadOnly = true;
+		Script.gridListC= (Ice.Lib.Framework.EpiUltraGrid)csm.GetNativeControlReference("cc4ea34f-2df8-47c5-8df7-8b20058ee04e");
+		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar02"].ValueList = baqColorCmbo2;
+		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar02"].Header.VisiblePosition = 10 ;
+		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar02"].Header.Caption ="Color Code";
+		Script.gridListC.DisplayLayout.Bands[0].Columns["CheckBox01"].Header.VisiblePosition = 11 ;
+		Script.gridListC.DisplayLayout.Bands[0].Columns["CheckBox01"].Header.Caption ="Paintable";
+		Script.gridListC.DisplayLayout.Bands[0].Columns["Character01"].ValueList = baqGroup2;
+		Script.gridListC.DisplayLayout.Bands[0].Columns["Character01"].Header.VisiblePosition = 7 ;
+		Script.gridListC.DisplayLayout.Bands[0].Columns["Character01"].Header.Caption ="Group";
+		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove2;
+		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 6 ;
+		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.Caption ="Mark Above";
+
+		//add code to also hit the line list tab dg:
+		Script.gridListD= (Ice.Lib.Framework.EpiUltraGrid)csm.GetNativeControlReference("4dd0227a-9d85-4d3d-a876-6cf4ea34695b");
+		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar02"].ValueList = baqColorCmbo2;
+		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar02"].Header.VisiblePosition = 10 ;
+		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar02"].Header.Caption ="Color Code";
+		Script.gridListD.DisplayLayout.Bands[0].Columns["CheckBox01"].Header.VisiblePosition = 11 ;
+		Script.gridListD.DisplayLayout.Bands[0].Columns["CheckBox01"].Header.Caption ="Paintable";
+		Script.gridListD.DisplayLayout.Bands[0].Columns["Character01"].ValueList = baqGroup2;
+		Script.gridListD.DisplayLayout.Bands[0].Columns["Character01"].Header.VisiblePosition = 7 ;
+		Script.gridListD.DisplayLayout.Bands[0].Columns["Character01"].Header.Caption ="Group";
+		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove2;
+		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 6 ;
+		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.Caption ="Mark Above";
+
 	}
 
 	private static void edvSalesKits_EpiViewNotification(EpiDataView view, EpiNotifyArgs args)
@@ -1214,20 +1256,9 @@ public static class Script
 		{
 			if ((args.Row &amp;gt; -1))
 			{
+				//eb2:  move code into the called method below:
+				MoveColumns();
 
-                 baqColorCmbo2. ReadOnly = true;
-                Script.gridListC= (Ice.Lib.Framework.EpiUltraGrid)csm.GetNativeControlReference("cc4ea34f-2df8-47c5-8df7-8b20058ee04e");
-                Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar02"].ValueList = baqColorCmbo2;
-                Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar02"].Header.VisiblePosition = 10 ;
-                Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar02"].Header.Caption ="Color Code";
-                Script.gridListC.DisplayLayout.Bands[0].Columns["CheckBox01"].Header.VisiblePosition = 11 ;
-                Script.gridListC.DisplayLayout.Bands[0].Columns["CheckBox01"].Header.Caption ="Paintable";
-                Script.gridListC.DisplayLayout.Bands[0].Columns["Character01"].ValueList = baqGroup2;
-                Script.gridListC.DisplayLayout.Bands[0].Columns["Character01"].Header.VisiblePosition = 7 ;
-                Script.gridListC.DisplayLayout.Bands[0].Columns["Character01"].Header.Caption ="Group";
-                Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove2;
-                Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 6 ;
-                Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.Caption ="Mark Above";
 
 			}
 		}
@@ -1745,9 +1776,9 @@ public static class Script
 
 	private static void SalesOrderForm_Load(object sender, EventArgs args)
 	{
-		    baqMarkAbove.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDown;  
+		baqMarkAbove.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDown;  
 	    baqGroup.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDown; 
-   // QuoteForm.CenterToScreen();
+	   // QuoteForm.CenterToScreen();
        SalesOrderForm.Location = new Point((Screen.PrimaryScreen.Bounds.Size.Width / 2) - (SalesOrderForm.Size.Width / 2), (Screen.PrimaryScreen.Bounds.Size.Height / 2) - (SalesOrderForm.Size.Height / 2));  
 
 		//eb1:
@@ -1756,6 +1787,9 @@ public static class Script
 		OrderHold.Enabled = false;
 		OrderHold.ReadOnly = true;
 		*/
+
+		//eb2:
+		MoveColumns();
 
 	} 
 
@@ -2549,6 +2583,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
 		}
 	}
 }
+
 
 
 
@@ -4243,7 +4278,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;lblShowKitDtls&lt;/ControlName&gt;
     &lt;Key&gt;546e6f1b-7d98-41e1-9efe-7cae2abcaf24&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;470&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;746&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
