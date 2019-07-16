@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+<DynamicReportDataSet xmlns="http://www.epicor.com/Ice/300/BO/DynamicReport/DynamicReport">
+  <BAQReport>
+    <Company>19289</Company>
+    <BAQRptID>19289-PntPick4</BAQRptID>
+    <Description>Paint Pick Report</Description>
+    <ReportTitle />
+    <FormTitle>CSC Paint Pick</FormTitle>
+    <ExportID>19289-PaintPick4</ExportID>
+    <SystemFlag>false</SystemFlag>
+    <Completed>false</Completed>
+    <GlobalReport>false</GlobalReport>
+    <IsCrystalReport>false</IsCrystalReport>
+    <ReportID>19289-PntPick4</ReportID>
+    <CrystalReportName />
+    <CGCCode />
+    <SSRSReportName>19289-PntPick4.rdl</SSRSReportName>
+    <SysRevID>2126756727</SysRevID>
+    <SysRowID>46e5ac18-6113-46d4-93e3-1493714ae27b</SysRowID>
+    <TempRowID />
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </BAQReport>
+  <BAQRptOptionFld>
+    <Company>19289</Company>
+    <BAQRptID>19289-PntPick4</BAQRptID>
+    <DataTableID>OrderDtl</DataTableID>
+    <FieldName>OrderNum</FieldName>
+    <CompOp>=</CompOp>
+    <Seq>1</Seq>
+    <DefaultValue />
+    <FieldLabel>Order</FieldLabel>
+    <DisplayName>OrderDtl_OrderNum</DisplayName>
+    <FieldFormat>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;9</FieldFormat>
+    <EpiGuid>28387f31-5dd6-43b3-a95a-c22659fc9eaf</EpiGuid>
+    <IsVisible>false</IsVisible>
+    <DataType>int</DataType>
+    <SystemFlag>false</SystemFlag>
+    <DispOrder>0</DispOrder>
+    <SysRevID>2126756998</SysRevID>
+    <SysRowID>3eefefe1-2834-4eb2-9f10-b8fbc711f808</SysRowID>
+    <FieldValue />
+    <TempRowID />
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </BAQRptOptionFld>
+</DynamicReportDataSet>

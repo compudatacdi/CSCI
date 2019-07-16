@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+<DynamicReportDataSet xmlns="http://www.epicor.com/Ice/300/BO/DynamicReport/DynamicReport">
+  <BAQReport>
+    <Company>19289</Company>
+    <BAQRptID>19289-AsmPick</BAQRptID>
+    <Description>CSC Assembly Pick List</Description>
+    <ReportTitle />
+    <FormTitle>CSC Assembly Pick List</FormTitle>
+    <ExportID>19289-AssemblyPick</ExportID>
+    <SystemFlag>false</SystemFlag>
+    <Completed>false</Completed>
+    <GlobalReport>false</GlobalReport>
+    <IsCrystalReport>false</IsCrystalReport>
+    <ReportID>19289-AsmPick</ReportID>
+    <CrystalReportName />
+    <CGCCode />
+    <SSRSReportName>19289-AsmPick.rdl</SSRSReportName>
+    <SysRevID>2127035895</SysRevID>
+    <SysRowID>b65acc99-76b0-44ae-9953-ba2460bf92eb</SysRowID>
+    <TempRowID />
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </BAQReport>
+  <BAQRptOptionFld>
+    <Company>19289</Company>
+    <BAQRptID>19289-AsmPick</BAQRptID>
+    <DataTableID>OrderDtl</DataTableID>
+    <FieldName>OrderNum</FieldName>
+    <CompOp>=</CompOp>
+    <Seq>1</Seq>
+    <DefaultValue />
+    <FieldLabel>Order</FieldLabel>
+    <DisplayName>OrderDtl_OrderNum</DisplayName>
+    <FieldFormat>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;9</FieldFormat>
+    <EpiGuid>5b31c57d-dd2d-4319-b184-53b771674467</EpiGuid>
+    <IsVisible>false</IsVisible>
+    <DataType>int</DataType>
+    <SystemFlag>false</SystemFlag>
+    <DispOrder>0</DispOrder>
+    <SysRevID>2127035930</SysRevID>
+    <SysRowID>110a8831-798f-4dad-a5c9-298ebcdba5b2</SysRowID>
+    <FieldValue />
+    <TempRowID />
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </BAQRptOptionFld>
+</DynamicReportDataSet>
