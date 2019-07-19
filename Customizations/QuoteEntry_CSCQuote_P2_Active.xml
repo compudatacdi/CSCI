@@ -76,9 +76,9 @@
     <Key2>App.QuoteEntry.QuoteForm</Key2>
     <Key3 />
     <Description />
-    <LastUpdated>2019-07-09T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2019-07-12T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-EBlackwelder</LastUpdatedBy>
-    <Version>7/9/2019 11:45:08 AM</Version>
+    <Version>7/12/2019 1:50:10 PM</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -191,7 +191,7 @@ JDS - Then I changed some consmetic stuff and changed the date stamp
 [19289-LCurcio: 7/1/2019 7:39:58 PM]</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>9941100476</SysRevID>
+    <SysRevID>9941534141</SysRevID>
     <SysRowID>869376b0-acf6-4f45-a120-405cd132722c</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -4331,6 +4331,7 @@ private string GetInsideSalesRep(string SalesRepCode)
 
 
 
+
 &lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
@@ -7055,7 +7056,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;baqColorCmbo2&lt;/ControlName&gt;
     &lt;Key&gt;42caab4c-f645-4d35-b82f-f5432cb8842f&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -7139,7 +7140,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;baqColorCmbo2&lt;/ControlName&gt;
     &lt;Key&gt;42caab4c-f645-4d35-b82f-f5432cb8842f&lt;/Key&gt;
     &lt;PropertyName&gt;EpiBinding&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;QuoteDtl.ShortChar02&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;SalesKits.ShortChar02&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -23795,7 +23796,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;lblOrderQty&lt;/ControlName&gt;
     &lt;Key&gt;6804781a-94eb-463f-ab80-8c5378003358&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -23807,7 +23808,7 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;ControlName&gt;neOrderQty&lt;/ControlName&gt;
     &lt;Key&gt;9a6b73b7-647e-47d2-8148-820b729f01a6&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -47733,6 +47734,78 @@ private string GetInsideSalesRep(string SalesRepCode)
     &lt;Key&gt;b14240eb-b9ba-4ac7-ae02-0976795fec96&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblSoldToName&lt;/ControlName&gt;
+    &lt;Key&gt;001b3f81-9efd-4211-a86a-57ab94e9d2c0&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;txtFullSoldToAddress&lt;/ControlName&gt;
+    &lt;Key&gt;32067bee-84db-4a38-a1b8-82f2ae44f6d6&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblSoldToName&lt;/ControlName&gt;
+    &lt;Key&gt;001b3f81-9efd-4211-a86a-57ab94e9d2c0&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;56&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblSoldToName&lt;/ControlName&gt;
+    &lt;Key&gt;001b3f81-9efd-4211-a86a-57ab94e9d2c0&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblSoldToName&lt;/ControlName&gt;
+    &lt;Key&gt;001b3f81-9efd-4211-a86a-57ab94e9d2c0&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;108&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;QuoteForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblSoldToName&lt;/ControlName&gt;
+    &lt;Key&gt;001b3f81-9efd-4211-a86a-57ab94e9d2c0&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;18&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
