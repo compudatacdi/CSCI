@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description>retired</Description>
-    <LastUpdated>2019-07-31T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2019-08-23T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>7/31/2019 1:07:37 PM</Version>
+    <Version>8/23/2019 12:55:26 P</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -198,10 +198,16 @@ Changed Customer PO field from OH Short Char 10 to Shaort char13
 [19289-LCurcio: 3/25/2019 2:22:56 PM]
 
 JDS - retired in favor of a newer customizatation
-[19289-JStauffer: 6/19/2019 11:36:10 AM]</CommentText>
+[19289-JStauffer: 6/19/2019 11:36:10 AM]
+
+JDS - Cosmetics
+[19289-LCurcio: 8/20/2019 2:03:23 PM]
+
+cdi - shipcomplete
+[19289-LCurcio: 8/21/2019 10:31:22 AM]</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>10194261556</SysRevID>
+    <SysRevID>10392240677</SysRevID>
     <SysRowID>0487ae08-de67-4e0d-b4d1-c17fb59b5c4f</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1547,7 +1553,8 @@ public static class Script
                                      dr["OrderNum"] = OrderNum;
                                      dr["OrderLine"] = 0;
 				                     dr["OpenLine"] = true;
-									 dr["VoidLine"] = false; 
+									 dr["VoidLine"] = false;
+									 dr["KitShipComplete"] =false; //cdi 
 									 dr["LineType"] = "PART";
 									 dr["OrderNum"] = OrderNum;
 									 dr["IUM"] = IUM;
@@ -1833,6 +1840,7 @@ public static class Script
 		           
 	             oTrans.PushStatusText("Wait Updating...", false);
 			     EpiDataView edv = oTrans.Factory("OrderHed");
+		         string PaymentMethod = edv.dataView[edv.Row]["ShortChar10"].ToString();
 		         string FreightCarrier = edv.dataView[edv.Row]["ShortChar11"].ToString();
 		         string SelectedState = edv.dataView[edv.Row]["ShortChar12"].ToString();
 		    
@@ -1844,12 +1852,14 @@ public static class Script
 			     double FreightCost;
 				 double OrderTotalWt  = GetOrderTotalWeight(OrderNo);
 	                   
-                  EnterOrderWeight(OrderNo, OrderTotalWt);                 
-				
-                  FreightCost  = GetCarrierRate(FreightCarrier, SelectedState, OrderTotalWt);
-				  
-                  CallSalesOrderAdapterGetNewOHOrderMscMethod(OrderNo,OrderLn, Math.Round(FreightCost, 2) );
-                       
+                  EnterOrderWeight(OrderNo, OrderTotalWt);
+				  FreightCost  = 0.00;                 
+				  if (PaymentMethod != "Collect")
+					{				
+	                  FreightCost  = GetCarrierRate(FreightCarrier, SelectedState, OrderTotalWt);
+
+                  	CallSalesOrderAdapterGetNewOHOrderMscMethod(OrderNo,OrderLn, Math.Round(FreightCost, 2) );
+                    } 
                   oTrans.PushStatusText("", false);
 			
 			      Cursor.Current = Cursors.Default;
@@ -2646,6 +2656,10 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
 
 
 
+
+
+
+
 &lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
@@ -2730,7 +2744,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;SalesOrderForm&lt;/ControlName&gt;
     &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;628&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;36&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2742,7 +2756,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;SalesOrderForm&lt;/ControlName&gt;
     &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;148&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;65&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2754,7 +2768,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;SalesOrderForm&lt;/ControlName&gt;
     &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;628&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;36&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2766,7 +2780,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;SalesOrderForm&lt;/ControlName&gt;
     &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;148&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;65&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -4314,7 +4328,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;lblShowKitDtls&lt;/ControlName&gt;
     &lt;Key&gt;546e6f1b-7d98-41e1-9efe-7cae2abcaf24&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;746&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;470&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -4374,7 +4388,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;SalesOrderForm&lt;/ControlName&gt;
     &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
     &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;870&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;627&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -4386,7 +4400,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;SalesOrderForm&lt;/ControlName&gt;
     &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;870&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;627&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6078,7 +6092,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiGroupBoxC10&lt;/ControlName&gt;
     &lt;Key&gt;453efae9-629e-4dd8-9e8e-3d05ca72facb&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6270,7 +6284,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;baqComboC1&lt;/ControlName&gt;
     &lt;Key&gt;cab5764a-03f9-4c00-af8e-ee072d29e065&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6390,7 +6404,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiLabelC5&lt;/ControlName&gt;
     &lt;Key&gt;b38b1fa3-5760-4393-bdbb-28bb1f317468&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6462,7 +6476,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiAppyAll&lt;/ControlName&gt;
     &lt;Key&gt;7c178ada-16af-49c1-804b-92feee8158ac&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;19&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6474,7 +6488,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiAppyAll&lt;/ControlName&gt;
     &lt;Key&gt;7c178ada-16af-49c1-804b-92feee8158ac&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;253&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;250&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6510,7 +6524,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiAppyAll&lt;/ControlName&gt;
     &lt;Key&gt;7c178ada-16af-49c1-804b-92feee8158ac&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6558,7 +6572,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiAppyAll&lt;/ControlName&gt;
     &lt;Key&gt;7c178ada-16af-49c1-804b-92feee8158ac&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;253&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;250&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6570,7 +6584,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiAppyAll&lt;/ControlName&gt;
     &lt;Key&gt;7c178ada-16af-49c1-804b-92feee8158ac&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;19&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6582,7 +6596,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPntMtl&lt;/ControlName&gt;
     &lt;Key&gt;307416a6-a0d8-43c6-8048-fb9150daeec8&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6606,7 +6620,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPntMtl&lt;/ControlName&gt;
     &lt;Key&gt;307416a6-a0d8-43c6-8048-fb9150daeec8&lt;/Key&gt;
     &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;139&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;125&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6618,7 +6632,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPntMtl&lt;/ControlName&gt;
     &lt;Key&gt;307416a6-a0d8-43c6-8048-fb9150daeec8&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;139&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;125&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6654,7 +6668,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPntMtl&lt;/ControlName&gt;
     &lt;Key&gt;307416a6-a0d8-43c6-8048-fb9150daeec8&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;355&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;345&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6666,7 +6680,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPntMtl&lt;/ControlName&gt;
     &lt;Key&gt;307416a6-a0d8-43c6-8048-fb9150daeec8&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;19&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6678,7 +6692,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPntMtl&lt;/ControlName&gt;
     &lt;Key&gt;307416a6-a0d8-43c6-8048-fb9150daeec8&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;355&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;345&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6690,7 +6704,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPntMtl&lt;/ControlName&gt;
     &lt;Key&gt;307416a6-a0d8-43c6-8048-fb9150daeec8&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;19&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6714,7 +6728,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPaintQty&lt;/ControlName&gt;
     &lt;Key&gt;2e5070a7-0d16-42c0-b776-7ab0708d1c67&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;517&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;490&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6726,7 +6740,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPaintQty&lt;/ControlName&gt;
     &lt;Key&gt;2e5070a7-0d16-42c0-b776-7ab0708d1c67&lt;/Key&gt;
     &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;130&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;125&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6750,7 +6764,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPaintQty&lt;/ControlName&gt;
     &lt;Key&gt;2e5070a7-0d16-42c0-b776-7ab0708d1c67&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6774,7 +6788,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPaintQty&lt;/ControlName&gt;
     &lt;Key&gt;2e5070a7-0d16-42c0-b776-7ab0708d1c67&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;130&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;125&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6798,7 +6812,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPaintQty&lt;/ControlName&gt;
     &lt;Key&gt;2e5070a7-0d16-42c0-b776-7ab0708d1c67&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;517&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;490&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6858,7 +6872,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPaintQty&lt;/ControlName&gt;
     &lt;Key&gt;2e5070a7-0d16-42c0-b776-7ab0708d1c67&lt;/Key&gt;
     &lt;PropertyName&gt;Text&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;Recalculate Paint Qty&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;Recalc. Paint Qty&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -7950,7 +7964,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;grpHeaderData2&lt;/ControlName&gt;
     &lt;Key&gt;cbcd887e-3a41-4b5f-ad1a-46a6782db2d1&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;9&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -8346,7 +8360,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiFreightBtn&lt;/ControlName&gt;
     &lt;Key&gt;b8da2ed1-76df-4cf4-87c6-f954e1d8667e&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;674&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;635&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -8358,7 +8372,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiFreightBtn&lt;/ControlName&gt;
     &lt;Key&gt;b8da2ed1-76df-4cf4-87c6-f954e1d8667e&lt;/Key&gt;
     &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;112&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;125&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -8406,7 +8420,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiFreightBtn&lt;/ControlName&gt;
     &lt;Key&gt;b8da2ed1-76df-4cf4-87c6-f954e1d8667e&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;112&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;125&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -8430,7 +8444,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiFreightBtn&lt;/ControlName&gt;
     &lt;Key&gt;b8da2ed1-76df-4cf4-87c6-f954e1d8667e&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;674&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;635&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -8454,7 +8468,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiFreightBtn&lt;/ControlName&gt;
     &lt;Key&gt;b8da2ed1-76df-4cf4-87c6-f954e1d8667e&lt;/Key&gt;
     &lt;PropertyName&gt;Text&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;Calculate Freight&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;Calc. Weight / Freight&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -12738,7 +12752,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;grpHeaderData&lt;/ControlName&gt;
     &lt;Key&gt;924845d8-1071-4d07-be20-c367f6bff8d9&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;9&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15438,7 +15452,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;grpShipTo&lt;/ControlName&gt;
     &lt;Key&gt;ad205007-99e6-4735-965b-4c85ea0cc078&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15870,7 +15884,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiGrpfreight&lt;/ControlName&gt;
     &lt;Key&gt;75b00c1f-5fdd-465d-952f-f563fcfbf012&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16014,7 +16028,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;grpHold&lt;/ControlName&gt;
     &lt;Key&gt;88a6275d-9161-416c-af61-b38e9b76e124&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16518,7 +16532,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;grpSoldTo&lt;/ControlName&gt;
     &lt;Key&gt;bc15485d-5613-4644-a881-7f5a9cc42deb&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16614,7 +16628,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;lblReadyToFulfill&lt;/ControlName&gt;
     &lt;Key&gt;b6e13d91-8301-44a7-913d-75df775f4842&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16662,7 +16676,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;grpBillTo&lt;/ControlName&gt;
     &lt;Key&gt;7ef0f3b6-fe24-499d-a55e-7d5d05cf973b&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -17214,7 +17228,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;chkReadyToFulfill&lt;/ControlName&gt;
     &lt;Key&gt;2ddfd1f9-b5c5-4269-b8d3-dd299e00c1d5&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -41600,6 +41614,18 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;Key&gt;ba70e2ef-161a-4aa3-933d-220d53a21528&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;epiButtonC1&lt;/ControlName&gt;
+    &lt;Key&gt;2c0f3814-5a47-4b83-b693-0db261529474&lt;/Key&gt;
+    &lt;PropertyName&gt;Text&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;ONE&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
