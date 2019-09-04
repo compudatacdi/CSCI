@@ -76,9 +76,9 @@
     <Key2>App.QuoteEntry.CreateOrderWizardForm</Key2>
     <Key3 />
     <Description>CreateOrderWizardForm01</Description>
-    <LastUpdated>2019-06-21T00:00:00-04:00</LastUpdated>
-    <LastUpdatedBy>19289-EBlackwelder</LastUpdatedBy>
-    <Version>6/21/2019 9:23:22 AM</Version>
+    <LastUpdated>2019-09-04T00:00:00-04:00</LastUpdated>
+    <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
+    <Version>9/4/2019 1:04:02 PM</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -109,8 +109,8 @@ Version: f3.2.300.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>9938259904</SysRevID>
-    <SysRowID>2a820cf0-b876-4448-b687-9870ba47d406</SysRowID>
+    <SysRevID>10394321114</SysRevID>
+    <SysRowID>a22d4e60-28cd-4271-af09-98abca6348f6</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
     <OnMenu>true</OnMenu>
@@ -274,6 +274,13 @@ Version: f3.2.300.0
 // Custom code for CreateOrderWizardForm
 // Created: 6/3/2018 3:45:34 PM
 // **************************************************
+//
+//	REVISION LOG
+//
+//	eb1 09/04/19 eric blackwelder @ cdi
+//		modify to get the custom fields to line up on created SO properly
+//
+// **************************************************
 
 extern alias Erp_Contracts_BO_SalesOrder;
 extern alias Erp_Contracts_BO_OrderDtlSearch;
@@ -330,6 +337,10 @@ public class Script
  	string  ShortChar04 ;
  	string  ShortChar05 ;
      string  ShortChar06;
+	 //eb1:
+	 string  PartNum;
+	 decimal SellingExpectedQty;
+
 	public void InitializeCustomCode()
 	{
 		// ** Wizard Insert Location - Do not delete 'Begin/End Wizard Added Variable Initialization' lines **
@@ -467,16 +478,19 @@ public class Script
 							  ShortChar04 = dr["ShortChar04"].ToString();
 							  ShortChar05 = dr["ShortChar05"].ToString();
 						      ShortChar06 = dr["ShortChar06"].ToString();
-
-                           
+							  //eb1:
+							  PartNum = dr["PartNum"].ToString().ToLower();
+                              //SellingExpectedQty = (decimal)dr["SellingExpectedQty"];
+                              SellingExpectedQty = (decimal)dr["OrderQty"];
                           
-
-
-					
 					            foreach (DataRow item in dsSalesOrder.Tables["OrderDtl"].Rows)
 					               { 
 			                                
-                                 if( Convert.ToInt32(item["OrderLine"]) == LineNum)
+                                 //eb1:
+								 //if( Convert.ToInt32(item["OrderLine"]) == LineNum)
+                                 if(  ((string)item["PartNum"]).ToLower() == PartNum
+                                    &amp;amp;&amp;amp; (decimal)item["SellingQuantity"] == SellingExpectedQty)
+
                                       {
                                        
 					                   item.BeginEdit(); 
@@ -516,6 +530,13 @@ public class Script
 		switch (args.MethodName)
 		{
 			case "GetByID":
+			//
+				EpiDataView edv = oTrans.Factory("QuoteHed");
+				string HShortChar10 = edv.dataView[edv.Row]["ShortChar10"].ToString();
+				string HShortChar11 = edv.dataView[edv.Row]["ShortChar11"].ToString();
+				string HShortChar12 = edv.dataView[edv.Row]["ShortChar12"].ToString();
+				string HNumber10 = edv.dataView[edv.Row]["Number10"].ToString();
+
                QuoteNum = Convert.ToInt32(OrderDtl_DataView[0]["QuoteNum"]);
 		  
 
@@ -528,13 +549,58 @@ public class Script
                if(OrderNum &amp;gt; 0){
                 
                   CallSalesOrderAdapterGetDataMethod(OrderNum, QuoteNum);
+					UpdateSalesHed(OrderNum, HShortChar10, HShortChar11,HShortChar12,HNumber10);
                      }
             
 				break;
 		}
 
 	}
+	private void  UpdateSalesHed(int OrderNum, string HShortChar10, string HShortChar11,string HShortChar12, string HNumber10)
+	{
+		try
+		{
+			// Declare and Initialize EpiDataView Variables
+			// Declare and create an instance of the Adapter.
+			SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(this.oTrans);
+			adapterSalesOrder.BOConnect();
+
+			// Declare and Initialize Variables
+			// TODO: You may need to replace the default initialization with valid values as required for the BL method call.
+			int intId = OrderNum;
+
+			// Call Adapter method
+			bool result = adapterSalesOrder.GetByID(intId);
+
+           if (result)
+            {
+			    DataRow dr = adapterSalesOrder.SalesOrderData.OrderHed[adapterSalesOrder.SalesOrderData.OrderHed.Rows.Count - 1];
+                 
+                     dr.BeginEdit();
+                	 dr["ShortChar10"] = HShortChar10;
+                     dr["ShortChar11"] = HShortChar11;
+                     dr["ShortChar12"] = HShortChar12;
+					 dr["Number10"] = HNumber10;
+                     dr["RowMod"] = "U";
+                     dr.EndEdit();
+                     adapterSalesOrder.Update();
+			      
+             }
+
+
+			// Cleanup Adapter Reference
+			adapterSalesOrder.Dispose();
+
+		} catch (System.Exception ex)
+		{
+			ExceptionBox.Show(ex);
+		}
+	}
 }
+
+
+
+
 
 
 &lt;/PropertyValue&gt;
@@ -1425,7 +1491,7 @@ public class Script
     &lt;ControlName&gt;CreateOrderWizardForm&lt;/ControlName&gt;
     &lt;Key&gt;28D587A1-A4CF-45D7-83CB-18953DC632C5&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;544&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;261&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1437,7 +1503,7 @@ public class Script
     &lt;ControlName&gt;CreateOrderWizardForm&lt;/ControlName&gt;
     &lt;Key&gt;28D587A1-A4CF-45D7-83CB-18953DC632C5&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;142&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;68&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1449,7 +1515,7 @@ public class Script
     &lt;ControlName&gt;CreateOrderWizardForm&lt;/ControlName&gt;
     &lt;Key&gt;28D587A1-A4CF-45D7-83CB-18953DC632C5&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;544&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;261&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1461,7 +1527,7 @@ public class Script
     &lt;ControlName&gt;CreateOrderWizardForm&lt;/ControlName&gt;
     &lt;Key&gt;28D587A1-A4CF-45D7-83CB-18953DC632C5&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;142&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;68&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
