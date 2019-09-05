@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description>retired</Description>
-    <LastUpdated>2019-08-29T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2019-09-05T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>8/29/2019 11:17:21 A</Version>
+    <Version>9/5/2019 3:04:09 PM</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -207,7 +207,7 @@ cdi - shipcomplete
 [19289-LCurcio: 8/21/2019 10:31:22 AM]</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>10393009991</SysRevID>
+    <SysRevID>10394661019</SysRevID>
     <SysRowID>0487ae08-de67-4e0d-b4d1-c17fb59b5c4f</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1206,6 +1206,7 @@ public static class Script
 		Control c2 = csm.GetNativeControlReference("4dd0227a-9d85-4d3d-a876-6cf4ea34695b");
 		eugOrderLines3 = (EpiUltraGrid)c2;
 		eugOrderLines3.AfterCellUpdate += new CellEventHandler(eugOrderLines3_AfterCellUpdate);
+		Script.OHOrderMsc_Column.ColumnChanged += new DataColumnChangeEventHandler(Script.OHOrderMsc_AfterFieldChange);
 
 	}
 
@@ -1240,6 +1241,7 @@ public static class Script
 		btnRecalcMiscCharges.Click -= btnRecalcMiscCharges_Click;
 		eugOrderLines2.AfterCellUpdate -= new CellEventHandler(eugOrderLines2_AfterCellUpdate);
 		eugOrderLines3.AfterCellUpdate -= new CellEventHandler(eugOrderLines3_AfterCellUpdate);
+		Script.OHOrderMsc_Column.ColumnChanged -= new DataColumnChangeEventHandler(Script.OHOrderMsc_AfterFieldChange);
 
 	}
 
@@ -1255,91 +1257,30 @@ public static class Script
 	{
 		try
 		{
-	
-//			EpiDataView edv2 = oTrans.Factory("QuoteHed");
-//			int QuoteNum = Convert.ToInt32(edv2.dataView[edv2.Row]["QuoteNum"]);
-//			double PotentialAmt =  Convert.ToDouble(edv2.dataView[edv2.Row]["TotalPotential"]);
 			EpiDataView edv2 = oTrans.Factory("OrderHed");
 			int OrderNum = Convert.ToInt32(edv2.dataView[edv2.Row]["OrderNum"]);
-			//double OrderAmt =  Convert.ToDouble(edv2.dataView[edv2.Row]["OrderAmt"]);
 			double OrderAmt = (double)0;
 
 			oTrans.Refresh();
 
-//			QuoteAdapter adapterQuote = new QuoteAdapter(this.oTrans);
-//			adapterQuote.BOConnect();
-//			System.Data.DataSet dsQuote = adapterQuote.GetData(QuoteNum);
 			SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(oTrans);
 			adapterSalesOrder.BOConnect();
 			System.Data.DataSet dsSalesOrder = adapterSalesOrder.GetData(OrderNum);
-		
-//			if (dsQuote != null)
-//			{
-//				double installAmount = (double)0;
-//				EpiDataView edv = oTrans.Factory("QuoteDtl");
-//				foreach (DataRowView drv in edv.dataView)
-//				{
-//					if((string)drv["PartNum"] == "Install")
-//					{
-//						installAmount += System.Convert.ToDouble((decimal)drv["TotalQuote"]);
-//					}			
-//				}
+
 			if (dsSalesOrder != null)
 			{
 				double installAmount = (double)0;
 				EpiDataView edv = oTrans.Factory("OrderDtl");
 				foreach (DataRowView drv in edv.dataView)
 				{
-					/*
-					if((string)drv["PartNum"] == "Install")
-					{
-						installAmount += System.Convert.ToDouble((decimal)drv["TotalPrice"]);
-					}
-					*/
 					if((string)drv["PartNum"] != "Install")
 					{
 						OrderAmt += System.Convert.ToDouble((decimal)drv["ExtPriceDtl"])
 									- System.Convert.ToDouble((decimal)drv["DocDspDiscount"]);
 					}
-
-
-/*
-if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-{ MessageBox.Show(
-"line: " + (int)drv["OrderLine"] +
-" / ExtPriceDtl: " + (decimal)drv["ExtPriceDtl"] +
-" / InDiscount: " + (decimal)drv["InDiscount"] +
-" / DocDspDiscount: " + (decimal)drv["DocDspDiscount"]
-);  }
-*/
-
 				}
-
-	
-
-//				foreach (DataRow item in dsQuote.Tables["QuoteHedMsc"].Rows)
-//				{
-//					if((string)item["MiscCode"] == "SURC")
-//					{
-//						item.BeginEdit();
-//						//eb7:
-//						//item["MiscAmt"] = PotentialAmt * (Convert.ToDouble(item["Percentage"])/100);
-//						//item["DocMiscAmt"] = PotentialAmt * (Convert.ToDouble(item["Percentage"])/100);
-//						item["MiscAmt"] = (PotentialAmt - installAmount) * (Convert.ToDouble(item["Percentage"])/100);
-//						item["DocMiscAmt"] = (PotentialAmt - installAmount) * (Convert.ToDouble(item["Percentage"])/100);
-//	
-//						item["RowMod"] = "U";
-//						item.EndEdit();           
-//						adapterQuote.Update();
-//	
-//						oTrans.Refresh();
-//					}
-//				}
-//if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-//{ MessageBox.Show("1");  }
 				foreach (DataRow item in dsSalesOrder.Tables["OHOrderMsc"].Rows)
 				{
-//OHOrderMsc
 					if((string)item["MiscCode"] == "SURC")
 					{
 						item.BeginEdit();
@@ -1353,10 +1294,10 @@ if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
 						oTrans.Refresh();
 					}
 				}
-	
-//if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-//{ MessageBox.Show("2");  }
-
+					
+				//if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+				//{ MessageBox.Show("2");  }
+				
 			}
 			adapterSalesOrder.Dispose();
 		} catch (System.Exception ex)
@@ -2885,8 +2826,54 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
 		}
 	}
 
-}
+	//eb4:  (mimic QuoteHedMsc_AfterFieldChange in quote entry)
+	private static void OHOrderMsc_AfterFieldChange(object sender, DataColumnChangeEventArgs args)
+	{
+		// ** Argument Properties and Uses **
+		// args.Row["FieldName"]
+		// args.Column, args.ProposedValue, args.Row
+		// Add Event Handler Code
+		switch (args.Column.ColumnName)
+		{
+			case "MiscCode":
 
+               if(args.Row["MiscCode"].ToString() == "SURC")
+               {
+					EpiDataView edv2 = oTrans.Factory("OrderHed");
+					int OrderNum = Convert.ToInt32(edv2.dataView[edv2.Row]["OrderNum"]);
+					double OrderAmt = (double)0;
+		
+					SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(oTrans);
+					adapterSalesOrder.BOConnect();
+					System.Data.DataSet dsSalesOrder = adapterSalesOrder.GetData(OrderNum);
+		
+					if (dsSalesOrder != null)
+					{
+						double installAmount = (double)0;
+						EpiDataView edv = oTrans.Factory("OrderDtl");
+						foreach (DataRowView drv in edv.dataView)
+						{
+							if((string)drv["PartNum"] != "Install")
+							{
+								OrderAmt += System.Convert.ToDouble((decimal)drv["ExtPriceDtl"])
+											- System.Convert.ToDouble((decimal)drv["DocDspDiscount"]);
+							}
+						}
+		
+						args.Row["MiscAmt"] = (OrderAmt - installAmount) * (Convert.ToDouble(args.Row["Percentage"])/100);
+						args.Row["DocMiscAmt"] = (OrderAmt - installAmount) * (Convert.ToDouble(args.Row["Percentage"])/100);
+						oTrans.Update();
+		
+					}
+	
+				}
+
+				break;
+		}
+	}
+
+
+}
 
 &lt;/PropertyValue&gt;
     &lt;Company /&gt;
