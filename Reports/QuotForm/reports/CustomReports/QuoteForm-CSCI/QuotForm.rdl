@@ -10512,7 +10512,7 @@ Len(Fields!XPartNum.Value)=0,Fields!PartNum.Value,Fields!XPartNum.Value)</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!NetWeight.Value</Value>
+                                      <Value>=Fields!NetWeight.Value * Fields!SellingExpectedQty.Value</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
                                         <FontSize>8pt</FontSize>
