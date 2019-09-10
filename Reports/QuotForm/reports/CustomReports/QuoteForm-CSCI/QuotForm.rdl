@@ -10030,6 +10030,7 @@ First(Fields!Calc_CustFax.Value, "Quote"))</Value>
                                           <Style>
                                             <FontFamily>Arial Unicode MS</FontFamily>
                                             <FontWeight>Bold</FontWeight>
+                                            <Color>Silver</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10555,6 +10556,7 @@ Len(Fields!XPartNum.Value)=0,Fields!PartNum.Value,Fields!XPartNum.Value)</Value>
                                         <FontFamily>Arial Unicode MS</FontFamily>
                                         <FontSize>8pt</FontSize>
                                         <Format>0.00;(0.00)</Format>
+                                        <Color>White</Color>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
