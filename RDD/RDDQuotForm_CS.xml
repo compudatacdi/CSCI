@@ -36,6 +36,26 @@
   </RptTable>
   <RptTable>
     <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <SeqControl>24.00000</SeqControl>
+    <ParentRptTableID />
+    <PrimaryTable>false</PrimaryTable>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049020</SysRevID>
+    <SysRowID>bfd24d8b-7c31-4533-b309-9e263e6189ca</SysRowID>
+    <IsSystemTable>false</IsSystemTable>
+    <TableType />
+    <DataSourceType>Table</DataSourceType>
+    <DataSourceDescription />
+    <DataSourceName />
+    <IsValidDataSource>true</IsValidDataSource>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptTable>
+  <RptTable>
+    <RptDefID>QuotForm_CS</RptDefID>
     <RptTableID>FSContDt</RptTableID>
     <SystemCode>ERP</SystemCode>
     <ZDataTableID>FSContDt</ZDataTableID>
@@ -3487,6 +3507,381 @@
     <SysRowID>fe3c3624-8d1e-4a54-9821-dfe47e1562c8</SysRowID>
     <ExcludeColumn>false</ExcludeColumn>
     <ExcludeLabel>false</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>AGAFIPCode</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049021</SysRevID>
+    <SysRowID>cc746d32-0417-4dcb-a367-09770e0ff1ad</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>APTaxRegionCode</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049022</SysRevID>
+    <SysRowID>463ccf71-e33b-477b-8ce4-7806b0f6283d</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>BorderCrossing</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049023</SysRevID>
+    <SysRowID>70f6eef9-9b6c-4f07-b56e-d61fba87e37a</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>Character01</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049043</SysRevID>
+    <SysRowID>729a3142-84f0-4433-be20-5e0c4f971c7f</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>Company</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049125</SysRevID>
+    <SysRowID>52f57618-3ef7-4d38-a80c-1187a5684feb</SysRowID>
+    <ExcludeColumn>false</ExcludeColumn>
+    <ExcludeLabel>false</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>CountryNum</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049126</SysRevID>
+    <SysRowID>ff1fe192-c5c8-42e3-bc0d-8f38d9bccfc9</SysRowID>
+    <ExcludeColumn>false</ExcludeColumn>
+    <ExcludeLabel>false</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>CurrencyCode</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049026</SysRevID>
+    <SysRowID>d8847f4c-f931-4635-905d-d658c60e7173</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>Description</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049127</SysRevID>
+    <SysRowID>a103dbf2-32c7-4dbb-a601-87c2949ce28f</SysRowID>
+    <ExcludeColumn>false</ExcludeColumn>
+    <ExcludeLabel>false</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>FiscalCode</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049028</SysRevID>
+    <SysRowID>6e1ce25a-708a-486e-ac2b-1dbef5841705</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>ForeignSysRowID</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049044</SysRevID>
+    <SysRowID>3d47ac57-5359-4df3-a4ae-317b8df43442</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>FormatStr</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049029</SysRevID>
+    <SysRowID>43796553-812e-4c6c-9283-9821bcb8597e</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>GlobalCountry</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049030</SysRevID>
+    <SysRowID>411d1f21-997e-4898-b9fe-7e66ab63a557</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>GlobalLock</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049031</SysRevID>
+    <SysRowID>0ac2fb25-9fd1-4380-9e87-ad928d460319</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>ISOCode</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049032</SysRevID>
+    <SysRowID>4b0a7763-00b5-48f3-a01a-e4d021758728</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>ISOrigCountry</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049033</SysRevID>
+    <SysRowID>1094543e-f494-4c38-8331-94e54e13a75d</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>IsSepa</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049034</SysRevID>
+    <SysRowID>826c7bbe-5511-4749-982d-09e9687fbc91</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>IStatCode</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049035</SysRevID>
+    <SysRowID>bd3caedd-8f7e-4f0d-a84c-e80973277e5b</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>LangNameID</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049036</SysRevID>
+    <SysRowID>3888d7dc-95e3-4354-add2-c2da3ca07411</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>MXCountryCode</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049037</SysRevID>
+    <SysRowID>27cf5c8e-2207-4424-98ad-a49ac055a0ae</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>MXExternalCode</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049038</SysRevID>
+    <SysRowID>8483ed22-92ba-45a3-b71b-ddd4b161c949</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>ShipViaCode</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049039</SysRevID>
+    <SysRowID>2dba3e63-03e6-45af-b6e6-8b54f7404205</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>SysRevID</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049040</SysRevID>
+    <SysRowID>67633265-8eb7-4b14-8c02-c27f5439cf94</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>SysRowID</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049041</SysRevID>
+    <SysRowID>74c3c29d-1fbb-4622-bad9-e8859e028b7e</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>TaxRegionCode</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049042</SysRevID>
+    <SysRowID>eef3eb88-6ce1-4fac-9f85-6e6716d7070e</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
+    <DataSourceType>Table</DataSourceType>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptExclude>
+  <RptExclude>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RptTableID>Country</RptTableID>
+    <SystemCode>ERP</SystemCode>
+    <ZDataTableID>Country</ZDataTableID>
+    <ZFieldName>UD_SysRevID</ZFieldName>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049045</SysRevID>
+    <SysRowID>d537f1a8-a1f4-434f-acb8-ac21cedd7e71</SysRowID>
+    <ExcludeColumn>true</ExcludeColumn>
+    <ExcludeLabel>true</ExcludeLabel>
     <DataSourceType>Table</DataSourceType>
     <BitFlag>0</BitFlag>
     <RowMod />
@@ -26726,6 +27121,22 @@
   </RptRelation>
   <RptRelation>
     <RptDefID>QuotForm_CS</RptDefID>
+    <RelationID>QuoteHedToCountry</RelationID>
+    <ParentRptTableID>QuoteHed</ParentRptTableID>
+    <ChildRptTableID>Country</ChildRptTableID>
+    <KeyID />
+    <Description>QuoteHed To Country</Description>
+    <WhichItem />
+    <JoinType>Ouputy</JoinType>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049138</SysRevID>
+    <SysRowID>494df35d-fd0f-44c9-9354-bef19b2052fb</SysRowID>
+    <SeqOrder>0.000000000</SeqOrder>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptRelation>
+  <RptRelation>
+    <RptDefID>QuotForm_CS</RptDefID>
     <RelationID>QuoteHedToQSalesRP</RelationID>
     <ParentRptTableID>QuoteHed</ParentRptTableID>
     <ChildRptTableID>QSalesRP</ChildRptTableID>
@@ -26939,6 +27350,34 @@
     <SystemFlag>false</SystemFlag>
     <SysRevID>10183751377</SysRevID>
     <SysRowID>4a3c4b50-5524-4b6a-802b-4e55d7288842</SysRowID>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptRelationField>
+  <RptRelationField>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RelationID>QuoteHedToCountry</RelationID>
+    <Seq>1</Seq>
+    <ParentFieldName>Company</ParentFieldName>
+    <ChildFieldName>Company</ChildFieldName>
+    <CompOp>=</CompOp>
+    <IsConst>false</IsConst>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049151</SysRevID>
+    <SysRowID>6042005b-8640-4d96-8a8a-eddf3ad7bc8e</SysRowID>
+    <BitFlag>0</BitFlag>
+    <RowMod />
+  </RptRelationField>
+  <RptRelationField>
+    <RptDefID>QuotForm_CS</RptDefID>
+    <RelationID>QuoteHedToCountry</RelationID>
+    <Seq>2</Seq>
+    <ParentFieldName>OTSCountryNum</ParentFieldName>
+    <ChildFieldName>CountryNum</ChildFieldName>
+    <CompOp>=</CompOp>
+    <IsConst>false</IsConst>
+    <SystemFlag>false</SystemFlag>
+    <SysRevID>10395049156</SysRevID>
+    <SysRowID>75ab71a0-a358-4ac3-b167-2632f5f7a98a</SysRowID>
     <BitFlag>0</BitFlag>
     <RowMod />
   </RptRelationField>
