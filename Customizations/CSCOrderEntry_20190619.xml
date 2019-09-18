@@ -75,16 +75,16 @@
     <Key1>CSCOrderEntry_20190619</Key1>
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
-    <Description>retired</Description>
-    <LastUpdated>2019-09-05T00:00:00-04:00</LastUpdated>
+    <Description />
+    <LastUpdated>2019-09-18T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>9/5/2019 3:04:09 PM</Version>
-    <DataBaseVersion>0</DataBaseVersion>
+    <Version>9/18/2019 12:15:12 P</Version>
+    <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
     <SysCharacter03 />
     <SysCharacter04>Pass</SysCharacter04>
-    <SysCharacter05>3.2.400.0</SysCharacter05>
+    <SysCharacter05>3.2.500.0</SysCharacter05>
     <SysNumber01>0.000000000</SysNumber01>
     <SysNumber02>0.000000000</SysNumber02>
     <SysNumber03>0.000000000</SysNumber03>
@@ -94,7 +94,7 @@
     <SysCheckBox02>false</SysCheckBox02>
     <SysCheckBox03>false</SysCheckBox03>
     <SysCheckBox04>false</SysCheckBox04>
-    <SysCheckBox05>false</SysCheckBox05>
+    <SysCheckBox05>true</SysCheckBox05>
     <CommentText>Add Mark Above
 
 [19289-cdi: 1/12/2018 10:13:54 AM]
@@ -204,10 +204,18 @@ JDS - Cosmetics
 [19289-LCurcio: 8/20/2019 2:03:23 PM]
 
 cdi - shipcomplete
-[19289-LCurcio: 8/21/2019 10:31:22 AM]</CommentText>
+[19289-LCurcio: 8/21/2019 10:31:22 AM]
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.500.0
+Status: Pass
+Version: f3.2.500.0
+
+[19289-HMartin: 9/16/2019 3:06:24 PM]
+*----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>10394661019</SysRevID>
+    <SysRevID>10566775726</SysRevID>
     <SysRowID>0487ae08-de67-4e0d-b4d1-c17fb59b5c4f</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -216,7 +224,7 @@ cdi - shipcomplete
     <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
-    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.400.0"&gt;
+    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.500.0"&gt;
       &lt;xs:complexType&gt;
         &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
           &lt;xs:element name="Controls"&gt;
@@ -1079,6 +1087,10 @@ cdi - shipcomplete
 //		add logic for columns on summary tab lines detail grid
 //	eb4 08/23/19 eric blackwelder @ compudata
 //		add changes from quote entry for steel surcharge (eb6, eb7, eb8)
+//	eb5 09/12/19 eric blackwelder @ compudata
+//		get mark above to allow manual entry
+//	eb6 09/18/19 eric blackwelder @ compudata
+//		get mark above on kit parent to go down to components
 //
 // **************************************************
 
@@ -1168,6 +1180,8 @@ public static class Script
 	private static bool blnLineDeleted  = false;
 	private static EpiUltraGrid eugOrderLines2;
 	private static EpiUltraGrid eugOrderLines3;
+	//eb6:
+	private static bool blnUpdatingMarkAbove = false;
 
 	public static void InitializeCustomCode()
 	{
@@ -1207,6 +1221,8 @@ public static class Script
 		eugOrderLines3 = (EpiUltraGrid)c2;
 		eugOrderLines3.AfterCellUpdate += new CellEventHandler(eugOrderLines3_AfterCellUpdate);
 		Script.OHOrderMsc_Column.ColumnChanged += new DataColumnChangeEventHandler(Script.OHOrderMsc_AfterFieldChange);
+//		//eb5:
+//		Script.OrderDtl_Column.ColumnChanging += new DataColumnChangeEventHandler(Script.OrderDtl_BeforeFieldChange);
 
 	}
 
@@ -1242,6 +1258,8 @@ public static class Script
 		eugOrderLines2.AfterCellUpdate -= new CellEventHandler(eugOrderLines2_AfterCellUpdate);
 		eugOrderLines3.AfterCellUpdate -= new CellEventHandler(eugOrderLines3_AfterCellUpdate);
 		Script.OHOrderMsc_Column.ColumnChanged -= new DataColumnChangeEventHandler(Script.OHOrderMsc_AfterFieldChange);
+//		//eb5:
+//		Script.OrderDtl_Column.ColumnChanging -= new DataColumnChangeEventHandler(Script.OrderDtl_BeforeFieldChange);
 
 	}
 
@@ -1329,6 +1347,11 @@ public static class Script
                 Script.OrderDtlList.DisplayLayout.Bands[0].Columns["Character01"].Header.Caption ="Group";
 
 
+//				//eb5:
+//not help:
+//                Script.OrderDtlList.DisplayLayout.Bands[0].Columns["ShortChar03"].Style =  Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
+//                Script.OrderDtlList.DisplayLayout.Bands[0].Columns["ShortChar03"].Style =  Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
+
 			}
 		}
 	}
@@ -1350,6 +1373,8 @@ public static class Script
 		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove2;
 		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 6 ;
 		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.Caption ="Mark Above";
+//		//eb5:
+//		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].Style =  Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
 
 		//add code to also hit the line list tab dg:
 		Script.gridListD= (Ice.Lib.Framework.EpiUltraGrid)csm.GetNativeControlReference("4dd0227a-9d85-4d3d-a876-6cf4ea34695b");
@@ -1364,6 +1389,8 @@ public static class Script
 		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove2;
 		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 6 ;
 		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.Caption ="Mark Above";
+//		//eb5:
+//		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar03"].Style =  Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
 
 		//eb3:
 		Script.gridListE = (Ice.Lib.Framework.EpiUltraGrid)csm.GetNativeControlReference("bec51417-b286-4d61-a471-3912bc098905");
@@ -1378,6 +1405,8 @@ public static class Script
 		Script.gridListE.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove2;
 		Script.gridListE.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 8 ;
 		Script.gridListE.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.Caption ="Mark Above";
+//		//eb5:
+//		Script.gridListE.DisplayLayout.Bands[0].Columns["ShortChar03"].Style =  Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
 
 		Script.gridListF = (Ice.Lib.Framework.EpiUltraGrid)csm.GetNativeControlReference("ba70e2ef-161a-4aa3-933d-220d53a21528");
 		Script.gridListF.DisplayLayout.Bands[0].Columns["ShortChar02"].ValueList = baqColorCmbo2;
@@ -1391,6 +1420,8 @@ public static class Script
 		Script.gridListF.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove2;
 		Script.gridListF.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 8 ;
 		Script.gridListF.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.Caption ="Mark Above";
+		//eb5:
+		Script.gridListF.DisplayLayout.Bands[0].Columns["ShortChar03"].Style =  Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
 
 	}
 
@@ -1414,7 +1445,7 @@ public static class Script
 
 	private static void epiAppyAll_Click(object sender, System.EventArgs args)
 	{
-		  EpiDataView edv = oTrans.Factory("OrderHed");
+		 EpiDataView edv = oTrans.Factory("OrderHed");
          string PntColor = edv.dataView[edv.Row]["ShortChar01"].ToString();
          edv.dataView[edv.Row]["ShortChar01"]=PntColor;
          oTrans.Update() ;
@@ -1424,12 +1455,9 @@ public static class Script
        
          if (PntColor != "")
          {
-
-            
-           
             oTrans.PushStatusText("Wait Updating...", false);
             
-               CallApplyallDynamicQuery(OrderNo,CustNum, PntColor);
+            CallApplyallDynamicQuery(OrderNo,CustNum, PntColor);
           
             oTrans.PushStatusText("", false);
             Cursor.Current = Cursors.Default;
@@ -1487,7 +1515,6 @@ public static class Script
 				             {
 				                  if (item["PartNum"].ToString() == OrderPart &amp;amp;&amp;amp; Convert.ToInt32(item["OrderLine"]) == OrderLn  )
 				                    {  
-		                  
 					                   item.BeginEdit(); 
 					                   item["CheckBox01"] = Paintable;
 					                   item["ShortChar02"] = PntColor;
@@ -2765,6 +2792,194 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
 //if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
 //{ MessageBox.Show("1");  }
 				break;
+
+//this doesn't help:
+//eb5:
+//case "ShortChar03":
+//	//string MarkAbTx = Convert.ToString(args.Row["ShortChar03"]);  
+//	oTrans.Update() ;
+//	//CallMarkAbove(QuoteNo, CustNum, MarkAbTx, DisplaySeq);
+//	break;
+
+
+//eb5:
+//zzzz
+case "ShortChar03":
+
+	//eb6:
+	if(blnUpdatingMarkAbove)
+	{
+		return;
+	}
+	blnUpdatingMarkAbove = true;
+
+//1st gives value, then hit again with blank
+//MessageBox.Show("value: " + args.ProposedValue.ToString());
+
+
+/*
+//eb6:
+if(  (string)args.Row["KitFlag"] == "P")
+{
+
+if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+{ MessageBox.Show("kit parent");}
+
+	foreach (DataRowView drv in edvOrderDtl.dataView)
+	{
+//not hit/find component data here:
+if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+{ MessageBox.Show("line a: " + (int)drv["OrderLine"]
++ " / line b: " + (int)args.Row["OrderLine"] 
++ " / KitFlag: " + (string)drv["KitFlag"] 
+);}
+
+		if(   (int)drv["KitParentLine"] == (int)args.Row["OrderLine"]
+		   &amp;amp;&amp;amp; (string)drv["KitFlag"] == "C")
+		{
+if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+{ MessageBox.Show("chg line: " + (int)drv["OrderLine"]);}
+			drv["ShortChar03"] = (string)args.Row["ShortChar03"];
+////			oTrans.Update();
+
+		}
+	}
+}
+*/
+
+
+	//string MarkAbTx = Convert.ToString(args.Row["ShortChar03"]);  
+	oTrans.Update() ;
+	//CallMarkAbove(QuoteNo, CustNum, MarkAbTx, DisplaySeq);
+
+
+
+//eb6:
+if(  (string)args.Row["KitFlag"] == "P")
+
+{
+if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+{ MessageBox.Show("kit parent");}
+if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+{ MessageBox.Show("edvSalesKits count b4: " + edvSalesKits.dataView.ToTable().Rows.Count);}
+
+
+/*
+	eugOrderLines2.ActiveRow = null;
+	for(int i = 0; i &amp;lt; eugOrderLines2.Rows.Count; i++)
+	{
+		if((string)eugOrderLines2.Rows[i].Cells["KitFlag"].Value == "P"
+		&amp;amp;&amp;amp; (int)eugOrderLines2.Rows[i].Cells["OrderLine"].Value == (int)args.Row["OrderLine"] )
+		{
+			eugOrderLines2.ActiveRow = eugOrderLines2.Rows[i];
+			eugOrderLines2.Rows[i].Selected = true;
+
+if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+{ MessageBox.Show("edvSalesKits count after: " + edvSalesKits.dataView.ToTable().Rows.Count);}
+*/
+//		}
+//	}
+
+
+	foreach (DataRowView drv in edvSalesKits.dataView)
+	{
+//not hit/find component data here:
+if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+{ MessageBox.Show("line a: " + (int)drv["OrderLine"]
++ " / line b: " + (int)args.Row["OrderLine"] 
++ " / KitFlag: " + (string)drv["KitFlag"] 
+);}
+
+		if(   (int)drv["KitParentLine"] == (int)args.Row["OrderLine"]
+		   &amp;amp;&amp;amp; (string)drv["KitFlag"] == "C")
+		{
+if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+{ MessageBox.Show("chg line: " + (int)drv["OrderLine"]);}
+			drv["ShortChar03"] = (string)args.Row["ShortChar03"];
+////			oTrans.Update();
+
+		}
+	}
+	oTrans.Update();
+
+}
+
+
+
+
+//eb6:
+/*
+if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+{ MessageBox.Show("chg line: " + (int)args.Row["OrderLine"]
++ " / PartNum: " + (string)args.Row["PartNum"]
++ " / KitFlag: " + (string)args.Row["KitFlag"]
+);  }
+*/
+
+
+
+					//eb6:  this code actually doesn't do anything
+					/*
+					EpiDataView edv2 = oTrans.Factory("OrderHed");
+					int OrderNum = Convert.ToInt32(edv2.dataView[edv2.Row]["OrderNum"]);
+					double OrderAmt = (double)0;
+					SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(oTrans);
+					adapterSalesOrder.BOConnect();
+					System.Data.DataSet dsSalesOrder = adapterSalesOrder.GetData(OrderNum);
+					if (dsSalesOrder != null)
+					{
+			             foreach (DataRow item in dsSalesOrder.Tables["OrderDtl"].Rows)				                         
+			             {
+
+//all lines including kit components go through this:
+//if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+//{ MessageBox.Show("line: " + (int)item["OrderLine"]);}
+
+							  //eb6:
+			                  //if (   (string)item["PartNum"] == (string)args.Row["PartNum"] 
+							  //    &amp;amp;&amp;amp; (int)item["OrderLine"] == (int)args.Row["OrderLine"]  )
+			                  if (   (   (string)item["PartNum"] == (string)args.Row["PartNum"] 
+								      &amp;amp;&amp;amp; (int)item["OrderLine"] == (int)args.Row["OrderLine"]  )
+								  || (  (string)args.Row["KitFlag"] == "P"
+								      &amp;amp;&amp;amp; (int)args.Row["OrderLine"] == (int)item["KitParentLine"]))
+
+			                  {
+//MessageBox.Show("chg epicor data line item");
+				                   item.BeginEdit(); 
+//				                   item["CheckBox01"] = Paintable;
+//				                   item["ShortChar02"] = PntColor;
+				                   item["ShortChar03"] = (string)args.Row["ShortChar03"] ;
+				                   item. EndEdit();
+
+//eb6:
+//if( ((Session)oTrans.Session).UserID == "19289-LCurcio"){ MessageBox.Show("chg line: " + (int)item["OrderLine"] + " / PartNum: " + (string)item["PartNum"] + " / KitFlag: " + (string)item["KitFlag"] );  }
+//if(  (string)args.Row["KitFlag"] == "P"
+//   &amp;amp;&amp;amp; (int)args.Row["OrderLine"] == (int)item["KitParentLine"])
+//{ }
+//gets hit for all component lines of parent line changed
+//but data not chgd on component lines
+if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
+{ MessageBox.Show("chg line: " + (int)item["OrderLine"]);}
+
+
+	                          }		
+		                 }
+	                    oTrans.Update();
+						oTrans.Refresh(); 
+
+					}
+					*/
+					oTrans.Refresh(); 
+
+
+
+
+	//eb6:
+	blnUpdatingMarkAbove = false;
+
+	break;
+
+
 		}
 
 	}
@@ -2872,8 +3087,35 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
 		}
 	}
 
+/*
+	//eb5:
+	private static void OrderDtl_BeforeFieldChange(object sender, DataColumnChangeEventArgs args)
+	{
+		// ** Argument Properties and Uses **
+		// args.Row["FieldName"]
+		// args.Column, args.ProposedValue, args.Row
+		// Add Event Handler Code
+		switch (args.Column.ColumnName)
+		{
+			case "ShortChar03":
+
+
+//args.Cancel = true;
+//args.Handled = true;
+
+
+				break;
+		}
+
+	}
+*/
 
 }
+
+
+
+
+
 
 &lt;/PropertyValue&gt;
     &lt;Company /&gt;
@@ -3007,7 +3249,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;grpDetail2&lt;/ControlName&gt;
     &lt;Key&gt;492bed80-396e-4065-b9b1-8807fdfcb421&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -4543,7 +4785,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;lblShowKitDtls&lt;/ControlName&gt;
     &lt;Key&gt;546e6f1b-7d98-41e1-9efe-7cae2abcaf24&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;746&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;470&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -6235,7 +6477,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;grpDetail3&lt;/ControlName&gt;
     &lt;Key&gt;4447f9c5-dd5e-4611-ac51-1ef9a95a98da&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -10219,7 +10461,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiGroupMarkAbove&lt;/ControlName&gt;
     &lt;Key&gt;f5952d82-f363-4ca1-8670-eaf5ef8fc6fc&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -12499,7 +12741,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiGroupBoxLine&lt;/ControlName&gt;
     &lt;Key&gt;d2461543-7a74-4558-b9e0-20b683f3677b&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -42429,6 +42671,78 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;Key&gt;b4651fd7-0544-43c4-b8e3-2627b4bb9b2c&lt;/Key&gt;
     &lt;PropertyName&gt;EpiBinding&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;OrderDtl.DspUnitPrice&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpLineNbr&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpLineNbr&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
+    &lt;PropertyName&gt;Anchor&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;Top, Left&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpLineNbr&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpLineNbr&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpLineNbr&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;851&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpLineNbr&lt;/ControlName&gt;
+    &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;42&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
