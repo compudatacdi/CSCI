@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description />
-    <LastUpdated>2019-09-18T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2019-09-19T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>9/18/2019 12:15:12 P</Version>
+    <Version>9/19/2019 10:31:39 A</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -215,7 +215,7 @@ Version: f3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>10566775726</SysRevID>
+    <SysRevID>10567085402</SysRevID>
     <SysRowID>0487ae08-de67-4e0d-b4d1-c17fb59b5c4f</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1221,8 +1221,6 @@ public static class Script
 		eugOrderLines3 = (EpiUltraGrid)c2;
 		eugOrderLines3.AfterCellUpdate += new CellEventHandler(eugOrderLines3_AfterCellUpdate);
 		Script.OHOrderMsc_Column.ColumnChanged += new DataColumnChangeEventHandler(Script.OHOrderMsc_AfterFieldChange);
-//		//eb5:
-//		Script.OrderDtl_Column.ColumnChanging += new DataColumnChangeEventHandler(Script.OrderDtl_BeforeFieldChange);
 
 	}
 
@@ -1258,8 +1256,6 @@ public static class Script
 		eugOrderLines2.AfterCellUpdate -= new CellEventHandler(eugOrderLines2_AfterCellUpdate);
 		eugOrderLines3.AfterCellUpdate -= new CellEventHandler(eugOrderLines3_AfterCellUpdate);
 		Script.OHOrderMsc_Column.ColumnChanged -= new DataColumnChangeEventHandler(Script.OHOrderMsc_AfterFieldChange);
-//		//eb5:
-//		Script.OrderDtl_Column.ColumnChanging -= new DataColumnChangeEventHandler(Script.OrderDtl_BeforeFieldChange);
 
 	}
 
@@ -1347,11 +1343,6 @@ public static class Script
                 Script.OrderDtlList.DisplayLayout.Bands[0].Columns["Character01"].Header.Caption ="Group";
 
 
-//				//eb5:
-//not help:
-//                Script.OrderDtlList.DisplayLayout.Bands[0].Columns["ShortChar03"].Style =  Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
-//                Script.OrderDtlList.DisplayLayout.Bands[0].Columns["ShortChar03"].Style =  Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
-
 			}
 		}
 	}
@@ -1373,8 +1364,6 @@ public static class Script
 		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove2;
 		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 6 ;
 		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.Caption ="Mark Above";
-//		//eb5:
-//		Script.gridListC.DisplayLayout.Bands[0].Columns["ShortChar03"].Style =  Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
 
 		//add code to also hit the line list tab dg:
 		Script.gridListD= (Ice.Lib.Framework.EpiUltraGrid)csm.GetNativeControlReference("4dd0227a-9d85-4d3d-a876-6cf4ea34695b");
@@ -1389,8 +1378,6 @@ public static class Script
 		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove2;
 		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 6 ;
 		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.Caption ="Mark Above";
-//		//eb5:
-//		Script.gridListD.DisplayLayout.Bands[0].Columns["ShortChar03"].Style =  Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
 
 		//eb3:
 		Script.gridListE = (Ice.Lib.Framework.EpiUltraGrid)csm.GetNativeControlReference("bec51417-b286-4d61-a471-3912bc098905");
@@ -1405,8 +1392,6 @@ public static class Script
 		Script.gridListE.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove2;
 		Script.gridListE.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 8 ;
 		Script.gridListE.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.Caption ="Mark Above";
-//		//eb5:
-//		Script.gridListE.DisplayLayout.Bands[0].Columns["ShortChar03"].Style =  Infragistics.Win.UltraWinGrid.ColumnStyle.DropDown;
 
 		Script.gridListF = (Ice.Lib.Framework.EpiUltraGrid)csm.GetNativeControlReference("ba70e2ef-161a-4aa3-933d-220d53a21528");
 		Script.gridListF.DisplayLayout.Bands[0].Columns["ShortChar02"].ValueList = baqColorCmbo2;
@@ -1582,11 +1567,8 @@ public static class Script
 		   adapterDynamicQuery.BOConnect();
           
            string BAQName;
-       
-		
-         
 
-//Get customer information
+		   //Get customer information
 
            string CustNo = CustNum.ToString();
 	   	BAQName = "CustomerQuoteINFO";
@@ -1611,7 +1593,7 @@ public static class Script
                        }
                    }
 
- //============================================    
+		  //============================================    
           //Select all the paint material for the order
 
 
@@ -2111,7 +2093,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 		
          
 
-//Get customer information
+		   //Get customer information
 
            string CustNo = CustNum.ToString();
 	   	BAQName = "CustomerQuoteINFO";
@@ -2136,7 +2118,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
                        }
                    }
 
- //============================================    
+		  //============================================    
           //Select all the paint material for the order
 
 
@@ -2789,196 +2771,73 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
 			case "DiscountPercent":
 				oTrans.Update();
 				RecalcSteelSurcharge3();
-//if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-//{ MessageBox.Show("1");  }
 				break;
-
-//this doesn't help:
-//eb5:
-//case "ShortChar03":
-//	//string MarkAbTx = Convert.ToString(args.Row["ShortChar03"]);  
-//	oTrans.Update() ;
-//	//CallMarkAbove(QuoteNo, CustNum, MarkAbTx, DisplaySeq);
-//	break;
-
-
-//eb5:
-//zzzz
-case "ShortChar03":
-
-	//eb6:
-	if(blnUpdatingMarkAbove)
-	{
-		return;
-	}
-	blnUpdatingMarkAbove = true;
-
-//1st gives value, then hit again with blank
-//MessageBox.Show("value: " + args.ProposedValue.ToString());
-
-
-/*
-//eb6:
-if(  (string)args.Row["KitFlag"] == "P")
-{
-
-if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-{ MessageBox.Show("kit parent");}
-
-	foreach (DataRowView drv in edvOrderDtl.dataView)
-	{
-//not hit/find component data here:
-if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-{ MessageBox.Show("line a: " + (int)drv["OrderLine"]
-+ " / line b: " + (int)args.Row["OrderLine"] 
-+ " / KitFlag: " + (string)drv["KitFlag"] 
-);}
-
-		if(   (int)drv["KitParentLine"] == (int)args.Row["OrderLine"]
-		   &amp;amp;&amp;amp; (string)drv["KitFlag"] == "C")
-		{
-if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-{ MessageBox.Show("chg line: " + (int)drv["OrderLine"]);}
-			drv["ShortChar03"] = (string)args.Row["ShortChar03"];
-////			oTrans.Update();
-
-		}
-	}
-}
-*/
-
-
-	//string MarkAbTx = Convert.ToString(args.Row["ShortChar03"]);  
-	oTrans.Update() ;
-	//CallMarkAbove(QuoteNo, CustNum, MarkAbTx, DisplaySeq);
-
-
-
-//eb6:
-if(  (string)args.Row["KitFlag"] == "P")
-
-{
-if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-{ MessageBox.Show("kit parent");}
-if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-{ MessageBox.Show("edvSalesKits count b4: " + edvSalesKits.dataView.ToTable().Rows.Count);}
-
-
-/*
-	eugOrderLines2.ActiveRow = null;
-	for(int i = 0; i &amp;lt; eugOrderLines2.Rows.Count; i++)
-	{
-		if((string)eugOrderLines2.Rows[i].Cells["KitFlag"].Value == "P"
-		&amp;amp;&amp;amp; (int)eugOrderLines2.Rows[i].Cells["OrderLine"].Value == (int)args.Row["OrderLine"] )
-		{
-			eugOrderLines2.ActiveRow = eugOrderLines2.Rows[i];
-			eugOrderLines2.Rows[i].Selected = true;
-
-if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-{ MessageBox.Show("edvSalesKits count after: " + edvSalesKits.dataView.ToTable().Rows.Count);}
-*/
-//		}
-//	}
-
-
-	foreach (DataRowView drv in edvSalesKits.dataView)
-	{
-//not hit/find component data here:
-if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-{ MessageBox.Show("line a: " + (int)drv["OrderLine"]
-+ " / line b: " + (int)args.Row["OrderLine"] 
-+ " / KitFlag: " + (string)drv["KitFlag"] 
-);}
-
-		if(   (int)drv["KitParentLine"] == (int)args.Row["OrderLine"]
-		   &amp;amp;&amp;amp; (string)drv["KitFlag"] == "C")
-		{
-if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-{ MessageBox.Show("chg line: " + (int)drv["OrderLine"]);}
-			drv["ShortChar03"] = (string)args.Row["ShortChar03"];
-////			oTrans.Update();
-
-		}
-	}
-	oTrans.Update();
-
-}
-
-
-
-
-//eb6:
-/*
-if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-{ MessageBox.Show("chg line: " + (int)args.Row["OrderLine"]
-+ " / PartNum: " + (string)args.Row["PartNum"]
-+ " / KitFlag: " + (string)args.Row["KitFlag"]
-);  }
-*/
-
-
-
-					//eb6:  this code actually doesn't do anything
-					/*
-					EpiDataView edv2 = oTrans.Factory("OrderHed");
-					int OrderNum = Convert.ToInt32(edv2.dataView[edv2.Row]["OrderNum"]);
-					double OrderAmt = (double)0;
-					SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(oTrans);
-					adapterSalesOrder.BOConnect();
-					System.Data.DataSet dsSalesOrder = adapterSalesOrder.GetData(OrderNum);
-					if (dsSalesOrder != null)
+			
+			//eb5:
+			case "ShortChar03":
+			
+				//eb6:
+				if(blnUpdatingMarkAbove)
+				{
+					return;
+				}
+				blnUpdatingMarkAbove = true;
+				oTrans.Update() ;
+			
+				//eb6:
+				if(  (string)args.Row["KitFlag"] == "P")
+				{
+					foreach (DataRowView drv in edvSalesKits.dataView)
 					{
-			             foreach (DataRow item in dsSalesOrder.Tables["OrderDtl"].Rows)				                         
-			             {
-
-//all lines including kit components go through this:
-//if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-//{ MessageBox.Show("line: " + (int)item["OrderLine"]);}
-
-							  //eb6:
-			                  //if (   (string)item["PartNum"] == (string)args.Row["PartNum"] 
-							  //    &amp;amp;&amp;amp; (int)item["OrderLine"] == (int)args.Row["OrderLine"]  )
-			                  if (   (   (string)item["PartNum"] == (string)args.Row["PartNum"] 
-								      &amp;amp;&amp;amp; (int)item["OrderLine"] == (int)args.Row["OrderLine"]  )
-								  || (  (string)args.Row["KitFlag"] == "P"
-								      &amp;amp;&amp;amp; (int)args.Row["OrderLine"] == (int)item["KitParentLine"]))
-
-			                  {
-//MessageBox.Show("chg epicor data line item");
-				                   item.BeginEdit(); 
-//				                   item["CheckBox01"] = Paintable;
-//				                   item["ShortChar02"] = PntColor;
-				                   item["ShortChar03"] = (string)args.Row["ShortChar03"] ;
-				                   item. EndEdit();
-
-//eb6:
-//if( ((Session)oTrans.Session).UserID == "19289-LCurcio"){ MessageBox.Show("chg line: " + (int)item["OrderLine"] + " / PartNum: " + (string)item["PartNum"] + " / KitFlag: " + (string)item["KitFlag"] );  }
-//if(  (string)args.Row["KitFlag"] == "P"
-//   &amp;amp;&amp;amp; (int)args.Row["OrderLine"] == (int)item["KitParentLine"])
-//{ }
-//gets hit for all component lines of parent line changed
-//but data not chgd on component lines
-if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-{ MessageBox.Show("chg line: " + (int)item["OrderLine"]);}
-
-
-	                          }		
-		                 }
-	                    oTrans.Update();
-						oTrans.Refresh(); 
-
+						if(   (int)drv["KitParentLine"] == (int)args.Row["OrderLine"]
+						   &amp;amp;&amp;amp; (string)drv["KitFlag"] == "C")
+						{
+							drv["ShortChar03"] = (string)args.Row["ShortChar03"];
+						}
 					}
-					*/
+					oTrans.Update();
+				}
+
+				//eb6:  this code actually doesn't do anything so comment it out
+				/*
+				EpiDataView edv2 = oTrans.Factory("OrderHed");
+				int OrderNum = Convert.ToInt32(edv2.dataView[edv2.Row]["OrderNum"]);
+				double OrderAmt = (double)0;
+				SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(oTrans);
+				adapterSalesOrder.BOConnect();
+				System.Data.DataSet dsSalesOrder = adapterSalesOrder.GetData(OrderNum);
+				if (dsSalesOrder != null)
+				{
+		             foreach (DataRow item in dsSalesOrder.Tables["OrderDtl"].Rows)				                         
+		             {
+						  //eb6:
+		                  //if (   (string)item["PartNum"] == (string)args.Row["PartNum"] 
+						  //    &amp;amp;&amp;amp; (int)item["OrderLine"] == (int)args.Row["OrderLine"]  )
+		                  if (   (   (string)item["PartNum"] == (string)args.Row["PartNum"] 
+							      &amp;amp;&amp;amp; (int)item["OrderLine"] == (int)args.Row["OrderLine"]  )
+							  || (  (string)args.Row["KitFlag"] == "P"
+							      &amp;amp;&amp;amp; (int)args.Row["OrderLine"] == (int)item["KitParentLine"]))
+
+		                  {
+			                   item.BeginEdit(); 
+			                   //item["CheckBox01"] = Paintable;
+			                   //item["ShortChar02"] = PntColor;
+			                   item["ShortChar03"] = (string)args.Row["ShortChar03"] ;
+			                   item. EndEdit();
+                          }		
+	                 }
+                    oTrans.Update();
 					oTrans.Refresh(); 
 
+				}
+				*/
 
-
-
-	//eb6:
-	blnUpdatingMarkAbove = false;
-
-	break;
-
+				oTrans.Refresh(); 
+			
+				//eb6:
+				blnUpdatingMarkAbove = false;
+		
+			break;
 
 		}
 
@@ -2988,52 +2847,50 @@ if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
 	//eb4:
 	private static void eugOrderLines2_AfterCellUpdate(object sender, Infragistics.Win.UltraWinGrid.CellEventArgs e)
 	{
-//		if(   e.Cell.Column.Key == "SellingExpectedQty"
-//		   || e.Cell.Column.Key == "DocDspExpUnitPrice"
-//		   || e.Cell.Column.Key == "DiscountPercent")
+		//if(   e.Cell.Column.Key == "SellingExpectedQty"
+		//   || e.Cell.Column.Key == "DocDspExpUnitPrice"
+		//   || e.Cell.Column.Key == "DiscountPercent")
 		if(   e.Cell.Column.Key == "SellingQuantity"
 		   || e.Cell.Column.Key == "DocDspUnitPrice"
 		   || e.Cell.Column.Key == "DiscountPercent")
 		{
-//if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-//{ MessageBox.Show("1");  }
 
-//refresh eliminates the change for qty:
+			//note: refresh here eliminates the change for qty:
 			//oTrans.Refresh();
 			oTrans.Update();
 
 			RecalcSteelSurcharge3();
 		}
-//quote	SellingExpectedQty	 DocDspExpUnitPrice	 DiscountPercent
-//order	SellingQuantity		DocDspUnitPrice		DiscountPercent
-//
-//quote	"Unit Price"	QuoteDtl.DspExpUnitPrice / DocDspExpUnitPrice
-//order	"Unit Price"	OrderDtl.DspUnitPrice / DocDspUnitPrice
-//
-//quote	"Gross Value"	QuoteHed.TotalGrossValue
-//order	"Charges"		OrderHed.DocTotalCharges
-//
-//quote	"Potential"	  QuoteHed.TotalPotential
-//order	"Order Total"	OrderHed.OrderAmt
-//
-//quote	"Total"		  QuoteDtl.TotalQuote
-//order	"Total Price:"   OrderDtl.TotalPrice
+
+		//note: some field name comparison between quote and so entry:
+		//quote	SellingExpectedQty	 DocDspExpUnitPrice	 DiscountPercent
+		//order	SellingQuantity		DocDspUnitPrice		DiscountPercent
+		//
+		//quote	"Unit Price"	QuoteDtl.DspExpUnitPrice / DocDspExpUnitPrice
+		//order	"Unit Price"	OrderDtl.DspUnitPrice / DocDspUnitPrice
+		//
+		//quote	"Gross Value"	QuoteHed.TotalGrossValue
+		//order	"Charges"		OrderHed.DocTotalCharges
+		//
+		//quote	"Potential"	  QuoteHed.TotalPotential
+		//order	"Order Total"	OrderHed.OrderAmt
+		//
+		//quote	"Total"		  QuoteDtl.TotalQuote
+		//order	"Total Price:"   OrderDtl.TotalPrice
 
 	}
 	//eb4:
 	private static void eugOrderLines3_AfterCellUpdate(object sender, Infragistics.Win.UltraWinGrid.CellEventArgs e)
 	{
-//		if(   e.Cell.Column.Key == "SellingExpectedQty"
-//		   || e.Cell.Column.Key == "DocDspExpUnitPrice"
-//		   || e.Cell.Column.Key == "DiscountPercent")
+		//if(   e.Cell.Column.Key == "SellingExpectedQty"
+		//   || e.Cell.Column.Key == "DocDspExpUnitPrice"
+		//   || e.Cell.Column.Key == "DiscountPercent")
 		if(   e.Cell.Column.Key == "SellingQuantity"
 		   || e.Cell.Column.Key == "DocDspUnitPrice"
 		   || e.Cell.Column.Key == "DiscountPercent")
 		{
-//if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
-//{ MessageBox.Show("1");  }
 
-//refresh eliminates the change for qty:
+			//note: refresh here eliminates the change for qty:
 			//oTrans.Refresh();
 			oTrans.Update();
 
@@ -3087,28 +2944,6 @@ if( ((Session)oTrans.Session).UserID == "19289-LCurcio")
 		}
 	}
 
-/*
-	//eb5:
-	private static void OrderDtl_BeforeFieldChange(object sender, DataColumnChangeEventArgs args)
-	{
-		// ** Argument Properties and Uses **
-		// args.Row["FieldName"]
-		// args.Column, args.ProposedValue, args.Row
-		// Add Event Handler Code
-		switch (args.Column.ColumnName)
-		{
-			case "ShortChar03":
-
-
-//args.Cancel = true;
-//args.Handled = true;
-
-
-				break;
-		}
-
-	}
-*/
 
 }
 
