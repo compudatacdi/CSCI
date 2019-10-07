@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description />
-    <LastUpdated>2019-09-19T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2019-10-07T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>9/19/2019 10:31:39 A</Version>
+    <Version>10/7/2019 11:50:37 A</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -215,7 +215,7 @@ Version: f3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>10567085402</SysRevID>
+    <SysRevID>10606051082</SysRevID>
     <SysRowID>0487ae08-de67-4e0d-b4d1-c17fb59b5c4f</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -2946,6 +2946,8 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
 
 
 }
+
+
 
 
 
@@ -7164,7 +7166,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPaintQty&lt;/ControlName&gt;
     &lt;Key&gt;2e5070a7-0d16-42c0-b776-7ab0708d1c67&lt;/Key&gt;
     &lt;PropertyName&gt;Text&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;Recalc. Paint Qty&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;Calculate Paint Qty&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -8772,7 +8774,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;baqComboC4&lt;/ControlName&gt;
     &lt;Key&gt;0fd640e1-4239-40be-8b1f-22fbb51d5651&lt;/Key&gt;
     &lt;PropertyName&gt;ListItems&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;Alabama :Alaska :Arizona :Arkansas :California :Colorado :Connecticut :Delaware :Florida :Georgia :Hawaii :Idaho :Illinois Indiana :Iowa :Kansas :Kentucky :Louisiana :Maine :Maryland :Massachusetts :Michigan :Minnesota :Mississippi :Missouri :Montana Nebraska :Nevada :New Hampshire :New Jersey :New Mexico :New York :North Carolina :North Dakota :Ohio :Oklahoma :Oregon :Pennsylvania :Rhode Island :South Carolina :South Dakota :Tennessee :Texas :Utah :Vermont :Virginia :Washington :West Virginia :Wisconsin :Wyoming&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;Alabama :Alaska :Arizona :Arkansas :California :Colorado :Connecticut :Delaware :Florida :Georgia :Hawaii :Idaho :Illinois :Indiana :Iowa :Kansas :Kentucky :Louisiana :Maine :Maryland :Massachusetts :Michigan :Minnesota :Mississippi :Missouri :Montana Nebraska :Nevada :New Hampshire :New Jersey :New Mexico :New York :North Carolina :North Dakota :Ohio :Oklahoma :Oregon :Pennsylvania :Rhode Island :South Carolina :South Dakota :Tennessee :Texas :Utah :Vermont :Virginia :Washington :West Virginia :Wisconsin :Wyoming&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -17448,7 +17450,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;grpCounterSale&lt;/ControlName&gt;
     &lt;Key&gt;074dd791-284f-4df2-9165-f11af41dab21&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -18504,7 +18506,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;grpShipTo&lt;/ControlName&gt;
     &lt;Key&gt;623033c5-a5c0-4b24-bdc6-362470a0ac41&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -42073,7 +42075,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;grpSummary&lt;/ControlName&gt;
     &lt;Key&gt;a003549e-312f-4364-9b9e-660b25e6e358&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -42578,6 +42580,18 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;Key&gt;6ad98eed-4586-4f6b-85b0-0d81ad71f191&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;42&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;epiTextState&lt;/ControlName&gt;
+    &lt;Key&gt;0c9876c9-f48c-44dd-9d4d-9f266f350abf&lt;/Key&gt;
+    &lt;PropertyName&gt;EpiKeyField&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;False&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
