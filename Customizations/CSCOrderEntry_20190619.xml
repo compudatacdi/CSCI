@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description />
-    <LastUpdated>2019-10-07T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2019-10-30T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>10/7/2019 11:50:37 A</Version>
+    <Version>10/30/2019 4:24:48 P</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -215,13 +215,13 @@ Version: f3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>10606051082</SysRevID>
-    <SysRowID>0487ae08-de67-4e0d-b4d1-c17fb59b5c4f</SysRowID>
+    <SysRevID>10860580475</SysRevID>
+    <SysRowID>b1edfe89-ca27-4e4b-af95-6c376cf1021e</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
     <OnMenu>true</OnMenu>
     <Duplicate>true</Duplicate>
-    <Cosmetic>false</Cosmetic>
+    <Cosmetic>true</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
     &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.500.0"&gt;
@@ -1091,6 +1091,13 @@ Version: f3.2.500.0
 //		get mark above to allow manual entry
 //	eb6 09/18/19 eric blackwelder @ compudata
 //		get mark above on kit parent to go down to components
+//	ATI 10/10/2019 Tony Incelli $ compudata
+//		added KitCompleteCheck to rtn edvOrderDtl_EpiViewNotification
+//	ATI 10/14/2019 Tony Incelli $ compudata
+//		added KitCompleteCheck - check if already complete. to rtn edvOrderDtl_EpiViewNotification
+//	ATI 10/22/2019 Tony Incelli $ compudata
+//		Remove if (PntColor != "") in epiPntMtl_Click and epiReComputeQtyBtn_Click
+//
 //
 // **************************************************
 
@@ -1334,6 +1341,14 @@ public static class Script
 		{
 			if ((args.Row &amp;gt; -1))
 			{
+				if ((string)view.dataView[args.Row]["KitFlag"] == "P")
+				{
+					if ((bool)view.dataView[args.Row]["KitShipComplete"]!= false)
+					{
+						view.dataView[args.Row]["KitShipComplete"]= false;
+						view.dataView[args.Row]["KitPricing"]="P";
+					}
+				}
                 Script.OrderDtlList = (Ice.Lib.Framework.EpiUltraGrid)csm.GetNativeControlReference("4dd0227a-9d85-4d3d-a876-6cf4ea34695b");
                 Script.OrderDtlList.DisplayLayout.Bands[0].Columns["ShortChar03"].ValueList = baqMarkAbove2;
                 Script.OrderDtlList.DisplayLayout.Bands[0].Columns["ShortChar03"].Header.VisiblePosition = 6 ;
@@ -1541,8 +1556,8 @@ public static class Script
          int OrderNo = Convert.ToInt32(edv.dataView[edv.Row]["OrderNum"]);
          int CustNum = Convert.ToInt32(edv.dataView[edv.Row]["CustNum"]);
        
-         if (PntColor != "")
-         {
+         //if (PntColor != "")
+         //{
 
             
            
@@ -1550,7 +1565,7 @@ public static class Script
             CallSalesOrderAdapterGetNewOrderDtlMethod(OrderNo, CustNum);
             oTrans.PushStatusText("", false);
           
-           }
+           //}
 
 	}
    
@@ -1787,8 +1802,8 @@ public static class Script
 		       int OrderNum = Convert.ToInt32(edv.dataView[edv.Row]["OrderNum"]);
 		       int CustNum = Convert.ToInt32(edv.dataView[edv.Row]["CustNum"]);
 	       
-		      if (PntColor != "")
-		       {
+		      //if (PntColor != "")
+		       //{
 
                     Cursor.Current = Cursors.WaitCursor;
 		           
@@ -1832,7 +1847,7 @@ public static class Script
                 adapterDynamicQuery.Dispose();
                 oTrans.PushStatusText("", false);
 		         Cursor.Current = Cursors.Default;
-	      }
+	      //}
 
 
 		} catch (System.Exception ex)
@@ -1887,6 +1902,7 @@ public static class Script
 
 	private static void CallOrderAdapterGetDataMethod(int QuoteNum, string PartNum, double PaintQty)
 	{
+
 		try
 		{
 			SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(Script.oTrans);
@@ -2434,6 +2450,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 
 	private static void CallSalesOrderAdapterGetDataMethod()
 	{
+		
 		try
 		{
 			// Declare and Initialize EpiDataView Variables
@@ -2946,6 +2963,16 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
 
 
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6890,7 +6917,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPntMtl&lt;/ControlName&gt;
     &lt;Key&gt;307416a6-a0d8-43c6-8048-fb9150daeec8&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -7010,7 +7037,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPaintQty&lt;/ControlName&gt;
     &lt;Key&gt;2e5070a7-0d16-42c0-b776-7ab0708d1c67&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;19&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -7022,7 +7049,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPaintQty&lt;/ControlName&gt;
     &lt;Key&gt;2e5070a7-0d16-42c0-b776-7ab0708d1c67&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;490&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;491&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -7106,7 +7133,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPaintQty&lt;/ControlName&gt;
     &lt;Key&gt;2e5070a7-0d16-42c0-b776-7ab0708d1c67&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;490&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;491&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -7118,7 +7145,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiPaintQty&lt;/ControlName&gt;
     &lt;Key&gt;2e5070a7-0d16-42c0-b776-7ab0708d1c67&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;19&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -8690,7 +8717,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiFreightBtn&lt;/ControlName&gt;
     &lt;Key&gt;b8da2ed1-76df-4cf4-87c6-f954e1d8667e&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -15518,7 +15545,7 @@ private static void CallDynamicQueryPainLn(int OrderNum, int CustNum, string Pnt
     &lt;ControlName&gt;epiTextBoxC4&lt;/ControlName&gt;
     &lt;Key&gt;cecf4b0f-eafc-474e-ab26-6cf820cf37b4&lt;/Key&gt;
     &lt;PropertyName&gt;EpiBinding&lt;/PropertyName&gt;
-    &lt;PropertyValue /&gt;
+    &lt;PropertyValue&gt;OrderHed.ShortChar13&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
