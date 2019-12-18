@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description />
-    <LastUpdated>2019-11-15T00:00:00-05:00</LastUpdated>
+    <LastUpdated>2019-12-18T00:00:00-05:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>11/15/2019 1:50:43 P</Version>
+    <Version>12/18/2019 10:43:52</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -215,7 +215,7 @@ Version: f3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>10874233230</SysRevID>
+    <SysRevID>11374013533</SysRevID>
     <SysRowID>b1edfe89-ca27-4e4b-af95-6c376cf1021e</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1159,6 +1159,8 @@ Version: f3.2.500.0
 //		Remove if (PntColor != "") in epiPntMtl_Click and epiReComputeQtyBtn_Click
 //	eb7 11/13/19 eric blackwelder @ compudata
 //		add kit pricing logic like quote entry
+//	eb8 12/18/19 eric blackwelder @ compudata
+//		make kit components pull in when enter a kit
 //
 //
 // **************************************************
@@ -1526,7 +1528,9 @@ public static class Script
          {
             oTrans.PushStatusText("Wait Updating...", false);
             
-            CallApplyallDynamicQuery(OrderNo,CustNum, PntColor);
+			//eb8:
+            //CallApplyallDynamicQuery(OrderNo,CustNum, PntColor);
+            CallApplyallDynamicQuery(OrderNo,CustNum, PntColor, true);
           
             oTrans.PushStatusText("", false);
             Cursor.Current = Cursors.Default;
@@ -1535,7 +1539,10 @@ public static class Script
 
 
 
-	private static void  CallApplyallDynamicQuery(int OrderNo, int CustNum, string PntColor)
+
+	//eb8:
+	//private static void  CallApplyallDynamicQuery(int OrderNo, int CustNum, string PntColor)
+	private static void  CallApplyallDynamicQuery(int OrderNo, int CustNum, string PntColor, bool ApplyButtonHit)
 	{
 		try
 		{
@@ -1544,7 +1551,7 @@ public static class Script
 			DynamicQueryAdapter adapterDynamicQuery = new DynamicQueryAdapter(Script.oTrans);
 			adapterDynamicQuery.BOConnect();
 
-			           Cursor.Current = Cursors.WaitCursor;
+			Cursor.Current = Cursors.WaitCursor;
 			
 			// Declare and create an instance of the Adapter.
             SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(Script.oTrans);
@@ -1583,12 +1590,29 @@ public static class Script
 				                         
 				             {
 				                  if (item["PartNum"].ToString() == OrderPart &amp;amp;&amp;amp; Convert.ToInt32(item["OrderLine"]) == OrderLn  )
-				                    {  
-					                   item.BeginEdit(); 
-					                   item["CheckBox01"] = Paintable;
-					                   item["ShortChar02"] = PntColor;
-					                   item["RowMod"] ="U";
-					                   item. EndEdit();
+				                  {  
+										//eb8:
+					                    //item.BeginEdit(); 
+					                    //item["CheckBox01"] = Paintable;
+					                    //item["ShortChar02"] = PntColor;
+					                    //item["RowMod"] ="U";
+					                    //item. EndEdit();
+										if (ApplyButtonHit)
+										{
+						                    item.BeginEdit(); 
+						                    item["CheckBox01"] = Paintable;
+						                    item["ShortChar02"] = PntColor;
+						                    item["RowMod"] ="U";
+						                    item. EndEdit();
+										}
+										else
+										{
+						                    item.BeginEdit(); 
+						                    item["CheckBox01"] = Paintable;
+						                    item["RowMod"] ="U";
+						                    item. EndEdit();
+										}
+
 		                          }
 			
 			                 }
@@ -2594,6 +2618,24 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
          //MessageBox.Show(s1);
 		
 
+		//eb8:
+		if (args.MethodName.ToString() == "GetKitComponents")
+		{
+			if (edvOrderDtl.dataView.Count &amp;gt; 0)
+			{
+				if (edvOrderDtl.CurrentDataRow != null)
+				{
+					EpiDataView edv = oTrans.Factory("OrderDtl");
+					int OrderNo = Convert.ToInt32(edv.dataView[edv.Row]["OrderNum"]);
+					int CustNum = Convert.ToInt32(edv.dataView[edv.Row]["CustNum"]);
+
+					Cursor.Current = Cursors.WaitCursor;
+		            oTrans.PushStatusText("Wait Updating...", false);
+		            CallApplyallDynamicQuery(OrderNo, CustNum, "", false);
+				}
+			}	    
+		}
+
 //		if(String.Compare(s1, s3, true)== 0)
 //               {
 //                         EpiDataView edv = oTrans.Factory("OrderHed");
@@ -3320,6 +3362,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 
 
 }
+
 
 
 &lt;/PropertyValue&gt;
