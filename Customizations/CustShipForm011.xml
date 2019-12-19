@@ -76,15 +76,15 @@
     <Key2>App.CustShipEntry.CustShipForm</Key2>
     <Key3 />
     <Description />
-    <LastUpdated>2019-07-09T00:00:00-04:00</LastUpdated>
-    <LastUpdatedBy>19289-EBlackwelder</LastUpdatedBy>
-    <Version>7/9/2019 12:31:00 PM</Version>
-    <DataBaseVersion>0</DataBaseVersion>
+    <LastUpdated>2019-12-19T00:00:00-05:00</LastUpdated>
+    <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
+    <Version>12/19/2019 3:28:07 P</Version>
+    <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
     <SysCharacter03 />
     <SysCharacter04>Pass</SysCharacter04>
-    <SysCharacter05>3.2.400.0</SysCharacter05>
+    <SysCharacter05>3.2.500.0</SysCharacter05>
     <SysNumber01>0.000000000</SysNumber01>
     <SysNumber02>0.000000000</SysNumber02>
     <SysNumber03>0.000000000</SysNumber03>
@@ -94,7 +94,7 @@
     <SysCheckBox02>false</SysCheckBox02>
     <SysCheckBox03>false</SysCheckBox03>
     <SysCheckBox04>false</SysCheckBox04>
-    <SysCheckBox05>false</SysCheckBox05>
+    <SysCheckBox05>true</SysCheckBox05>
     <CommentText>JoeBee
 [19289-LCurcio: 4/29/2019 11:34:52 PM]
 
@@ -104,10 +104,29 @@ joe
 [19289-LCurcio: 5/1/2019 2:04:11 PM]
 
 JDS - Realigned the PCID field on the Summary Tab so that it wasn't overtop of the Order Number field
-[19289-JStauffer: 6/28/2019 6:45:25 PM]</CommentText>
+[19289-JStauffer: 6/28/2019 6:45:25 PM]
+
+JDS - cosmetic changes
+[19289-LCurcio: 9/3/2019 5:38:26 PM]
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.500.0
+Status: Warning
+Version: w3.2.500.0
+
+[EpicAdmin: 10/12/2019 12:45:07 PM]
+*----------------------------------------------------------*
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.500.0
+Status: Pass
+Version: f3.2.500.0
+
+[19289-SMcEntire: 12/18/2019 2:18:53 PM]
+*----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>9941104652</SysRevID>
+    <SysRevID>11374514893</SysRevID>
     <SysRowID>2adf6b38-56fc-40cb-8e24-b469b790cd2b</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -116,7 +135,7 @@ JDS - Realigned the PCID field on the Summary Tab so that it wasn't overtop of t
     <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
-    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.400.0"&gt;
+    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.500.0"&gt;
       &lt;xs:complexType&gt;
         &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
           &lt;xs:element name="Controls"&gt;
@@ -253,6 +272,8 @@ JDS - Realigned the PCID field on the Summary Tab so that it wasn't overtop of t
 //
 //	eb1 07/09/19 eric blackwelder @ compudata
 //		eliminate error when entering pcid field on summary tab
+//	eb2 12/19/19 eric blackwelder @ compudata
+//		make faster after entring pcid
 //
 // **************************************************
 
@@ -333,14 +354,13 @@ public class Script
 	private void epiPCID_tx_AfterEnterEditMode(object sender, System.EventArgs args)
 	{
 		// ** Place Event Handling Code Here **
-    
-      
+	      
 	}
 
 	private void epiPCID_tx_TextChanged(object sender, System.EventArgs args)
 	{
 		// ** Place Event Handling Code Here **
-      
+	      
 	}
 
 	private void epiPCID_tx_Leave(object sender, System.EventArgs args)
@@ -352,22 +372,24 @@ public class Script
 	{
 		// ** Place Event Handling Code Here **
            //if (args.KeyCode == Keys.Enter)
-		  
+			  
 	}
 
 	private void epiPCID_tx_AfterExitEditMode(object sender, System.EventArgs args)
 	{
-	
+		
          EpiDataView edv = (EpiDataView)oTrans.EpiDataViews["ShipHead"];
          Cursor.Current = Cursors.WaitCursor;
          CallDynamicQueryAdapterExecuteByIDMethod( epiPCID_tx.Text);
-      
+      	//MessageBox.Show(epiPCID_tx.Text);
 		 //eb1:  there is no PCID field on ShipHead
-         //edv.dataView[edv.Row]["PCID"] = epiPCID_tx.Text;
+         edv.dataView[edv.Row]["PCID"] = epiPCID_tx.Text;
 
          Cursor.Current  = Cursors.Default;
          epiPCID_tx.Text="";
-  
+		//epiPCID_tx.Focus();
+		//epiPCID_tx.Text="";
+  		
 	}
 
 	private void CallDynamicQueryAdapterExecuteByIDMethod(string PCID)
@@ -396,6 +418,7 @@ public class Script
 								{
 								
 							    OrderNum = Convert.ToInt32(item["PkgControlItem_OrderNum"]);
+								//MessageBox.Show(OrderNum.ToString());
 		                        CallSalesOrderAdapterGetDataMethod(OrderNum );
 				             
         
@@ -424,9 +447,10 @@ public class Script
 
 			// Call Adapter method
 			 System.Data.DataSet dsSalesOrder = adapterSalesOrder.GetData(OrderNo);
-             
              if (dsSalesOrder != null)
 				            {
+							//eb2:
+							bool dataModified = false;
 				         
 				             foreach (DataRow dr in dsSalesOrder.Tables["OrderDtl"].Rows)
 				                         
@@ -435,16 +459,27 @@ public class Script
 					               dr.BeginEdit(); 
 					             
 					               dr["KitShipComplete"] = true;
+									dr["KitPricing"] = "P";
 					               dr["RowMod"] ="U";
 					               dr. EndEdit();
-                                 bool result = adapterSalesOrder.Update();
+
+								//eb2:
+                                //bool result = adapterSalesOrder.Update();
+								dataModified = true;
 		                         
 			                 }
+
+							//eb2:
+							if(dataModified)
+							{
+								bool result = adapterSalesOrder.Update();
+							}
+             
 			 
 			              }
 			// Cleanup Adapter Reference
              //adapterSalesOrder.Update();
-             
+
 			adapterSalesOrder.Dispose();
 
 		} catch (System.Exception ex)
@@ -455,47 +490,6 @@ public class Script
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -525,7 +519,7 @@ public class Script
     &lt;ControlName&gt;groupBox1&lt;/ControlName&gt;
     &lt;Key&gt;a82a24c6-b9f3-487d-9880-eb284de5fcc4&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -597,7 +591,7 @@ public class Script
     &lt;ControlName&gt;txtPCID&lt;/ControlName&gt;
     &lt;Key&gt;d38e3289-ae8d-4138-a08e-f59c9a231655&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -609,7 +603,7 @@ public class Script
     &lt;ControlName&gt;grpShipTo&lt;/ControlName&gt;
     &lt;Key&gt;735116e4-c380-404a-93bc-4bdde9d04ba3&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -633,7 +627,7 @@ public class Script
     &lt;ControlName&gt;grpShipTo&lt;/ControlName&gt;
     &lt;Key&gt;735116e4-c380-404a-93bc-4bdde9d04ba3&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;145&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;144&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -645,7 +639,7 @@ public class Script
     &lt;ControlName&gt;grpShipTo&lt;/ControlName&gt;
     &lt;Key&gt;735116e4-c380-404a-93bc-4bdde9d04ba3&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -729,7 +723,7 @@ public class Script
     &lt;ControlName&gt;grpPacking&lt;/ControlName&gt;
     &lt;Key&gt;6fd8e20c-4b57-480b-b07f-a0359cb7112a&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -753,7 +747,7 @@ public class Script
     &lt;ControlName&gt;grpPacking&lt;/ControlName&gt;
     &lt;Key&gt;6fd8e20c-4b57-480b-b07f-a0359cb7112a&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;741&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;747&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -777,7 +771,7 @@ public class Script
     &lt;ControlName&gt;grpTrackingNo&lt;/ControlName&gt;
     &lt;Key&gt;586d4951-19d6-43ec-bbcc-d233f7195450&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -801,7 +795,7 @@ public class Script
     &lt;ControlName&gt;grpTrackingNo&lt;/ControlName&gt;
     &lt;Key&gt;586d4951-19d6-43ec-bbcc-d233f7195450&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -825,7 +819,7 @@ public class Script
     &lt;ControlName&gt;grpTrackingNo&lt;/ControlName&gt;
     &lt;Key&gt;586d4951-19d6-43ec-bbcc-d233f7195450&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -849,7 +843,7 @@ public class Script
     &lt;ControlName&gt;grpTrackingNo&lt;/ControlName&gt;
     &lt;Key&gt;586d4951-19d6-43ec-bbcc-d233f7195450&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;741&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;747&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -873,7 +867,7 @@ public class Script
     &lt;ControlName&gt;grpShipTo&lt;/ControlName&gt;
     &lt;Key&gt;735116e4-c380-404a-93bc-4bdde9d04ba3&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -885,7 +879,7 @@ public class Script
     &lt;ControlName&gt;grpShipTo&lt;/ControlName&gt;
     &lt;Key&gt;735116e4-c380-404a-93bc-4bdde9d04ba3&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;145&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;144&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -897,7 +891,7 @@ public class Script
     &lt;ControlName&gt;grpSoldTo&lt;/ControlName&gt;
     &lt;Key&gt;f30b25f9-d366-4ed7-913d-eea9e49e430c&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1113,7 +1107,7 @@ public class Script
     &lt;ControlName&gt;btnPCID&lt;/ControlName&gt;
     &lt;Key&gt;3dcfc75f-306a-484b-9424-2130314c042d&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;11&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1317,7 +1311,7 @@ public class Script
     &lt;ControlName&gt;lblDocumentType&lt;/ControlName&gt;
     &lt;Key&gt;0f024f9e-4fb9-4845-a937-3fab311bf57c&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1329,7 +1323,7 @@ public class Script
     &lt;ControlName&gt;cmbTranDocType&lt;/ControlName&gt;
     &lt;Key&gt;85b6656e-fcd9-446e-8fc5-dbc7f00bd8ff&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1341,7 +1335,7 @@ public class Script
     &lt;ControlName&gt;lblDocumentType&lt;/ControlName&gt;
     &lt;Key&gt;0f024f9e-4fb9-4845-a937-3fab311bf57c&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;84&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;110&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1353,7 +1347,7 @@ public class Script
     &lt;ControlName&gt;lblDocumentType&lt;/ControlName&gt;
     &lt;Key&gt;0f024f9e-4fb9-4845-a937-3fab311bf57c&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;259&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;322&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1365,7 +1359,7 @@ public class Script
     &lt;ControlName&gt;lblDocumentType&lt;/ControlName&gt;
     &lt;Key&gt;0f024f9e-4fb9-4845-a937-3fab311bf57c&lt;/Key&gt;
     &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;144&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;100&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1977,7 +1971,7 @@ public class Script
     &lt;ControlName&gt;grpStatusShape&lt;/ControlName&gt;
     &lt;Key&gt;aece4c5b-0ad6-405a-99ab-fb063d3898b0&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2013,7 +2007,7 @@ public class Script
     &lt;ControlName&gt;btnUpdate&lt;/ControlName&gt;
     &lt;Key&gt;b5512020-4c60-4991-a22a-802812d14735&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;388&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;392&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2061,7 +2055,7 @@ public class Script
     &lt;ControlName&gt;btnUpdate&lt;/ControlName&gt;
     &lt;Key&gt;b5512020-4c60-4991-a22a-802812d14735&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;388&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;392&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2169,7 +2163,7 @@ public class Script
     &lt;ControlName&gt;btnMassShipment&lt;/ControlName&gt;
     &lt;Key&gt;868f7dc8-e6b2-4bc5-9507-62b7d9eac64e&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;385&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;392&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2181,7 +2175,7 @@ public class Script
     &lt;ControlName&gt;btnMassShipment&lt;/ControlName&gt;
     &lt;Key&gt;868f7dc8-e6b2-4bc5-9507-62b7d9eac64e&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;11&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2217,7 +2211,7 @@ public class Script
     &lt;ControlName&gt;btnMassShipment&lt;/ControlName&gt;
     &lt;Key&gt;868f7dc8-e6b2-4bc5-9507-62b7d9eac64e&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;385&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;392&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2229,7 +2223,7 @@ public class Script
     &lt;ControlName&gt;btnMassShipment&lt;/ControlName&gt;
     &lt;Key&gt;868f7dc8-e6b2-4bc5-9507-62b7d9eac64e&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;11&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2265,7 +2259,7 @@ public class Script
     &lt;ControlName&gt;btnShipAll&lt;/ControlName&gt;
     &lt;Key&gt;8406d29d-9ed2-40ed-84ca-f9d2ea4d4f9a&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;385&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;392&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2313,7 +2307,7 @@ public class Script
     &lt;ControlName&gt;btnShipAll&lt;/ControlName&gt;
     &lt;Key&gt;8406d29d-9ed2-40ed-84ca-f9d2ea4d4f9a&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;385&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;392&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2361,7 +2355,7 @@ public class Script
     &lt;ControlName&gt;btnClearAll&lt;/ControlName&gt;
     &lt;Key&gt;e6444be3-23f8-4ecd-a787-3be484d825d6&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;385&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;392&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2409,7 +2403,7 @@ public class Script
     &lt;ControlName&gt;btnClearAll&lt;/ControlName&gt;
     &lt;Key&gt;e6444be3-23f8-4ecd-a787-3be484d825d6&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;385&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;392&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2481,7 +2475,343 @@ public class Script
     &lt;ControlName&gt;numOrderNumber&lt;/ControlName&gt;
     &lt;Key&gt;7dc82bf4-11c7-4394-83a1-a3f49c7fb286&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;epiPCID_tx&lt;/ControlName&gt;
+    &lt;Key&gt;0dfc50d7-eacc-41e6-b74f-185d0d283e11&lt;/Key&gt;
+    &lt;PropertyName&gt;EpiBinding&lt;/PropertyName&gt;
+    &lt;PropertyValue /&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblShipViaCode&lt;/ControlName&gt;
+    &lt;Key&gt;026bd026-0a7f-46e9-a1ae-a6f613debb4d&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cboShipVia&lt;/ControlName&gt;
+    &lt;Key&gt;42e5d224-1f66-4628-bd55-ddbdd536d93c&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblShipViaCode&lt;/ControlName&gt;
+    &lt;Key&gt;026bd026-0a7f-46e9-a1ae-a6f613debb4d&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;84&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblShipViaCode&lt;/ControlName&gt;
+    &lt;Key&gt;026bd026-0a7f-46e9-a1ae-a6f613debb4d&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;334&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblShipViaCode&lt;/ControlName&gt;
+    &lt;Key&gt;026bd026-0a7f-46e9-a1ae-a6f613debb4d&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;88&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblShipViaCode&lt;/ControlName&gt;
+    &lt;Key&gt;026bd026-0a7f-46e9-a1ae-a6f613debb4d&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cmbTranDocType&lt;/ControlName&gt;
+    &lt;Key&gt;85b6656e-fcd9-446e-8fc5-dbc7f00bd8ff&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;428&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cmbTranDocType&lt;/ControlName&gt;
+    &lt;Key&gt;85b6656e-fcd9-446e-8fc5-dbc7f00bd8ff&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;110&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cmbTranDocType&lt;/ControlName&gt;
+    &lt;Key&gt;85b6656e-fcd9-446e-8fc5-dbc7f00bd8ff&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;428&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cmbTranDocType&lt;/ControlName&gt;
+    &lt;Key&gt;85b6656e-fcd9-446e-8fc5-dbc7f00bd8ff&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;110&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblDocumentType&lt;/ControlName&gt;
+    &lt;Key&gt;0f024f9e-4fb9-4845-a937-3fab311bf57c&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;100&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblDocumentType&lt;/ControlName&gt;
+    &lt;Key&gt;0f024f9e-4fb9-4845-a937-3fab311bf57c&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblDocumentType&lt;/ControlName&gt;
+    &lt;Key&gt;0f024f9e-4fb9-4845-a937-3fab311bf57c&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;314&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblDocumentType&lt;/ControlName&gt;
+    &lt;Key&gt;0f024f9e-4fb9-4845-a937-3fab311bf57c&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;110&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cboShipVia&lt;/ControlName&gt;
+    &lt;Key&gt;42e5d224-1f66-4628-bd55-ddbdd536d93c&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;428&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cboShipVia&lt;/ControlName&gt;
+    &lt;Key&gt;42e5d224-1f66-4628-bd55-ddbdd536d93c&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;84&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cboShipVia&lt;/ControlName&gt;
+    &lt;Key&gt;42e5d224-1f66-4628-bd55-ddbdd536d93c&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;428&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cboShipVia&lt;/ControlName&gt;
+    &lt;Key&gt;42e5d224-1f66-4628-bd55-ddbdd536d93c&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;84&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblLegalNumber&lt;/ControlName&gt;
+    &lt;Key&gt;2fb9386e-6f6f-4324-941b-1b61385ce76f&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;txtLegalNumber&lt;/ControlName&gt;
+    &lt;Key&gt;6fe10311-859b-4081-a96d-6044aeb08d4f&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblLegalNumber&lt;/ControlName&gt;
+    &lt;Key&gt;2fb9386e-6f6f-4324-941b-1b61385ce76f&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;110&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblLegalNumber&lt;/ControlName&gt;
+    &lt;Key&gt;2fb9386e-6f6f-4324-941b-1b61385ce76f&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;25&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblLegalNumber&lt;/ControlName&gt;
+    &lt;Key&gt;2fb9386e-6f6f-4324-941b-1b61385ce76f&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;120&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblLegalNumber&lt;/ControlName&gt;
+    &lt;Key&gt;2fb9386e-6f6f-4324-941b-1b61385ce76f&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldTo&lt;/ControlName&gt;
+    &lt;Key&gt;f30b25f9-d366-4ed7-913d-eea9e49e430c&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;322&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldTo&lt;/ControlName&gt;
+    &lt;Key&gt;f30b25f9-d366-4ed7-913d-eea9e49e430c&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;135&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CustShipForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;txtSoldToAddr&lt;/ControlName&gt;
+    &lt;Key&gt;c62928b0-30ba-43f7-9040-f6b8ae20afc8&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
