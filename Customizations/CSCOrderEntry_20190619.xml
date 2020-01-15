@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description />
-    <LastUpdated>2019-12-18T00:00:00-05:00</LastUpdated>
+    <LastUpdated>2020-01-15T00:00:00-05:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>12/18/2019 10:43:52</Version>
+    <Version>1/15/2020 3:48:20 PM</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -215,7 +215,7 @@ Version: f3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>11374013533</SysRevID>
+    <SysRevID>11383417017</SysRevID>
     <SysRowID>b1edfe89-ca27-4e4b-af95-6c376cf1021e</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1161,6 +1161,8 @@ Version: f3.2.500.0
 //		add kit pricing logic like quote entry
 //	eb8 12/18/19 eric blackwelder @ compudata
 //		make kit components pull in when enter a kit
+//	eb9 11/14/20 eric blackwelder @ compudata
+//		the hopeful final change to make mark above work for all scenarios
 //
 //
 // **************************************************
@@ -2793,13 +2795,6 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 					{
 						dr.BeginEdit();
 						//if( Convert.ToDecimal(dr["Number10"])== 0 )dr["Number11"] = NewTotalLineExtPrice;
-//zzz
-//test so 300032
-//? in quote entry, does the parent kit line item unit price change?
-//	new quote 10117 (cust 116838, part 675-5S, qty 1) 
-//	&amp;gt; unit price 526.54000, discount 50%, total 263.27
-//	&amp;gt;&amp;gt; chg component 2 from 5 to 10 &amp;gt; unit price 804.39000
-//	== issue?  email helen 11/14/19 to ask if so
 
 						//eb7:
 						if(blnFirstTime)
@@ -3144,6 +3139,20 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 
 		switch (args.Column.ColumnName)
 		{
+
+			//eb9:
+			case "ShortChar03":
+				if((int)args.Row["OrderLine"] == 0
+				&amp;amp;&amp;amp; (string)args.Row["ShortChar03"] != "")
+				{
+					MessageBox.Show("Save the line before changing Mark Above");
+					//args.Cancel = true;
+					//args.ProposedValue = args.Row["ShortChar03"] ;
+					args.ProposedValue = "";
+				}
+				break;
+
+
 			case "KitQtyPer":
 				//if(Convert.ToDecimal(args.Row["Number11"]) == 0 )
 				if(Convert.ToDecimal(args.Row["Number10"]) == 0 )
@@ -3189,7 +3198,13 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 
 			//eb5:
 			case "ShortChar03":
-			
+
+				//eb9:
+				if((int)args.Row["OrderLine"] == 0)
+				{
+					return;
+				}
+
 				//eb6:
 				if(blnUpdatingMarkAbove)
 				{
@@ -3362,6 +3377,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 
 
 }
+
 
 
 
