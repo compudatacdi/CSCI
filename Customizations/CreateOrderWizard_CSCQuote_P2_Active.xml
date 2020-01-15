@@ -76,15 +76,15 @@
     <Key2>App.QuoteEntry.CreateOrderWizardForm</Key2>
     <Key3 />
     <Description>CreateOrderWizardForm01</Description>
-    <LastUpdated>2019-09-05T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2020-01-06T00:00:00-05:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>9/5/2019 8:57:04 AM</Version>
-    <DataBaseVersion>0</DataBaseVersion>
+    <Version>1/6/2020 2:16:45 PM</Version>
+    <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
     <SysCharacter03 />
     <SysCharacter04>Pass</SysCharacter04>
-    <SysCharacter05>3.2.400.0</SysCharacter05>
+    <SysCharacter05>3.2.500.0</SysCharacter05>
     <SysNumber01>0.000000000</SysNumber01>
     <SysNumber02>0.000000000</SysNumber02>
     <SysNumber03>0.000000000</SysNumber03>
@@ -94,7 +94,7 @@
     <SysCheckBox02>false</SysCheckBox02>
     <SysCheckBox03>false</SysCheckBox03>
     <SysCheckBox04>false</SysCheckBox04>
-    <SysCheckBox05>false</SysCheckBox05>
+    <SysCheckBox05>true</SysCheckBox05>
     <CommentText>[MANAGER 10/13/2018 4:43 AM]
 Moved data from XXXChunk to XXXDef.Content
 joe
@@ -106,10 +106,34 @@ Status: Pass
 Version: f3.2.300.0
 
 [MANAGER: 10/13/2018 9:49:29 AM]
+*----------------------------------------------------------*
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.400.0
+Status: Pass
+Version: f3.2.400.0
+
+[19289-LCurcio: 9/19/2019 10:38:30 AM]
+*----------------------------------------------------------*
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.400.0
+Status: Pass
+Version: f3.2.400.0
+
+[19289-LCurcio: 9/19/2019 10:39:01 AM]
+*----------------------------------------------------------*
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.500.0
+Status: Pass
+Version: f3.2.500.0
+
+[EpicAdmin: 10/12/2019 12:40:30 PM]
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>10394590767</SysRevID>
+    <SysRevID>11379155734</SysRevID>
     <SysRowID>a22d4e60-28cd-4271-af09-98abca6348f6</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -118,7 +142,7 @@ Version: f3.2.300.0
     <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
-    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:Key3="" msprop:CGCCode="" msprop:ProductID="EP" msprop:TypeCode="Customization" msprop:CommentText="joe&amp;#xA;[19289-LCurcio: 6/3/2018 3:46:38 PM]" msprop:BuildVersion="3.2.400.0" msprop:Company="19289" msprop:Description="" msprop:Key2="App.QuoteEntry.CreateOrderWizardForm" msprop:Key1="CreateOrderWizardForm01"&gt;
+    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:Key3="" msprop:CGCCode="" msprop:ProductID="EP" msprop:TypeCode="Customization" msprop:Key2="App.QuoteEntry.CreateOrderWizardForm" msprop:BuildVersion="3.2.500.0" msprop:Company="19289" msprop:Description="" msprop:CommentText="joe&amp;#xA;[19289-LCurcio: 6/3/2018 3:46:38 PM]" msprop:Key1="CreateOrderWizardForm01"&gt;
       &lt;xs:complexType&gt;
         &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
           &lt;xs:element name="Controls"&gt;
@@ -279,6 +303,8 @@ Version: f3.2.300.0
 //
 //	eb1 09/04/19 eric blackwelder @ cdi
 //		modify to get the custom fields to line up on created SO properly
+//	eb2 01/03/20 eric blackwelder @ cdi
+//		further modification
 //
 // **************************************************
 
@@ -311,6 +337,9 @@ using Ice.Lib.ExtendedProps;
 using Ice.Lib.Framework;
 using Ice.Lib.Searches;
 using Ice.UI.FormFunctions;
+
+//eb2:
+using System.Collections.Generic;
 
 public class Script
 {
@@ -360,6 +389,7 @@ public class Script
 		// Begin Wizard Added Custom Method Calls
 
 		// End Wizard Added Custom Method Calls
+
 	}
 
 	public void DestroyCustomCode()
@@ -467,6 +497,9 @@ public class Script
 
 			            if (dsQuote != null)
 			             {
+							//eb2:
+							Dictionary&amp;lt;int, string&amp;gt; dictSalesOrderLinesChanged = new Dictionary&amp;lt;int, string&amp;gt;();
+
 			                 foreach (DataRow dr in dsQuote.Tables["QuoteDtl"].Rows)
 					              {             
                             
@@ -479,17 +512,21 @@ public class Script
 							  ShortChar05 = dr["ShortChar05"].ToString();
 						      ShortChar06 = dr["ShortChar06"].ToString();
 							  //eb1:
-							  PartNum = dr["PartNum"].ToString().ToLower();
+							  //eb2:
+							  //PartNum = dr["PartNum"].ToString().ToLower();
+							  PartNum = ((string)dr["PartNum"]).ToLower();
                               SellingExpectedQty = (decimal)dr["OrderQty"];
                           
 					            foreach (DataRow item in dsSalesOrder.Tables["OrderDtl"].Rows)
 					               { 
 			                                
-                                 //eb1:
+                                 //eb1:  can't use line because if not all lines come across, then will mismatch
 								 //if( Convert.ToInt32(item["OrderLine"]) == LineNum)
+								 //eb2:  add last criteria on dictionary because there could be multiple lines with same part/qty/shortchar03
                                  if(  ((string)item["PartNum"]).ToLower() == PartNum
                                     &amp;amp;&amp;amp; (decimal)item["SellingQuantity"] == SellingExpectedQty
-                                    &amp;amp;&amp;amp; (string)item["ShortChar03"] == "")
+                                    &amp;amp;&amp;amp; (string)item["ShortChar03"] == ""
+									&amp;amp;&amp;amp; !dictSalesOrderLinesChanged.ContainsKey((int)item["OrderLine"])  )
 
                                       {
                                        
@@ -505,6 +542,9 @@ public class Script
 						                item["RowMod"] = "U";
 					                    item.EndEdit();
 					                    adapterSalesOrder.Update();
+
+										//eb2:
+										dictSalesOrderLinesChanged.Add((int)item["OrderLine"], "LineChanged");
 
 										//eb1:
 										break;
@@ -608,6 +648,10 @@ public class Script
 
 
 
+
+
+
+
 &lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
@@ -632,7 +676,7 @@ public class Script
     &lt;ControlName&gt;lblNeedBy&lt;/ControlName&gt;
     &lt;Key&gt;b125ccdb-f1f3-4479-9d85-96735d758ce1&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;9&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -644,7 +688,7 @@ public class Script
     &lt;ControlName&gt;edtNeedBy&lt;/ControlName&gt;
     &lt;Key&gt;5c82dc06-ae11-4ce7-b58b-7bffb454fd3c&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -716,7 +760,7 @@ public class Script
     &lt;ControlName&gt;lblOrderDate&lt;/ControlName&gt;
     &lt;Key&gt;247ccdb8-e003-45de-bcf7-e5e6769831ba&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;9&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;11&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -728,7 +772,7 @@ public class Script
     &lt;ControlName&gt;edtOrderDate&lt;/ControlName&gt;
     &lt;Key&gt;594f0d33-b110-4720-b761-e1291ef9f21f&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -860,7 +904,7 @@ public class Script
     &lt;ControlName&gt;lblPO&lt;/ControlName&gt;
     &lt;Key&gt;54b1cce5-970d-4abf-96ae-abfb7aca4f97&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -872,7 +916,7 @@ public class Script
     &lt;ControlName&gt;txtPO&lt;/ControlName&gt;
     &lt;Key&gt;a5c13321-cb8d-46fb-a30a-a7349e1d43d2&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -932,7 +976,7 @@ public class Script
     &lt;ControlName&gt;lblDiscPercent&lt;/ControlName&gt;
     &lt;Key&gt;40c1b5e5-0cec-4049-b32d-1c2da4dbe2fb&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -944,7 +988,7 @@ public class Script
     &lt;ControlName&gt;numDiscPercent&lt;/ControlName&gt;
     &lt;Key&gt;55ddb8a5-3917-453e-9761-8531fff7052e&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1136,7 +1180,7 @@ public class Script
     &lt;ControlName&gt;btnRecalculateLineDisc&lt;/ControlName&gt;
     &lt;Key&gt;40eabf23-9d44-409b-ac68-b82fa969abd7&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1316,7 +1360,7 @@ public class Script
     &lt;ControlName&gt;epiTextBoxC33&lt;/ControlName&gt;
     &lt;Key&gt;ab82f023-cca2-4b02-89f4-ac0323e4725c&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1544,7 +1588,7 @@ public class Script
     &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
     &lt;Key&gt;1c963d98-ce7a-4267-b0aa-07c3432353d0&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1677,6 +1721,78 @@ public class Script
     &lt;Key&gt;1c963d98-ce7a-4267-b0aa-07c3432353d0&lt;/Key&gt;
     &lt;PropertyName&gt;Visible&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;False&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTerms&lt;/ControlName&gt;
+    &lt;Key&gt;deb4e2b6-bdb9-41a6-8189-3f0abcf8713a&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cmbTerms&lt;/ControlName&gt;
+    &lt;Key&gt;4ca6fe02-390a-429e-a54e-335a247f75c3&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTerms&lt;/ControlName&gt;
+    &lt;Key&gt;deb4e2b6-bdb9-41a6-8189-3f0abcf8713a&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;38&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTerms&lt;/ControlName&gt;
+    &lt;Key&gt;deb4e2b6-bdb9-41a6-8189-3f0abcf8713a&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;484&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTerms&lt;/ControlName&gt;
+    &lt;Key&gt;deb4e2b6-bdb9-41a6-8189-3f0abcf8713a&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;90&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTerms&lt;/ControlName&gt;
+    &lt;Key&gt;deb4e2b6-bdb9-41a6-8189-3f0abcf8713a&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;22&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;

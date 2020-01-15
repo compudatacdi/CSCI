@@ -76,9 +76,9 @@
     <Key2>App.CustShipEntry.CustShipForm</Key2>
     <Key3 />
     <Description />
-    <LastUpdated>2019-12-19T00:00:00-05:00</LastUpdated>
+    <LastUpdated>2020-01-08T00:00:00-05:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>12/19/2019 3:28:07 P</Version>
+    <Version>1/8/2020 12:34:55 PM</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -126,7 +126,7 @@ Version: f3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>11374514893</SysRevID>
+    <SysRevID>11379794129</SysRevID>
     <SysRowID>2adf6b38-56fc-40cb-8e24-b469b790cd2b</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -449,8 +449,8 @@ public class Script
 			 System.Data.DataSet dsSalesOrder = adapterSalesOrder.GetData(OrderNo);
              if (dsSalesOrder != null)
 				            {
-							//eb2:
-							bool dataModified = false;
+//							//eb2:
+//							bool dataModified = false;
 				         
 				             foreach (DataRow dr in dsSalesOrder.Tables["OrderDtl"].Rows)
 				                         
@@ -463,17 +463,19 @@ public class Script
 					               dr["RowMod"] ="U";
 					               dr. EndEdit();
 
-								//eb2:
-                                //bool result = adapterSalesOrder.Update();
-								dataModified = true;
+//								//eb2:
+                                bool result = adapterSalesOrder.Update();
+//								dataModified = true;
 		                         
 			                 }
 
+/*
 							//eb2:
 							if(dataModified)
 							{
 								bool result = adapterSalesOrder.Update();
 							}
+*/
              
 			 
 			              }
@@ -490,6 +492,8 @@ public class Script
 
 
 }
+
+
 
 
 
@@ -519,7 +523,7 @@ public class Script
     &lt;ControlName&gt;groupBox1&lt;/ControlName&gt;
     &lt;Key&gt;a82a24c6-b9f3-487d-9880-eb284de5fcc4&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -603,7 +607,7 @@ public class Script
     &lt;ControlName&gt;grpShipTo&lt;/ControlName&gt;
     &lt;Key&gt;735116e4-c380-404a-93bc-4bdde9d04ba3&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -819,7 +823,7 @@ public class Script
     &lt;ControlName&gt;grpTrackingNo&lt;/ControlName&gt;
     &lt;Key&gt;586d4951-19d6-43ec-bbcc-d233f7195450&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -891,7 +895,7 @@ public class Script
     &lt;ControlName&gt;grpSoldTo&lt;/ControlName&gt;
     &lt;Key&gt;f30b25f9-d366-4ed7-913d-eea9e49e430c&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
