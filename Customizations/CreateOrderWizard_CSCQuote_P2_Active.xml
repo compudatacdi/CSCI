@@ -76,9 +76,9 @@
     <Key2>App.QuoteEntry.CreateOrderWizardForm</Key2>
     <Key3 />
     <Description>CreateOrderWizardForm01</Description>
-    <LastUpdated>2020-01-06T00:00:00-05:00</LastUpdated>
+    <LastUpdated>2020-01-22T00:00:00-05:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>1/6/2020 2:16:45 PM</Version>
+    <Version>1/22/2020 8:20:38 AM</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -133,7 +133,7 @@ Version: f3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>11379155734</SysRevID>
+    <SysRevID>11711101022</SysRevID>
     <SysRowID>a22d4e60-28cd-4271-af09-98abca6348f6</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -305,6 +305,8 @@ Version: f3.2.500.0
 //		modify to get the custom fields to line up on created SO properly
 //	eb2 01/03/20 eric blackwelder @ cdi
 //		further modification
+//	eb3 01/21/20 eric blackwelder @ cdi
+//		flag kit parent records as desired
 //
 // **************************************************
 
@@ -531,6 +533,15 @@ public class Script
                                       {
                                        
 					                   item.BeginEdit(); 
+
+										//eb3:
+										if((string)item["KitFlag"] == "P")
+										{
+											item["KitShipComplete"] = false;
+											item["KitPricing"] = "P";
+										}
+
+
 						               item["CheckBox01"] = CheckBox01;
 						               item["ShortChar01"] = ShortChar01;
                                        item["ShortChar02"] = ShortChar02;
@@ -641,6 +652,7 @@ public class Script
 		}
 	}
 }
+
 
 
 
