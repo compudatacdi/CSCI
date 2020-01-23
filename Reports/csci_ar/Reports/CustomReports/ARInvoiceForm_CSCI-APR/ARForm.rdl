@@ -4835,7 +4835,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.17326in</Height>
+                  <Height>0.1802in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -5361,7 +5361,11 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                                               </Textbox>
                                             </ReportItems>
                                             <DataElementOutput>ContentsOnly</DataElementOutput>
-                                            <Style />
+                                            <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
+                                            </Style>
                                           </Rectangle>
                                           <ColSpan>3</ColSpan>
                                         </CellContents>
@@ -5523,6 +5527,9 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                             </Tablix>
                           </ReportItems>
                           <KeepTogether>true</KeepTogether>
+                          <Visibility>
+                            <Hidden>=IIf(Fields!Description.Value = "Surcharge", True, False)</Hidden>
+                          </Visibility>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -5602,7 +5609,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.17in</Height>
+                  <Height>0.18389in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -5636,6 +5643,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
+                              <Top>0in</Top>
                               <Left>0.93798in</Left>
                               <Height>0.17in</Height>
                               <Width>6.65in</Width>
@@ -5663,6 +5671,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
+                              <Top>0in</Top>
                               <Left>0.27798in</Left>
                               <Height>0.17in</Height>
                               <Width>0.65in</Width>
@@ -5800,6 +5809,55 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                             </Border>
                           </Style>
                         </Rectangle>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.30931in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="Rectangle455">
+                          <ReportItems>
+                            <Textbox Name="LblProbReasonCode5">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>="Total Surcharge: " &amp; SUM(IIF(Fields!Description.Value = "Surcharge", Fields!DocMiscAmt.Value, Nothing) )</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Top>0.08375in</Top>
+                              <Left>0.29049in</Left>
+                              <Height>0.17in</Height>
+                              <Width>1.72004in</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <BackgroundColor>White</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Rectangle>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -7430,6 +7488,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                     <TablixMember />
                     <TablixMember />
                     <TablixMember />
+                    <TablixMember />
                     <TablixMember>
                       <Visibility>
                         <Hidden>=First( Fields!Calc_Localization.Value, "Company" ) = "DK" or First( Fields!Calc_Localization.Value, "Company" ) = "EE"</Hidden>
@@ -7465,7 +7524,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
               </Filter>
             </Filters>
             <Left>0.1175in</Left>
-            <Height>13.58463in</Height>
+            <Height>13.91477in</Height>
             <Width>7.7199in</Width>
             <Style>
               <Border>
@@ -7475,7 +7534,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>13.61615in</Height>
+        <Height>14.02935in</Height>
         <Style />
       </Body>
       <Width>7.8425in</Width>
