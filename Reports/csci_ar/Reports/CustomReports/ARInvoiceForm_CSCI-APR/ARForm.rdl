@@ -3616,7 +3616,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber(Fields!Calc_UnitPrice.Value,Fields!CurrencyCode_DecimalsPrice.Value)</Value>
+                                      <Value>=FormatNumber(Fields!Calc_UnitPrice.Value - (Fields!DocDiscount.Value / Fields!SellingShipQty.Value), Fields!CurrencyCode_DecimalsPrice.Value)</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -3670,7 +3670,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber(Fields!Calc_ExtPrice.Value,Fields!CurrencyCode_DecimalsGeneral.Value)</Value>
+                                      <Value>=FormatNumber(Fields!Calc_ExtPrice.Value - Fields!DocDiscount.Value,Fields!CurrencyCode_DecimalsGeneral.Value)</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
                                         <FontSize>9pt</FontSize>
