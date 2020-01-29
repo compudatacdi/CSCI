@@ -12,7 +12,7 @@
     <DataSet Name="ARForm">
       <Query>
         <DataSourceName>dsARForm</DataSourceName>
-        <CommandText>="SELECT T1.RptLanguageID,T1.Company,T1.CreditMemo,T1.Calc_ExtPriceTotal,T1.CustNum,T1.DocDepositCredit,T13.[ShortChar02] AS PaintColor,
+        <CommandText>="SELECT T1.OrderNum,T1.RptLanguageID,T1.Company,T1.CreditMemo,T1.Calc_ExtPriceTotal,T1.CustNum,T1.DocDepositCredit,T13.[ShortChar02] AS PaintColor,
  T1.DocInvoiceAmt,T1.Calc_TotalMiscChrg,T1.DocRounding,T1.DocumentPrinted,T1.Posted,T1.InvoiceComment,T1.InvoiceDate,T1.InvoiceNum,T1.InvoiceType,T1.LegalNumber,T1.PONum,T1.SoldToInvoiceAddress,T1.Calc_BillToAddressList,T1.Calc_BottomAddress,T1.Calc_CompanyAddressList,T1.Calc_CurrDocDesc,T1.Calc_CurSymbol,T1.Calc_CustContactName,T1.Calc_CustPartOpts,T1.Calc_DteOrdrd,T1.Calc_fFOB,T1.Calc_MulPackNum,T1.Calc_mulponum,T1.Calc_MulShipDate,T1.Calc_MulShipTo,T1.Calc_MulShipVia,T1.Calc_MultSoldTo,T1.Calc_MultTaxID,T1.Calc_NumRecordPerPage,T1.Calc_NumTotalParts,T1.Calc_PackNum,T1.Calc_PrintBottomAddress,T1.Calc_SalesPerson,T1.Calc_SalesTerms,T1.Calc_ShipDate,T1.Calc_ShipToAddressList,T1.Calc_ShipToContactName,T1.Calc_ShipVia,T1.[Calc_Voucher-String] as Calc_Voucher_String,T1.CurrencyCode_CurrencyID,T1.CurrencyCode_DecimalsGeneral,T1.CurrencyCode_DecimalsPrice,T1.Calc_SEBankRef,T1.Calc_CustResaleID,T1.BranchID,T1.CustAgentTaxRegNo,T1.CHISRCodeLine,T1.Calc_CHBankAcctIBANCode,T1.Calc_CHBankAcctISRPartyID, T1.InvoiceRef, T1.CMReason,T1.Calc_DocDspTaxAmt, T1.RevisionNum AS InvcHead_RevisionNum, T1.RevisionDate AS InvcHead_RevisionDate, T1.Calc_IsDraftCopy, T1.FirstPrintDate, T1.DocCopyNum, T2.AdvanceBillCredit,T2.Company as InvcDtl_Company,T2.DocAdvanceBillCredit,T2.DocDiscount,T2.DocUnitPrice,T2.InvoiceComment as InvcDtl_InvoiceComment,T2.InvoiceLine,T2.InvoiceNum as InvcDtl_InvoiceNum,T2.PackLine,T2.PackNum,T2.DropShipPackSlip,T2.PartNum,T2.POLine,T2.PricePerCode,T2.RevisionNum,T2.SalesUM,T2.SellingOrderQty,T2.SellingShipQty,T2.ShipDate,T2.XPartNum,T2.XRevisionNum,T2.Calc_ActDate,T2.Calc_BackOrdQty,T2.Calc_UnitPrice,T2.Calc_ExtPrice,T2.Calc_Duration,T2.Calc_GetNextLegalNum,T2.Calc_InvcComment,T2.Calc_InvoiceDisplayLine,T2.Calc_IsKitParent,T2.Calc_DspDocLineTax,T2.Calc_JobNumber,T2.Calc_LabDur,T2.Calc_LabMod,T2.Calc_Labor,T2.Calc_LineDesc,T2.Calc_LineSoldToAddressList,T2.Calc_MatDur,T2.Calc_Mate,T2.Calc_MatMod,T2.Calc_Misc,T2.Calc_MiscDur,T2.Calc_MiscMod,T2.Calc_Modifier,T2.Calc_NextLegalNumID,T2.Calc_NumLineByInv,T2.Calc_ponum,T2.Calc_PSLegalNum,T2.Calc_Reference,T2.Calc_SerialNumber,T2.Calc_ShipToAddressList as InvcDtl_Calc_ShipToAddressList,T2.Calc_ShipToContactName as InvcDtl_Calc_ShipToContactName,T2.Calc_ShipToShipVia,T2.Calc_StateTaxID,T2.Calc_WarrDesc,T2.Calc_WhseCode,T2.OrderLine_DisplaySeq,T2.OrderLine_KitFlag,T2.OrderLine_KitPrintCompsInv,T2.OrderLine_KitsLoaded,T2.OrderLine_OrderLine,T2.PartNum_PartDescription, T2.EpicorFSA, T3.CallComment,T3.CallQty,T3.PartNum as FSCallDt_PartNum,T3.RevisionNum as FSCallDt_RevisionNum,T3.XPartNum as FSCallDt_XPartNum,T3.XRevisionNum as FSCallDt_XRevisionNum,T3.Calc_CProb,T3.Calc_fCallLine,T3.Calc_fCallNum,T3.Calc_InvoiceLine,T3.Calc_InvoiceNum, T4.Calc_InvoiceNum as FSCallMt_Calc_InvoiceNum,T4.Calc_MatNum,T4.Calc_MtPaNum,T4.Calc_MtQty,T4.Calc_MtBillPrice,T4.Calc_MtExtPrice,T4.Calc_MtLinedesc,T4.Calc_MtRevNum,T4.ResReasonCode, T4.Calc_MtCount,T5.RptLanguageID as Label_RptLanguageID,T5.Calc_ActDate  as Label_Calc_ActDate,T5.Calc_CreditMemo as Label_Calc_CreditMemo,T5.Calc_Duration as Label_Calc_Duration,T5.Calc_JobNumber as Label_Calc_JobNumber,T5.Calc_LabDur as Label_Calc_LabDur,T5.Calc_Labor as Label_Calc_Labor,T5.Calc_MatDur as Label_Calc_MatDur,T5.RptLiteralsLMaterial as Label_Calc_Mate,T5.Calc_Misc as Label_Calc_Misc,T5.Calc_MiscDur as Label_Calc_MiscDur,T5.Calc_MtExtPrice as Label_Calc_MtExtPrice,T5.Calc_SerialNumber as Label_Calc_SerialNumber,T5.DepositCredit as Label_DepositCredit,T5.DocUnitPrice as Label_DocUnitPrice,T5.InvoiceLine as Label_InvoiceLine,T5.PONum as Label_PONum,T5.ProbReasonCode as Label_ProbReasonCode,T5.Reference as Label_Reference,T5.RptLiteralsLBckOrd,T5.RptLiteralsLBillTo ,T5.RptLiteralsLTWTotalTax ,T5.RptLiteralsLComeFrom ,T5.RptLiteralsLContinueInNext ,T5.RptLiteralsLCusPart ,T5.RptLiteralsLDate ,T5.RptLiteralsLEMaila ,T5.RptLiteralsLExtPrice,T5.RptLiteralsLTax ,T5.RptLiteralsLFax ,T5.RptLiteralsLFOB ,T5.RptLiteralsLHdng ,T5.RptLiteralsLInvoice ,T5.RptLiteralsLLegNum ,T5.RptLiteralsLLine ,T5.RptLiteralsLLineRef ,T5.RptLiteralsLof ,T5.RptLiteralsLOurPart ,T5.RptLiteralsLPackSlp ,T5.RptLiteralsLPage ,T5.RptLiteralsLPartDesc ,T5.RptLiteralsLPartRev  ,T5.RptLiteralsLPhone ,T5.RptLiteralsLPONum ,T5.RptLiteralsLAULessDeposit ,T5.RptLiteralsLQty ,T5.RptLiteralsLQtyOrd ,T5.RptLiteralsLRev ,T5.RptLiteralsLLinesSubtotal ,T5.RptLiteralsLRounding ,T5.RptLiteralsLMiscChgs, T5.RptLiteralsLSalesKit ,T5.RptLiteralsLSeeBelow ,T5.RptLiteralsLShipTo ,T5.RptLiteralsLShpVia ,T5.RptLiteralsLSlsTxID ,T5.RptLiteralsLSoldToL ,T5.RptLiteralsLTotal ,T5.RptLiteralsLWarrantyA ,T5.RptLiteralsLWHCode ,T5.ShipDate as Label_ShipDate,T5.UnitPrice as Label_UnitPrice,T5.RptLiteralsLSEOCR ,T5.RptLiteralsLNOKID ,T5.RptLiteralsLDiscountPercent ,T5.RptLiteralsLVatNr ,T5.RptLiteralsLlessAdvBill, T5.RptLiteralsLFSAEquipmentPartNum, T5.RptLiteralsLFSAServiceOrderNum,  T1.Calc_CustFax, T6.EMailAddress, T6.FaxNum, T6.ResaleID, T5.RptLiteralsLOrdered as Label_Calc_DteOrdrd,T5.RptLiteralsLSalsRep as Label_Calc_SalesPerson,T5.RptLiteralsLTrms as Label_Calc_SalesTerms, T1.Calc_CustEMailAddress, T1.Calc_DropShipPackSlip, T7.InvoiceComment as FSContDt_InvoiceComment ,T7.ContractQty,T7.PricePerUnit,T7.DocPricePerUnit,T7.Calc_ContPrice, T5.PricePerCode as Label_PricePerCode, T5.PartNum as Label_PartNum,T5.ExtPrice as Label_ExtPrice, T1.Calc_PELegalText, T1.Calc_DocInvoiceAmt, T5.RptLiteralsLAmt, T5.Calc_SEBankRef as Label_Calc_SEBankRef, T1.Calc_TaxMethod, T1.SEBankRef, T1.Calc_LessPrepaidDeposits, T5.RptLiteralsLLessPrepDeposits, T7.ContractLine, T7.PartNum as ContractPartNum, T7.PartNum_PartDescription as ContractPartDescription, T7.ContractNum as ContractNum ,(CASE WHEN EXISTS(SELECT 1 FROM   InvcChrg_" + Parameters!TableGuid.Value + " Tmp WHERE  Tmp.Company = T1.Company AND    Tmp.InvoiceNum= T1.InvoiceNum AND    Tmp.InvoiceLine = T2.InvoiceLine) THEN 1 ELSE 0 END) AS 'HasFinCharges', (CASE WHEN T8.Description IS NOT NULL  THEN 1 ELSE 0 END ) AS 'HasMiscCharges', T8.[Description], T8.DocMiscAmt, T8.SeqNum, T5.RptLiteralsLMiscChgs, T5.[Description] AS Label_Description,(CASE WHEN T8.SeqNum = T9.MinSeqNum THEN 1 ELSE 0 END ) AS DisplayLineInfo, T5.RptLiteralsLCopy, T5.RptLiteralsLPrintedAt, T5.RptLiteralsLFirstPrinted, T5.RptLiteralsLDraftCopy, T5.RptLiteralsLInternalUse, T10.FSAEquipmentPartNum, T10.FSAServiceOrderNum
           
 
@@ -1114,6 +1114,10 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
           <DataField>PaintColor</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
+        <Field Name="OrderNum">
+          <DataField>OrderNum</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="Company">
@@ -2005,7 +2009,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.17in</Height>
+                  <Height>0.18434in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2028,6 +2032,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox98</rd:DefaultName>
+                              <Top>0.01434in</Top>
                               <Left>0.11548in</Left>
                               <Height>0.17in</Height>
                               <Width>3.65in</Width>
@@ -2222,7 +2227,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.58in</Height>
+                  <Height>0.75389in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2724,6 +2729,32 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                                 <BackgroundColor>White</BackgroundColor>
                               </Style>
                             </Textbox>
+                            <Textbox Name="OrderNum">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>="Sales Order:  " &amp; Fields!OrderNum.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Top>0.55in</Top>
+                              <Left>0.27798in</Left>
+                              <Height>0.17in</Height>
+                              <Width>1.39005in</Width>
+                              <ZIndex>18</ZIndex>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>White</BackgroundColor>
+                              </Style>
+                            </Textbox>
                           </ReportItems>
                           <KeepTogether>true</KeepTogether>
                           <Style>
@@ -2739,7 +2770,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.18in</Height>
+                  <Height>0.35in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -5248,7 +5279,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.55in</Height>
+                  <Height>0.64028in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -5518,6 +5549,9 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                               <Left>0.33048in</Left>
                               <Height>0.55in</Height>
                               <Width>3.09in</Width>
+                              <Visibility>
+                                <Hidden>true</Hidden>
+                              </Visibility>
                               <Style>
                                 <Border>
                                   <Color>Gray</Color>
@@ -5812,7 +5846,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.26764in</Height>
+                  <Height>0.4832in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -5833,10 +5867,37 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>0.04209in</Top>
-                              <Left>0.59548in</Left>
+                              <Top>0.25764in</Top>
+                              <Left>0.5423in</Left>
                               <Height>0.17in</Height>
                               <Width>1.72004in</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <BackgroundColor>White</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="LblProbReasonCode6">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>="Total Freight: " &amp; Sum(Microsoft.VisualBasic.Interaction.IIF(Fields!Description.Value = "Freight Charge", Fields!DocMiscAmt.Value, Nothing))</Value>
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Top>0.03875in</Top>
+                              <Left>0.5423in</Left>
+                              <Height>0.17in</Height>
+                              <Width>1.72004in</Width>
+                              <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -5852,6 +5913,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                             </Border>
                           </Style>
                         </Rectangle>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -7453,7 +7515,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
                                 </TablixMember>
                                 <TablixMember>
                                   <Visibility>
-                                    <Hidden>=IIF(Fields!HasMiscCharges.Value = 0 , TRUE, FALSE)</Hidden>
+                                    <Hidden>true</Hidden>
                                   </Visibility>
                                   <HideIfNoRows>true</HideIfNoRows>
                                   <KeepWithGroup>Before</KeepWithGroup>
@@ -7518,7 +7580,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
               </Filter>
             </Filters>
             <Left>0.1175in</Left>
-            <Height>13.8731in</Height>
+            <Height>14.53716in</Height>
             <Width>7.7199in</Width>
             <Style>
               <Border>
@@ -7528,7 +7590,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>14.02935in</Height>
+        <Height>14.82188in</Height>
         <Style />
       </Body>
       <Width>7.8425in</Width>
@@ -8415,7 +8477,7 @@ LEFT OUTER JOIN ( SELECT  temp.Company, temp.InvoiceNum, temp.InvoiceLine, MIN(t
               <OmitBorderOnPageBreak>true</OmitBorderOnPageBreak>
               <DataElementOutput>ContentsOnly</DataElementOutput>
               <Height>3.09459in</Height>
-              <Width>7.70548in</Width>
+              <Width>7.7875in</Width>
               <Style />
             </Rectangle>
           </ReportItems>
