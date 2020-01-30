@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description />
-    <LastUpdated>2020-01-15T00:00:00-05:00</LastUpdated>
+    <LastUpdated>2020-01-29T00:00:00-05:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>1/15/2020 3:48:20 PM</Version>
+    <Version>1/29/2020 11:59:21 A</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -215,7 +215,7 @@ Version: f3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>11383417017</SysRevID>
+    <SysRevID>11713166563</SysRevID>
     <SysRowID>b1edfe89-ca27-4e4b-af95-6c376cf1021e</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1163,6 +1163,8 @@ Version: f3.2.500.0
 //		make kit components pull in when enter a kit
 //	eb9 11/14/20 eric blackwelder @ compudata
 //		the hopeful final change to make mark above work for all scenarios
+//	eba 01/29/20 eric blackwelder @ compudata
+//		enhance surcharge calc logic
 //
 //
 // **************************************************
@@ -2867,7 +2869,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 			{
 				oTrans.Refresh();
 			}
-//zzz
+//eba
 //			RecalcSteelSurcharge3();
 
 		} catch (System.Exception ex)
@@ -3184,6 +3186,9 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 		{
 			case "DocDspUnitPrice":
 			case "DiscountPercent":
+			//eba:
+			case "SellingQuantity":
+
 				oTrans.Update();
 				RecalcSteelSurcharge3();
 				break;
@@ -3377,6 +3382,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 
 
 }
+
 
 
 
