@@ -310,6 +310,7 @@ Version: f3.2.500.0
 //
 // **************************************************
 
+
 extern alias Erp_Contracts_BO_SalesOrder;
 extern alias Erp_Contracts_BO_OrderDtlSearch;
 extern alias Erp_Adapters_SalesOrder;

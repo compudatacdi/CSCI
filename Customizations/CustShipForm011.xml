@@ -78,7 +78,7 @@
     <Description />
     <LastUpdated>2020-02-05T00:00:00-05:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>2/4/2020 8:00:33 PM</Version>
+    <Version>2/4/2020 8:18:12 PM</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -134,7 +134,7 @@ Version: w3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>11714661650</SysRevID>
+    <SysRevID>11714662561</SysRevID>
     <SysRowID>2adf6b38-56fc-40cb-8e24-b469b790cd2b</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -286,6 +286,7 @@ Version: w3.2.500.0
 //		change kit ship complete flag
 //
 // **************************************************
+
 
 
 extern alias Erp_Contracts_BO_SalesOrder;
@@ -505,6 +506,7 @@ public class Script
 
 
 }
+
 
 
 
@@ -1080,7 +1082,7 @@ public class Script
     &lt;ControlName&gt;txtPCID&lt;/ControlName&gt;
     &lt;Key&gt;d38e3289-ae8d-4138-a08e-f59c9a231655&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;114&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;999&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1092,7 +1094,7 @@ public class Script
     &lt;ControlName&gt;txtPCID&lt;/ControlName&gt;
     &lt;Key&gt;d38e3289-ae8d-4138-a08e-f59c9a231655&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;519&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;999&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1104,7 +1106,7 @@ public class Script
     &lt;ControlName&gt;txtPCID&lt;/ControlName&gt;
     &lt;Key&gt;d38e3289-ae8d-4138-a08e-f59c9a231655&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;519&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;999&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1116,7 +1118,7 @@ public class Script
     &lt;ControlName&gt;txtPCID&lt;/ControlName&gt;
     &lt;Key&gt;d38e3289-ae8d-4138-a08e-f59c9a231655&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;114&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;999&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1140,7 +1142,7 @@ public class Script
     &lt;ControlName&gt;btnPCID&lt;/ControlName&gt;
     &lt;Key&gt;3dcfc75f-306a-484b-9424-2130314c042d&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;113&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;999&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1152,7 +1154,7 @@ public class Script
     &lt;ControlName&gt;btnPCID&lt;/ControlName&gt;
     &lt;Key&gt;3dcfc75f-306a-484b-9424-2130314c042d&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;371&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;999&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1164,7 +1166,7 @@ public class Script
     &lt;ControlName&gt;btnPCID&lt;/ControlName&gt;
     &lt;Key&gt;3dcfc75f-306a-484b-9424-2130314c042d&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;371&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;999&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1176,7 +1178,7 @@ public class Script
     &lt;ControlName&gt;btnPCID&lt;/ControlName&gt;
     &lt;Key&gt;3dcfc75f-306a-484b-9424-2130314c042d&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;113&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;999&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1188,7 +1190,7 @@ public class Script
     &lt;ControlName&gt;epiPCID_tx&lt;/ControlName&gt;
     &lt;Key&gt;0dfc50d7-eacc-41e6-b74f-185d0d283e11&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1332,7 +1334,7 @@ public class Script
     &lt;ControlName&gt;lblDocumentType&lt;/ControlName&gt;
     &lt;Key&gt;0f024f9e-4fb9-4845-a937-3fab311bf57c&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1344,7 +1346,7 @@ public class Script
     &lt;ControlName&gt;cmbTranDocType&lt;/ControlName&gt;
     &lt;Key&gt;85b6656e-fcd9-446e-8fc5-dbc7f00bd8ff&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1620,7 +1622,7 @@ public class Script
     &lt;ControlName&gt;epiLabelC1&lt;/ControlName&gt;
     &lt;Key&gt;b23c0acb-395a-45c9-84f9-d39da4df4aef&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
