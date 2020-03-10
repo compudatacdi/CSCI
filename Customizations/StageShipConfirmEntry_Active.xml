@@ -78,7 +78,7 @@
     <Description>Stage Ship Confirm Entry Customization</Description>
     <LastUpdated>2020-03-10T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>3/10/2020 11:12:27 A</Version>
+    <Version>3/10/2020 11:20:20 A</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -98,7 +98,7 @@
     <CommentText />
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>11999243791</SysRevID>
+    <SysRevID>11999244209</SysRevID>
     <SysRowID>9a648adc-d12e-497c-b3f5-6ce2415af0b4</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -271,14 +271,15 @@ public class Script
 	// ** Wizard Insert Location - Do Not Remove 'Begin/End Wizard Added Module Level Variables' Comments! **
 	// Begin Wizard Added Module Level Variables **
 
-	private EpiBaseAdapter oTrans_adapter;
-	private EpiBaseAdapter oTrans_custShipAdapter;
-	private EpiBaseAdapter oTrans_masterPackAdapter;
 	// End Wizard Added Module Level Variables **
 
 	// Add Custom Module Level Variables Here **
 
 	//eb1:
+	private EpiBaseAdapter oTrans_adapter;
+	private EpiBaseAdapter oTrans_custShipAdapter;
+	private EpiBaseAdapter oTrans_masterPackAdapter;
+
 	private DynamicQueryImpl dynamicQuery;
 	private DynamicQueryDataSet dqds;
 
