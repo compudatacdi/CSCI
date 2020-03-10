@@ -78,7 +78,7 @@
     <Description>Stage Ship Confirm Entry Customization</Description>
     <LastUpdated>2020-03-10T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>3/10/2020 10:56:45 A</Version>
+    <Version>3/10/2020 11:12:27 A</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -98,7 +98,7 @@
     <CommentText />
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>11999230994</SysRevID>
+    <SysRevID>11999243791</SysRevID>
     <SysRowID>9a648adc-d12e-497c-b3f5-6ce2415af0b4</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -287,13 +287,6 @@ public class Script
 		// ** Wizard Insert Location - Do not delete 'Begin/End Wizard Added Variable Initialization' lines **
 		// Begin Wizard Added Variable Initialization
 
-		this.oTrans_adapter = ((EpiBaseAdapter)(this.csm.TransAdaptersHT["oTrans_adapter"]));
-		this.oTrans_adapter.AfterAdapterMethod += new AfterAdapterMethod(this.oTrans_adapter_AfterAdapterMethod);
-		this.oTrans_custShipAdapter = ((EpiBaseAdapter)(this.csm.TransAdaptersHT["oTrans_custShipAdapter"]));
-		this.oTrans_custShipAdapter.AfterAdapterMethod += new AfterAdapterMethod(this.oTrans_custShipAdapter_AfterAdapterMethod);
-		this.oTrans_masterPackAdapter = ((EpiBaseAdapter)(this.csm.TransAdaptersHT["oTrans_masterPackAdapter"]));
-		this.oTrans_masterPackAdapter.AfterAdapterMethod += new AfterAdapterMethod(this.oTrans_masterPackAdapter_AfterAdapterMethod);
-		this.CartonStage_Column.ColumnChanging += new DataColumnChangeEventHandler(this.CartonStage_BeforeFieldChange);
 		// End Wizard Added Variable Initialization
 
 		// Begin Wizard Added Custom Method Calls
@@ -302,10 +295,14 @@ public class Script
 
 
 		//eb1:
+		this.oTrans_adapter = ((EpiBaseAdapter)(this.csm.TransAdaptersHT["oTrans_adapter"]));
+		this.oTrans_adapter.AfterAdapterMethod += new AfterAdapterMethod(this.oTrans_adapter_AfterAdapterMethod);
+		this.oTrans_custShipAdapter = ((EpiBaseAdapter)(this.csm.TransAdaptersHT["oTrans_custShipAdapter"]));
+		this.oTrans_masterPackAdapter = ((EpiBaseAdapter)(this.csm.TransAdaptersHT["oTrans_masterPackAdapter"]));
+
 		Session session = (Session)this.oTrans.Session;
 		dynamicQuery = WCFServiceSupport.CreateImpl&amp;lt;DynamicQueryImpl&amp;gt;(session, ImplBase&amp;lt;DynamicQuerySvcContract&amp;gt;.UriPath);
 		
-		//DynamicQueryDataSet ds = new DynamicQueryDataSet();
 		dqds = new DynamicQueryDataSet();
 
 		try
@@ -325,9 +322,6 @@ public class Script
 			}
 		}
 
-
-
-
 	}
 
 	public void DestroyCustomCode()
@@ -335,18 +329,18 @@ public class Script
 		// ** Wizard Insert Location - Do not delete 'Begin/End Wizard Added Object Disposal' lines **
 		// Begin Wizard Added Object Disposal
 
-		this.oTrans_adapter.AfterAdapterMethod -= new AfterAdapterMethod(this.oTrans_adapter_AfterAdapterMethod);
-		this.oTrans_adapter = null;
-		this.oTrans_custShipAdapter.AfterAdapterMethod -= new AfterAdapterMethod(this.oTrans_custShipAdapter_AfterAdapterMethod);
-		this.oTrans_custShipAdapter = null;
-		this.oTrans_masterPackAdapter.AfterAdapterMethod -= new AfterAdapterMethod(this.oTrans_masterPackAdapter_AfterAdapterMethod);
-		this.oTrans_masterPackAdapter = null;
-		this.CartonStage_Column.ColumnChanging -= new DataColumnChangeEventHandler(this.CartonStage_BeforeFieldChange);
 		// End Wizard Added Object Disposal
 
 		// Begin Custom Code Disposal
 
 		// End Custom Code Disposal
+
+		//eb1:
+		this.oTrans_adapter.AfterAdapterMethod -= new AfterAdapterMethod(this.oTrans_adapter_AfterAdapterMethod);
+		this.oTrans_adapter = null;
+		this.oTrans_custShipAdapter = null;
+		this.oTrans_masterPackAdapter = null;
+
 	}
 
 	//eb1:
@@ -369,65 +363,18 @@ public class Script
 
 	}
 
-	private void oTrans_custShipAdapter_AfterAdapterMethod(object sender, AfterAdapterMethodArgs args)
-	{
-		// ** Argument Properties and Uses **
-		// ** args.MethodName **
-		// ** Add Event Handler Code **
-
-		// ** Use MessageBox to find adapter method name
-
-		//MessageBox.Show("oTrans_custShipAdapter_AfterAdapterMethod: " + args.MethodName);
-
-		switch (args.MethodName)
-		{
-			case "Update":
-				break;
-		}
-
-	}
-
-	//eb1:
-	private void oTrans_masterPackAdapter_AfterAdapterMethod(object sender, AfterAdapterMethodArgs args)
-	{
-		// ** Argument Properties and Uses **
-		// ** args.MethodName **
-		// ** Add Event Handler Code **
-
-		// ** Use MessageBox to find adapter method name
-
-		//MessageBox.Show("oTrans_masterPackAdapter_AfterAdapterMethod: " + args.MethodName);
-
-		switch (args.MethodName)
-		{
-			case "Update":
-				break;
-		}
-
-	}
 
 	//eb1:
 	public void RecalcOrderSteelSurcharge()
 	{
 
 		QueryExecutionDataSet execDS = new QueryExecutionDataSet();
-//		execDS.ExecutionParameter.AddExecutionParameterRow("StageNumber", "mp6", "character", false, Guid.NewGuid(), "");
-//		execDS.ExecutionParameter.AddExecutionParameterRow("StageNumber", "mp7", "character", false, Guid.NewGuid(), "");
-//zzz
-//CartonStage_Column
 		foreach(DataRow row in CartonStage_Column.Rows)
 		{
 			execDS.ExecutionParameter.AddExecutionParameterRow("StageNumber", (string)row["StageNumber"], "character", false, Guid.NewGuid(), "");
 		}
 		execDS.AcceptChanges();
-		
 		DataTable results = dynamicQuery.Execute(dqds, execDS).Tables["Results"];
-		//MessageBox.Show("count: " + results.Rows.Count); 
-
-//return;
-
-
-
 
 		try
 		{
@@ -436,16 +383,6 @@ public class Script
 
 			List&amp;lt;int&amp;gt; lstSalesOrders = new List&amp;lt;int&amp;gt;();
 			int intOrderNum = 0;
-/*
-			foreach (DataRow row in edvShipDtl.dataView.Table.Rows)
-			{
-				intOrderNum = (int)row["OrderNum"];
-				if(!lstSalesOrders.Contains(intOrderNum))
-				{
-					lstSalesOrders.Add(intOrderNum);
-				}
-			}
-*/
 			foreach (DataRow row in results.Rows)
 			{
 				intOrderNum = (int)row["ShipDtl_OrderNum"];
@@ -494,20 +431,6 @@ public class Script
 
 	}
 
-
-
-	private void CartonStage_BeforeFieldChange(object sender, DataColumnChangeEventArgs args)
-	{
-		// ** Argument Properties and Uses **
-		// args.Row["FieldName"]
-		// args.Column, args.ProposedValue, args.Row
-		// Add Event Handler Code
-		switch (args.Column.ColumnName)
-		{
-			case "PackNum":
-				break;
-		}
-	}
 
 }
 
