@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description />
-    <LastUpdated>2020-03-27T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2020-03-31T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>3/27/2020 4:28:36 PM</Version>
+    <Version>3/31/2020 5:07:53 PM</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -215,7 +215,7 @@ Version: f3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>12313929116</SysRevID>
+    <SysRevID>12314673831</SysRevID>
     <SysRowID>b1edfe89-ca27-4e4b-af95-6c376cf1021e</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1191,6 +1191,8 @@ Version: f3.2.500.0
 //		enhance surcharge calc logic
 //	ebb 03/26/20 eric blackwelder @ compudata
 //		add Net Value to Header tab
+//	ebc 03/31/20 eric blackwelder @ compudata
+//		default USA for one time ship
 //
 //
 // **************************************************
@@ -1333,6 +1335,8 @@ public static class Script
 		Script.edvOrderHed = ((EpiDataView)(Script.oTrans.EpiDataViews["OrderHed"]));
 		Script.edvOrderHed.EpiViewNotification += new EpiViewNotification(Script.edvOrderHed_EpiViewNotification);
 		numNet.ReadOnly = true;
+		//ebc:
+		Script.OrderHed_Column.ColumnChanged += new DataColumnChangeEventHandler(Script.OrderHed_AfterFieldChange);
 
 	}
 
@@ -1373,6 +1377,8 @@ public static class Script
 		//ebb:
 		Script.edvOrderHed.EpiViewNotification -= new EpiViewNotification(Script.edvOrderHed_EpiViewNotification);
 		Script.edvOrderHed = null;
+		//ebc:
+		Script.OrderHed_Column.ColumnChanged -= new DataColumnChangeEventHandler(Script.OrderHed_AfterFieldChange);
 
 	}
 
@@ -3433,8 +3439,30 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 	}
 
 
-}
 
+	//ebc:
+	private static void OrderHed_AfterFieldChange(object sender, DataColumnChangeEventArgs args)
+	{
+		// ** Argument Properties and Uses **
+		// args.Row["FieldName"]
+		// args.Column, args.ProposedValue, args.Row
+		// Add Event Handler Code
+		switch (args.Column.ColumnName)
+		{
+			case "UseOTS":
+
+				if((bool)args.Row["UseOTS"]
+				&amp;amp;&amp;amp; (int)args.Row["OTSCountryNum"] == 0)
+				{
+					args.Row["OTSCountryNum"] = 247;
+				}
+
+				break;
+		}
+
+	}
+
+}
 
 
 
