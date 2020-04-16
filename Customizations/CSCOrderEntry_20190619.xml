@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description />
-    <LastUpdated>2020-03-31T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2020-04-16T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>3/31/2020 5:07:53 PM</Version>
+    <Version>4/16/2020 10:40:12 A</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -215,7 +215,7 @@ Version: f3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>12314673831</SysRevID>
+    <SysRevID>12350168812</SysRevID>
     <SysRowID>b1edfe89-ca27-4e4b-af95-6c376cf1021e</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1193,7 +1193,8 @@ Version: f3.2.500.0
 //		add Net Value to Header tab
 //	ebc 03/31/20 eric blackwelder @ compudata
 //		default USA for one time ship
-//
+//	ebd 04/14/20 eric blackwelder @ compudata
+//		add 2 options to baqPayType (header tab &amp;gt; detail tab &amp;gt; pay method)
 //
 // **************************************************
 
@@ -3463,6 +3464,8 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 	}
 
 }
+
+
 
 
 
@@ -8686,7 +8689,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;baqComboC4&lt;/ControlName&gt;
     &lt;Key&gt;0fd640e1-4239-40be-8b1f-22fbb51d5651&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16978,7 +16981,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;epiLabelState&lt;/ControlName&gt;
     &lt;Key&gt;366dc023-def4-448b-83c1-9e90567d81f2&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -17062,7 +17065,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;epiLabeltype&lt;/ControlName&gt;
     &lt;Key&gt;4c8f8018-62c9-41a6-8ef9-3e8a097221e4&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -17194,7 +17197,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;baqPayType&lt;/ControlName&gt;
     &lt;Key&gt;9f6a5ffe-5749-4fb1-a967-d094a4bbbaac&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -17926,7 +17929,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;baqPayType&lt;/ControlName&gt;
     &lt;Key&gt;9f6a5ffe-5749-4fb1-a967-d094a4bbbaac&lt;/Key&gt;
     &lt;PropertyName&gt;ListItems&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;Pre-paid:Collect&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;Pre-paid:Collect:Pre-Paid 3rd Party:Pickup&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
