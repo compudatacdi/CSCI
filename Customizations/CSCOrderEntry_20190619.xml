@@ -78,7 +78,7 @@
     <Description />
     <LastUpdated>2020-04-16T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>4/16/2020 10:40:12 A</Version>
+    <Version>4/16/2020 2:40:14 PM</Version>
     <DataBaseVersion>30700</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -215,7 +215,7 @@ Version: f3.2.500.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>12350168812</SysRevID>
+    <SysRevID>12350184230</SysRevID>
     <SysRowID>b1edfe89-ca27-4e4b-af95-6c376cf1021e</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -1194,7 +1194,7 @@ Version: f3.2.500.0
 //	ebc 03/31/20 eric blackwelder @ compudata
 //		default USA for one time ship
 //	ebd 04/14/20 eric blackwelder @ compudata
-//		add 2 options to baqPayType (header tab &amp;gt; detail tab &amp;gt; pay method)
+//		add 6 options to baqPayType (header tab &amp;gt; detail tab &amp;gt; pay method)
 //
 // **************************************************
 
@@ -3464,6 +3464,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 	}
 
 }
+
 
 
 
@@ -8773,7 +8774,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;grpHeaderData2&lt;/ControlName&gt;
     &lt;Key&gt;cbcd887e-3a41-4b5f-ad1a-46a6782db2d1&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16261,7 +16262,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;grpShipTo&lt;/ControlName&gt;
     &lt;Key&gt;ad205007-99e6-4735-965b-4c85ea0cc078&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16693,7 +16694,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;epiGrpfreight&lt;/ControlName&gt;
     &lt;Key&gt;75b00c1f-5fdd-465d-952f-f563fcfbf012&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -16837,7 +16838,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;grpHold&lt;/ControlName&gt;
     &lt;Key&gt;88a6275d-9161-416c-af61-b38e9b76e124&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -17341,7 +17342,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;grpSoldTo&lt;/ControlName&gt;
     &lt;Key&gt;bc15485d-5613-4644-a881-7f5a9cc42deb&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -17485,7 +17486,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;grpBillTo&lt;/ControlName&gt;
     &lt;Key&gt;7ef0f3b6-fe24-499d-a55e-7d5d05cf973b&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -17929,7 +17930,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;baqPayType&lt;/ControlName&gt;
     &lt;Key&gt;9f6a5ffe-5749-4fb1-a967-d094a4bbbaac&lt;/Key&gt;
     &lt;PropertyName&gt;ListItems&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;Pre-paid:Collect:Pre-Paid 3rd Party:Pickup&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;Collect:Pre-paid:Pre-Paid 3rd Party:Prepay/Add:Prepay/No Add:Pickup:3rd Party Bill:3rd Party Bill – Same as Bill-To&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -44607,6 +44608,30 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;Key&gt;d5fdc384-6237-4e89-8a4a-7a5ce57ba39f&lt;/Key&gt;
     &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;21&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldTo&lt;/ControlName&gt;
+    &lt;Key&gt;bc15485d-5613-4644-a881-7f5a9cc42deb&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;392&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpSoldTo&lt;/ControlName&gt;
+    &lt;Key&gt;bc15485d-5613-4644-a881-7f5a9cc42deb&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;222&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
