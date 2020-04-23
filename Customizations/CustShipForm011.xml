@@ -45,9 +45,9 @@
                 <xs:element name="SysRowID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:SystemColumn="True" msprop:Format="X(36)" type="xs:string" minOccurs="0" />
                 <xs:element name="SysCheckBox06" type="xs:boolean" minOccurs="0" />
                 <xs:element name="SysCheckBox07" type="xs:boolean" minOccurs="0" />
-                <xs:element name="OnMenu" type="xs:boolean" minOccurs="0" />
-                <xs:element name="Duplicate" type="xs:boolean" minOccurs="0" />
-                <xs:element name="Cosmetic" type="xs:boolean" minOccurs="0" />
+                <xs:element name="OnMenu" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
+                <xs:element name="Duplicate" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
+                <xs:element name="Cosmetic" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
                 <xs:element name="Content" msprop:Format="x(16000)" type="xs:string" minOccurs="0" />
                 <xs:element name="BitFlag" msdata:Caption="Bit Flag" msprop:ReadOnly="True" msprop:SystemColumn="True" msprop:External="True" type="xs:int" minOccurs="0" />
                 <xs:element name="RowMod" msprop:SystemColumn="True" msprop:External="True" type="xs:string" minOccurs="0" />
@@ -76,15 +76,15 @@
     <Key2>App.CustShipEntry.CustShipForm</Key2>
     <Key3 />
     <Description />
-    <LastUpdated>2020-02-19T00:00:00-05:00</LastUpdated>
+    <LastUpdated>2020-04-23T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>2/19/2020 9:39:04 AM</Version>
-    <DataBaseVersion>30700</DataBaseVersion>
+    <Version>4/23/2020 5:15:51 PM</Version>
+    <DataBaseVersion>30800</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
     <SysCharacter03 />
     <SysCharacter04>Pass</SysCharacter04>
-    <SysCharacter05>3.2.500.0</SysCharacter05>
+    <SysCharacter05>3.2.600.0</SysCharacter05>
     <SysNumber01>0.000000000</SysNumber01>
     <SysNumber02>0.000000000</SysNumber02>
     <SysNumber03>0.000000000</SysNumber03>
@@ -94,7 +94,7 @@
     <SysCheckBox02>false</SysCheckBox02>
     <SysCheckBox03>false</SysCheckBox03>
     <SysCheckBox04>false</SysCheckBox04>
-    <SysCheckBox05>false</SysCheckBox05>
+    <SysCheckBox05>true</SysCheckBox05>
     <CommentText>JoeBee
 [19289-LCurcio: 4/29/2019 11:34:52 PM]
 
@@ -131,19 +131,43 @@ Status: Warning
 Version: w3.2.500.0
 
 [19289-LCurcio: 1/10/2020 3:26:10 PM]
+*----------------------------------------------------------*
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.600.0
+Status: Warning
+Version: w3.2.600.0
+
+[EpicAdmin: 4/20/2020 2:31:46 PM]
+*----------------------------------------------------------*
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.600.0
+Status: Warning
+Version: w3.2.600.0
+
+[EpicAdmin: 4/20/2020 3:11:27 PM]
+*----------------------------------------------------------*
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.600.0
+Status: Pass
+Version: f3.2.600.0
+
+[19289-SMcEntire: 4/22/2020 3:21:00 PM]
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>11992770435</SysRevID>
+    <SysRevID>12699255369</SysRevID>
     <SysRowID>2adf6b38-56fc-40cb-8e24-b469b790cd2b</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
     <OnMenu>true</OnMenu>
     <Duplicate>true</Duplicate>
-    <Cosmetic>true</Cosmetic>
+    <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
-    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.500.0"&gt;
+    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.600.0"&gt;
       &lt;xs:complexType&gt;
         &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
           &lt;xs:element name="Controls"&gt;
@@ -300,6 +324,8 @@ Version: w3.2.500.0
 //	eb4 02/18/20 eric blackwelder @ compudata
 //		add steel surcharge recalculation on sales order
 //		needed because when mark as shipped here, epicor messes it up
+//	eb5 04/23/20 eric blackwelder @ compudata
+//		reverse kit ship complete flag change from eb3
 //
 // **************************************************
 
@@ -569,7 +595,9 @@ public class Script
 
 								 //eb3:
 					             //dr["KitShipComplete"] = true;
-					             dr["KitShipComplete"] = false;
+								 //eb3:
+					             //dr["KitShipComplete"] = false;
+					             dr["KitShipComplete"] = true;
 
 								 dr["KitPricing"] = "P";
 					             dr["RowMod"] ="U";
@@ -640,6 +668,7 @@ public class Script
 
 
 }
+
 
 
 
