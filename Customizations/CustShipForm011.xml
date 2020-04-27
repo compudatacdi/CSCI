@@ -595,7 +595,7 @@ public class Script
 
 								 //eb3:
 					             //dr["KitShipComplete"] = true;
-								 //eb3:
+								 //eb5:
 					             //dr["KitShipComplete"] = false;
 					             dr["KitShipComplete"] = true;
 
