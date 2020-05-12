@@ -76,9 +76,9 @@
     <Key2>App.ARInvoiceEntry.ARInvoiceForm</Key2>
     <Key3 />
     <Description>Commission Rates</Description>
-    <LastUpdated>2020-05-11T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2020-05-12T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>5/11/2020 11:36:32 A</Version>
+    <Version>5/12/2020 11:46:28 A</Version>
     <DataBaseVersion>30800</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -125,7 +125,7 @@ Version: 3.2.600.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>12704550254</SysRevID>
+    <SysRevID>12704843071</SysRevID>
     <SysRowID>c9e14429-2099-4334-86dd-19e5448ce613</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -134,7 +134,7 @@ Version: 3.2.600.0
     <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
-    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:Key3="" msprop:CGCCode="" msprop:ProductID="EP" msprop:TypeCode="Customization" msprop:CommentText="joe&amp;#xA;[19289-LCurcio: 8/20/2018 4:39:05 PM]" msprop:BuildVersion="3.2.600.0" msprop:Company="19289" msprop:Description="Commission Rates" msprop:Key2="App.ARInvoiceEntry.ARInvoiceForm" msprop:Key1="CommRates"&gt;
+    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:Key3="" msprop:CGCCode="" msprop:ProductID="EP" msprop:TypeCode="Customization" msprop:Key2="App.ARInvoiceEntry.ARInvoiceForm" msprop:BuildVersion="3.2.600.0" msprop:Company="19289" msprop:Description="Commission Rates" msprop:CommentText="joe&amp;#xA;[19289-LCurcio: 8/20/2018 4:39:05 PM]" msprop:Key1="CommRates"&gt;
       &lt;xs:complexType&gt;
         &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
           &lt;xs:element name="Controls"&gt;
@@ -287,6 +287,9 @@ using Ice.Lib.Framework;
 using Ice.Lib.Searches;
 using Ice.UI.FormFunctions;
 
+//eb1:
+using System.Collections.Generic;
+
 public class Script
 {
 	// ** Wizard Insert Location - Do Not Remove 'Begin/End Wizard Added Module Level Variables' Comments! **
@@ -340,7 +343,72 @@ public class Script
 
 		// ** Use MessageBox to find adapter method name
 		// EpiMessageBox.Show(args.MethodName)
-		
+
+		//eb1:		
+		switch (args.MethodName)
+		{
+			case "GetByID":
+				List&amp;lt;string&amp;gt; lstInvcDtl = new List&amp;lt;string&amp;gt;();
+				string strTestData = "";
+				bool blnMatchFound = false;
+				foreach(DataRowView row in edvInvcDtl.dataView)
+				{
+					strTestData = 
+						((int)row["OrderNum"]).ToString() +
+						"/" +
+						((int)row["OrderLine"]).ToString() +
+						"/" +
+						((decimal)row["DspSellingShipQty"]).ToString();
+				
+					if(lstInvcDtl.Contains(strTestData))
+					{
+						blnMatchFound = true;
+				
+					}
+					else
+					{
+						lstInvcDtl.Add(strTestData);
+					}
+				}
+				if(blnMatchFound)
+				{
+					DialogResult dialogResult;
+					dialogResult = 
+						MessageBox.Show("Multiple Invoice lines for the same Sales Order Line.  \r\nDelete Duplicates?",
+						"WARNING:  Duplicates found", 
+						MessageBoxButtons.YesNo);
+					if ((dialogResult == DialogResult.Yes))
+					{
+						lstInvcDtl.Clear();
+				
+						foreach(DataRowView row in edvInvcDtl.dataView)
+						{
+							strTestData = 
+								((int)row["OrderNum"]).ToString() +
+								"/" +
+								((int)row["OrderLine"]).ToString() +
+								"/" +
+								((decimal)row["DspSellingShipQty"]).ToString();
+						
+							if(lstInvcDtl.Contains(strTestData))
+							{
+								row.Delete();
+						
+							}
+							else
+							{
+								lstInvcDtl.Add(strTestData);
+							}
+							oTrans.NotifyAll();
+						}
+				
+					}
+				
+				}
+				break;
+
+		}
+
 
 	}
 
@@ -431,6 +499,7 @@ public class Script
        
 	}
 }
+
 
 
 
@@ -651,6 +720,306 @@ public class Script
     &lt;Key&gt;fe13aebf-c0cd-4ae4-ad55-ece046bcf3ce&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;txtSOLine&lt;/ControlName&gt;
+    &lt;Key&gt;e929bb0a-095a-4fa4-a4c1-e71e5774788c&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblSalesOrder&lt;/ControlName&gt;
+    &lt;Key&gt;bf1d592f-0dfb-4148-bc70-c51eead75dd3&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;txtSalesOrderNum&lt;/ControlName&gt;
+    &lt;Key&gt;2972518c-8a3f-4e25-8fa5-ca89a8e9de53&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblSalesOrder&lt;/ControlName&gt;
+    &lt;Key&gt;bf1d592f-0dfb-4148-bc70-c51eead75dd3&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblSalesOrder&lt;/ControlName&gt;
+    &lt;Key&gt;bf1d592f-0dfb-4148-bc70-c51eead75dd3&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblSalesOrder&lt;/ControlName&gt;
+    &lt;Key&gt;bf1d592f-0dfb-4148-bc70-c51eead75dd3&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;133&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblSalesOrder&lt;/ControlName&gt;
+    &lt;Key&gt;bf1d592f-0dfb-4148-bc70-c51eead75dd3&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblOrderQty&lt;/ControlName&gt;
+    &lt;Key&gt;cf20ab43-43b0-45fe-b78f-0c2d9ae1a15b&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;numOrderQty&lt;/ControlName&gt;
+    &lt;Key&gt;1183d3be-27d2-4678-901a-2e78c1870f9f&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblOrderQty&lt;/ControlName&gt;
+    &lt;Key&gt;cf20ab43-43b0-45fe-b78f-0c2d9ae1a15b&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblOrderQty&lt;/ControlName&gt;
+    &lt;Key&gt;cf20ab43-43b0-45fe-b78f-0c2d9ae1a15b&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;25&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblOrderQty&lt;/ControlName&gt;
+    &lt;Key&gt;cf20ab43-43b0-45fe-b78f-0c2d9ae1a15b&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;92&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblOrderQty&lt;/ControlName&gt;
+    &lt;Key&gt;cf20ab43-43b0-45fe-b78f-0c2d9ae1a15b&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblLineNumber&lt;/ControlName&gt;
+    &lt;Key&gt;1e04c61a-cd02-4129-8db6-eada3a6e2adc&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;navDetailLineNum&lt;/ControlName&gt;
+    &lt;Key&gt;fa359824-fd06-42b4-9f2c-e31d23d4f97e&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblLineNumber&lt;/ControlName&gt;
+    &lt;Key&gt;1e04c61a-cd02-4129-8db6-eada3a6e2adc&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblLineNumber&lt;/ControlName&gt;
+    &lt;Key&gt;1e04c61a-cd02-4129-8db6-eada3a6e2adc&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblLineNumber&lt;/ControlName&gt;
+    &lt;Key&gt;1e04c61a-cd02-4129-8db6-eada3a6e2adc&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;45&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblLineNumber&lt;/ControlName&gt;
+    &lt;Key&gt;1e04c61a-cd02-4129-8db6-eada3a6e2adc&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblInvoiceDate&lt;/ControlName&gt;
+    &lt;Key&gt;4ee443d4-d5ac-4492-91d7-467755263578&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;edtInvoiceDate&lt;/ControlName&gt;
+    &lt;Key&gt;652af306-26f4-4c49-8176-732c091b6d2f&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblInvoiceDate&lt;/ControlName&gt;
+    &lt;Key&gt;4ee443d4-d5ac-4492-91d7-467755263578&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;18&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblInvoiceDate&lt;/ControlName&gt;
+    &lt;Key&gt;4ee443d4-d5ac-4492-91d7-467755263578&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;249&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblInvoiceDate&lt;/ControlName&gt;
+    &lt;Key&gt;4ee443d4-d5ac-4492-91d7-467755263578&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;137&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblInvoiceDate&lt;/ControlName&gt;
+    &lt;Key&gt;4ee443d4-d5ac-4492-91d7-467755263578&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
