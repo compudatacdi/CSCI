@@ -45,9 +45,9 @@
                 <xs:element name="SysRowID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:SystemColumn="True" msprop:Format="X(36)" type="xs:string" minOccurs="0" />
                 <xs:element name="SysCheckBox06" type="xs:boolean" minOccurs="0" />
                 <xs:element name="SysCheckBox07" type="xs:boolean" minOccurs="0" />
-                <xs:element name="OnMenu" type="xs:boolean" minOccurs="0" />
-                <xs:element name="Duplicate" type="xs:boolean" minOccurs="0" />
-                <xs:element name="Cosmetic" type="xs:boolean" minOccurs="0" />
+                <xs:element name="OnMenu" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
+                <xs:element name="Duplicate" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
+                <xs:element name="Cosmetic" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
                 <xs:element name="Content" msprop:Format="x(16000)" type="xs:string" minOccurs="0" />
                 <xs:element name="BitFlag" msdata:Caption="Bit Flag" msprop:ReadOnly="True" msprop:SystemColumn="True" msprop:External="True" type="xs:int" minOccurs="0" />
                 <xs:element name="RowMod" msprop:SystemColumn="True" msprop:External="True" type="xs:string" minOccurs="0" />
@@ -76,15 +76,15 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3>Productization^SalesOrderForm</Key3>
     <Description />
-    <LastUpdated>2020-04-16T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2020-05-26T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>4/16/2020 2:40:14 PM</Version>
-    <DataBaseVersion>30700</DataBaseVersion>
+    <Version>5/26/2020 11:06:10 A</Version>
+    <DataBaseVersion>30800</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
     <SysCharacter03 />
     <SysCharacter04>Pass</SysCharacter04>
-    <SysCharacter05>3.2.500.0</SysCharacter05>
+    <SysCharacter05>3.2.600.0</SysCharacter05>
     <SysNumber01>0.000000000</SysNumber01>
     <SysNumber02>0.000000000</SysNumber02>
     <SysNumber03>0.000000000</SysNumber03>
@@ -212,19 +212,35 @@ Status: Pass
 Version: f3.2.500.0
 
 [19289-HMartin: 9/16/2019 3:06:24 PM]
+*----------------------------------------------------------*
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.600.0
+Status: Warning
+Version: w3.2.600.0
+
+[EpicAdmin: 5/17/2020 3:28:45 AM]
+*----------------------------------------------------------*
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.600.0
+Status: Pass
+Version: f3.2.600.0
+
+[19289-JSizer: 5/18/2020 9:16:31 AM]
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>12350184230</SysRevID>
+    <SysRevID>13008918882</SysRevID>
     <SysRowID>b1edfe89-ca27-4e4b-af95-6c376cf1021e</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
     <OnMenu>true</OnMenu>
     <Duplicate>true</Duplicate>
-    <Cosmetic>true</Cosmetic>
+    <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
-    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.500.0"&gt;
+    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.600.0"&gt;
       &lt;xs:complexType&gt;
         &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
           &lt;xs:element name="Controls"&gt;
@@ -1195,6 +1211,8 @@ Version: f3.2.500.0
 //		default USA for one time ship
 //	ebd 04/14/20 eric blackwelder @ compudata
 //		add 6 options to baqPayType (header tab &amp;gt; detail tab &amp;gt; pay method)
+//	ebe 05/26/20 eric blackwelder @ compudata
+//		modify options in baqPayType (header tab &amp;gt; detail tab &amp;gt; pay method)
 //
 // **************************************************
 
@@ -2129,12 +2147,22 @@ public static class Script
 	                   
                   EnterOrderWeight(OrderNo, OrderTotalWt);
 				  FreightCost  = 0.00;                 
-				  if (PaymentMethod != "Collect")
+				  //ebe:
+				  //if (PaymentMethod != "Collect")
+  				switch (PaymentMethod)
+  				{
+					case "Prepay/Add":
+
 					{				
 	                  FreightCost  = GetCarrierRate(FreightCarrier, SelectedState, OrderTotalWt);
 
                   	CallSalesOrderAdapterGetNewOHOrderMscMethod(OrderNo,OrderLn, Math.Round(FreightCost, 2) );
                     } 
+
+					//ebe:
+					break;
+  				}
+
                   oTrans.PushStatusText("", false);
 			
 			      Cursor.Current = Cursors.Default;
@@ -3464,6 +3492,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 	}
 
 }
+
 
 
 
@@ -17930,7 +17959,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;baqPayType&lt;/ControlName&gt;
     &lt;Key&gt;9f6a5ffe-5749-4fb1-a967-d094a4bbbaac&lt;/Key&gt;
     &lt;PropertyName&gt;ListItems&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;Collect:Pre-paid:Pre-Paid 3rd Party:Prepay/Add:Prepay/No Add:Pickup:3rd Party Bill:3rd Party Bill – Same as Bill-To&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;Collect:Pre-Paid 3rd Party:Prepay/Add:Prepay/No Add:Pickup:3rd Party Bill:3rd Party Bill – Same as Bill-To&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -18575,18 +18604,6 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
   &lt;/Properties&gt;
   &lt;Properties&gt;
     &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;btnShipToCustID&lt;/ControlName&gt;
-    &lt;Key&gt;a8323771-8656-43c8-8d96-56093bd7a69a&lt;/Key&gt;
-    &lt;PropertyName&gt;Parent&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;ad205007-99e6-4735-965b-4c85ea0cc078&lt;/PropertyValue&gt;
-    &lt;Company /&gt;
-    &lt;Plant /&gt;
-    &lt;DcdUserID /&gt;
-    &lt;GroupID /&gt;
-    &lt;PropertiesID /&gt;
-  &lt;/Properties&gt;
-  &lt;Properties&gt;
-    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
     &lt;ControlName&gt;txtShipToCustID&lt;/ControlName&gt;
     &lt;Key&gt;16dc442e-e06b-41d9-b393-1371edbdd6ec&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
@@ -18647,18 +18664,6 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
   &lt;/Properties&gt;
   &lt;Properties&gt;
     &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;txtShipToCustID&lt;/ControlName&gt;
-    &lt;Key&gt;16dc442e-e06b-41d9-b393-1371edbdd6ec&lt;/Key&gt;
-    &lt;PropertyName&gt;Parent&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;ad205007-99e6-4735-965b-4c85ea0cc078&lt;/PropertyValue&gt;
-    &lt;Company /&gt;
-    &lt;Plant /&gt;
-    &lt;DcdUserID /&gt;
-    &lt;GroupID /&gt;
-    &lt;PropertiesID /&gt;
-  &lt;/Properties&gt;
-  &lt;Properties&gt;
-    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
     &lt;ControlName&gt;btnShipToNum&lt;/ControlName&gt;
     &lt;Key&gt;2aea7458-cce5-4f17-b7e7-3a9221826019&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
@@ -18711,18 +18716,6 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;Key&gt;2aea7458-cce5-4f17-b7e7-3a9221826019&lt;/Key&gt;
     &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;90&lt;/PropertyValue&gt;
-    &lt;Company /&gt;
-    &lt;Plant /&gt;
-    &lt;DcdUserID /&gt;
-    &lt;GroupID /&gt;
-    &lt;PropertiesID /&gt;
-  &lt;/Properties&gt;
-  &lt;Properties&gt;
-    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;btnShipToNum&lt;/ControlName&gt;
-    &lt;Key&gt;2aea7458-cce5-4f17-b7e7-3a9221826019&lt;/Key&gt;
-    &lt;PropertyName&gt;Parent&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;ad205007-99e6-4735-965b-4c85ea0cc078&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -19022,7 +19015,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;grpShipTo&lt;/ControlName&gt;
     &lt;Key&gt;623033c5-a5c0-4b24-bdc6-362470a0ac41&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -42351,66 +42344,6 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &amp;lt;PropertyName&amp;gt;CellActivation&amp;lt;/PropertyName&amp;gt;
     &amp;lt;PropertyValue&amp;gt;AllowEdit&amp;lt;/PropertyValue&amp;gt;
   &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlToOrderDtlAttch&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;Width&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;141&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlToOrderDtlAttch&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;Caption&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;OrderDtlToOrderDtlAttch&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlToOrderDtlAttch&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;Hidden&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;True&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlToOrderDtlAttch&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;CellActivation&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;AllowEdit&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlOrderMsc&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;Width&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;109&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlOrderMsc&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;Caption&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;OrderDtlOrderMsc&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlOrderMsc&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;Hidden&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;True&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlOrderMsc&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;CellActivation&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;AllowEdit&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlOrderRel&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;Width&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;105&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlOrderRel&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;Caption&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;OrderDtlOrderRel&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlOrderRel&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;Hidden&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;True&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
-  &amp;lt;DisplayLayoutTable&amp;gt;
-    &amp;lt;ColumnKey&amp;gt;OrderDtlOrderRel&amp;lt;/ColumnKey&amp;gt;
-    &amp;lt;PropertyName&amp;gt;CellActivation&amp;lt;/PropertyName&amp;gt;
-    &amp;lt;PropertyValue&amp;gt;AllowEdit&amp;lt;/PropertyValue&amp;gt;
-  &amp;lt;/DisplayLayoutTable&amp;gt;
 &amp;lt;/DisplayLayout&amp;gt;&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
@@ -42424,18 +42357,6 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;Key&gt;ba70e2ef-161a-4aa3-933d-220d53a21528&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
-    &lt;Company /&gt;
-    &lt;Plant /&gt;
-    &lt;DcdUserID /&gt;
-    &lt;GroupID /&gt;
-    &lt;PropertiesID /&gt;
-  &lt;/Properties&gt;
-  &lt;Properties&gt;
-    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;epiButtonC1&lt;/ControlName&gt;
-    &lt;Key&gt;2c0f3814-5a47-4b83-b693-0db261529474&lt;/Key&gt;
-    &lt;PropertyName&gt;Text&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;ONE&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -42591,7 +42512,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;grpSummary&lt;/ControlName&gt;
     &lt;Key&gt;a003549e-312f-4364-9b9e-660b25e6e358&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
