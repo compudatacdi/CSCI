@@ -45,9 +45,9 @@
                 <xs:element name="SysRowID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:SystemColumn="True" msprop:Format="X(36)" type="xs:string" minOccurs="0" />
                 <xs:element name="SysCheckBox06" type="xs:boolean" minOccurs="0" />
                 <xs:element name="SysCheckBox07" type="xs:boolean" minOccurs="0" />
-                <xs:element name="OnMenu" type="xs:boolean" minOccurs="0" />
-                <xs:element name="Duplicate" type="xs:boolean" minOccurs="0" />
-                <xs:element name="Cosmetic" type="xs:boolean" minOccurs="0" />
+                <xs:element name="OnMenu" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
+                <xs:element name="Duplicate" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
+                <xs:element name="Cosmetic" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
                 <xs:element name="Content" msprop:Format="x(16000)" type="xs:string" minOccurs="0" />
                 <xs:element name="BitFlag" msdata:Caption="Bit Flag" msprop:ReadOnly="True" msprop:SystemColumn="True" msprop:External="True" type="xs:int" minOccurs="0" />
                 <xs:element name="RowMod" msprop:SystemColumn="True" msprop:External="True" type="xs:string" minOccurs="0" />
@@ -76,15 +76,15 @@
     <Key2>App.QuoteEntry.CreateOrderWizardForm</Key2>
     <Key3 />
     <Description>CreateOrderWizardForm01</Description>
-    <LastUpdated>2020-01-22T00:00:00-05:00</LastUpdated>
-    <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>1/22/2020 8:20:38 AM</Version>
-    <DataBaseVersion>30700</DataBaseVersion>
+    <LastUpdated>2020-06-26T00:00:00-04:00</LastUpdated>
+    <LastUpdatedBy>MANAGER</LastUpdatedBy>
+    <Version>6/26/2020 2:44:05 PM</Version>
+    <DataBaseVersion>30800</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
     <SysCharacter03 />
     <SysCharacter04>Pass</SysCharacter04>
-    <SysCharacter05>3.2.500.0</SysCharacter05>
+    <SysCharacter05>3.2.600.0</SysCharacter05>
     <SysNumber01>0.000000000</SysNumber01>
     <SysNumber02>0.000000000</SysNumber02>
     <SysNumber03>0.000000000</SysNumber03>
@@ -130,10 +130,18 @@ Status: Pass
 Version: f3.2.500.0
 
 [EpicAdmin: 10/12/2019 12:40:30 PM]
+*----------------------------------------------------------*
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.600.0
+Status: Pass
+Version: f3.2.600.0
+
+[EpicAdmin: 5/17/2020 3:24:15 AM]
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>11711101022</SysRevID>
+    <SysRevID>4047624</SysRevID>
     <SysRowID>a22d4e60-28cd-4271-af09-98abca6348f6</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -142,7 +150,7 @@ Version: f3.2.500.0
     <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
-    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:Key3="" msprop:CGCCode="" msprop:ProductID="EP" msprop:TypeCode="Customization" msprop:Key2="App.QuoteEntry.CreateOrderWizardForm" msprop:BuildVersion="3.2.500.0" msprop:Company="19289" msprop:Description="" msprop:CommentText="joe&amp;#xA;[19289-LCurcio: 6/3/2018 3:46:38 PM]" msprop:Key1="CreateOrderWizardForm01"&gt;
+    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:Key3="" msprop:CGCCode="" msprop:ProductID="EP" msprop:TypeCode="Customization" msprop:Key2="App.QuoteEntry.CreateOrderWizardForm" msprop:BuildVersion="3.2.600.0" msprop:Company="19289" msprop:Description="" msprop:CommentText="joe&amp;#xA;[19289-LCurcio: 6/3/2018 3:46:38 PM]" msprop:Key1="CreateOrderWizardForm01"&gt;
       &lt;xs:complexType&gt;
         &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
           &lt;xs:element name="Controls"&gt;
@@ -289,6 +297,18 @@ Version: f3.2.500.0
     &lt;GroupID /&gt;
     &lt;ControlsID /&gt;
   &lt;/Controls&gt;
+  &lt;Controls&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;ParentControlKey&gt;8b4b4a59-23bc-412c-aa82-0cfaf241abb4&lt;/ParentControlKey&gt;
+    &lt;ControlType&gt;Ice.Lib.Framework.EpiLabel&lt;/ControlType&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserId /&gt;
+    &lt;GroupID /&gt;
+    &lt;ControlsID /&gt;
+  &lt;/Controls&gt;
   &lt;Properties&gt;
     &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
     &lt;ControlName&gt;Customization&lt;/ControlName&gt;
@@ -307,6 +327,9 @@ Version: f3.2.500.0
 //		further modification
 //	eb3 01/21/20 eric blackwelder @ cdi
 //		flag kit parent records as desired
+//	eb4 06/26/20 eric blackwelder @ cdi
+//		move from MT to OnPrem eliminated the method call that triggered code
+//		so found a new method to trigger it
 //
 // **************************************************
 
@@ -356,6 +379,7 @@ public class Script
 	private EpiDataView edvOrderDtl;
 	private DataView OrderDtl_DataView;
 	private EpiBaseAdapter oTrans_taskSetAdapter;
+	private EpiBaseAdapter oTrans_adapter;
 	// End Wizard Added Module Level Variables **
     int ChangeCount=0;
     private int QuoteNum = 0; 
@@ -393,6 +417,10 @@ public class Script
 
 		// End Wizard Added Custom Method Calls
 
+		//eb4:
+		this.oTrans_adapter = ((EpiBaseAdapter)(this.csm.TransAdaptersHT["oTrans_adapter"]));
+		this.oTrans_adapter.AfterAdapterMethod += new AfterAdapterMethod(this.oTrans_adapter_AfterAdapterMethod);
+
 	}
 
 	public void DestroyCustomCode()
@@ -414,6 +442,11 @@ public class Script
 		// Begin Custom Code Disposal
 
 		// End Custom Code Disposal
+
+		//eb4:
+		this.oTrans_adapter.AfterAdapterMethod -= new AfterAdapterMethod(this.oTrans_adapter_AfterAdapterMethod);
+		this.oTrans_adapter = null;
+
 	}
 
 
@@ -424,7 +457,7 @@ public class Script
       {
          try
            {
-                       
+
              DynamicQueryAdapter adapterDynamicQuery = new DynamicQueryAdapter(this.oTrans);
              adapterDynamicQuery.BOConnect();
             
@@ -482,7 +515,6 @@ public class Script
 	{
 		try
 		{
-	
 
             QuoteAdapter adapterQuote = new QuoteAdapter(this.oTrans);
 			adapterQuote.BOConnect();
@@ -616,6 +648,7 @@ public class Script
 	{
 		try
 		{
+
 			// Declare and Initialize EpiDataView Variables
 			// Declare and create an instance of the Adapter.
 			SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(this.oTrans);
@@ -652,15 +685,46 @@ public class Script
 			ExceptionBox.Show(ex);
 		}
 	}
+
+	//eb4:
+	private void oTrans_adapter_AfterAdapterMethod(object sender, AfterAdapterMethodArgs args)
+	{
+		// ** Argument Properties and Uses **
+		// ** args.MethodName **
+		// ** Add Event Handler Code **
+
+		// ** Use MessageBox to find adapter method name
+		// EpiMessageBox.Show(args.MethodName)
+
+		
+		switch (args.MethodName)
+		{
+			case "CreateOrder":
+			//
+				EpiDataView edv = oTrans.Factory("QuoteHed");
+				string HShortChar10 = edv.dataView[edv.Row]["ShortChar10"].ToString();
+				string HShortChar11 = edv.dataView[edv.Row]["ShortChar11"].ToString();
+				string HShortChar12 = edv.dataView[edv.Row]["ShortChar12"].ToString();
+				string HNumber10 = edv.dataView[edv.Row]["Number10"].ToString();
+
+				QuoteNum = Convert.ToInt32(OrderDtl_DataView[0]["QuoteNum"]);
+		  
+				ChangeCount = ChangeCount + 1;
+       
+				OrderNum = QryCheckforOrder(QuoteNum) ;
+         
+				if(OrderNum &amp;gt; 0)
+				{
+					CallSalesOrderAdapterGetDataMethod(OrderNum, QuoteNum);
+					UpdateSalesHed(OrderNum, HShortChar10, HShortChar11,HShortChar12,HNumber10);
+				}
+            
+				break;
+
+		}
+
+	}
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -1806,6 +1870,138 @@ public class Script
     &lt;Key&gt;deb4e2b6-bdb9-41a6-8189-3f0abcf8713a&lt;/Key&gt;
     &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;22&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;432&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;35&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;Parent&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;8b4b4a59-23bc-412c-aa82-0cfaf241abb4&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;35&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;432&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;Text&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;...&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
