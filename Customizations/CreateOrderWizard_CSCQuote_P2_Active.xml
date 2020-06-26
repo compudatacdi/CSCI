@@ -78,7 +78,7 @@
     <Description>CreateOrderWizardForm01</Description>
     <LastUpdated>2020-06-26T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>MANAGER</LastUpdatedBy>
-    <Version>6/26/2020 2:44:05 PM</Version>
+    <Version>6/26/2020 2:56:34 PM</Version>
     <DataBaseVersion>30800</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -141,7 +141,7 @@ Version: f3.2.600.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>4047624</SysRevID>
+    <SysRevID>4047628</SysRevID>
     <SysRowID>a22d4e60-28cd-4271-af09-98abca6348f6</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -150,7 +150,7 @@ Version: f3.2.600.0
     <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
-    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:Key3="" msprop:CGCCode="" msprop:ProductID="EP" msprop:TypeCode="Customization" msprop:Key2="App.QuoteEntry.CreateOrderWizardForm" msprop:BuildVersion="3.2.600.0" msprop:Company="19289" msprop:Description="" msprop:CommentText="joe&amp;#xA;[19289-LCurcio: 6/3/2018 3:46:38 PM]" msprop:Key1="CreateOrderWizardForm01"&gt;
+    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:Key3="" msprop:CGCCode="" msprop:ProductID="EP" msprop:TypeCode="Customization" msprop:CommentText="joe&amp;#xA;[19289-LCurcio: 6/3/2018 3:46:38 PM]" msprop:BuildVersion="3.2.600.0" msprop:Company="19289" msprop:Description="" msprop:Key2="App.QuoteEntry.CreateOrderWizardForm" msprop:Key1="CreateOrderWizardForm01"&gt;
       &lt;xs:complexType&gt;
         &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
           &lt;xs:element name="Controls"&gt;
@@ -729,6 +729,7 @@ public class Script
 
 
 
+
 &lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
@@ -753,7 +754,7 @@ public class Script
     &lt;ControlName&gt;lblNeedBy&lt;/ControlName&gt;
     &lt;Key&gt;b125ccdb-f1f3-4479-9d85-96735d758ce1&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;9&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -765,7 +766,7 @@ public class Script
     &lt;ControlName&gt;edtNeedBy&lt;/ControlName&gt;
     &lt;Key&gt;5c82dc06-ae11-4ce7-b58b-7bffb454fd3c&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;9&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -837,7 +838,7 @@ public class Script
     &lt;ControlName&gt;lblOrderDate&lt;/ControlName&gt;
     &lt;Key&gt;247ccdb8-e003-45de-bcf7-e5e6769831ba&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;11&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;12&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -849,7 +850,7 @@ public class Script
     &lt;ControlName&gt;edtOrderDate&lt;/ControlName&gt;
     &lt;Key&gt;594f0d33-b110-4720-b761-e1291ef9f21f&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;10&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;11&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -981,7 +982,7 @@ public class Script
     &lt;ControlName&gt;lblPO&lt;/ControlName&gt;
     &lt;Key&gt;54b1cce5-970d-4abf-96ae-abfb7aca4f97&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -993,7 +994,7 @@ public class Script
     &lt;ControlName&gt;txtPO&lt;/ControlName&gt;
     &lt;Key&gt;a5c13321-cb8d-46fb-a30a-a7349e1d43d2&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1053,7 +1054,7 @@ public class Script
     &lt;ControlName&gt;lblDiscPercent&lt;/ControlName&gt;
     &lt;Key&gt;40c1b5e5-0cec-4049-b32d-1c2da4dbe2fb&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1065,7 +1066,7 @@ public class Script
     &lt;ControlName&gt;numDiscPercent&lt;/ControlName&gt;
     &lt;Key&gt;55ddb8a5-3917-453e-9761-8531fff7052e&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;7&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1257,7 +1258,7 @@ public class Script
     &lt;ControlName&gt;btnRecalculateLineDisc&lt;/ControlName&gt;
     &lt;Key&gt;40eabf23-9d44-409b-ac68-b82fa969abd7&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;6&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1437,7 +1438,7 @@ public class Script
     &lt;ControlName&gt;epiTextBoxC33&lt;/ControlName&gt;
     &lt;Key&gt;ab82f023-cca2-4b02-89f4-ac0323e4725c&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1617,7 +1618,7 @@ public class Script
     &lt;ControlName&gt;CreateOrderWizardForm&lt;/ControlName&gt;
     &lt;Key&gt;28D587A1-A4CF-45D7-83CB-18953DC632C5&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;261&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;400&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1629,7 +1630,7 @@ public class Script
     &lt;ControlName&gt;CreateOrderWizardForm&lt;/ControlName&gt;
     &lt;Key&gt;28D587A1-A4CF-45D7-83CB-18953DC632C5&lt;/Key&gt;
     &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;68&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;123&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1641,7 +1642,7 @@ public class Script
     &lt;ControlName&gt;CreateOrderWizardForm&lt;/ControlName&gt;
     &lt;Key&gt;28D587A1-A4CF-45D7-83CB-18953DC632C5&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;261&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;400&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1653,7 +1654,7 @@ public class Script
     &lt;ControlName&gt;CreateOrderWizardForm&lt;/ControlName&gt;
     &lt;Key&gt;28D587A1-A4CF-45D7-83CB-18953DC632C5&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;68&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;123&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1665,7 +1666,7 @@ public class Script
     &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
     &lt;Key&gt;1c963d98-ce7a-4267-b0aa-07c3432353d0&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;5&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1809,7 +1810,7 @@ public class Script
     &lt;ControlName&gt;lblTerms&lt;/ControlName&gt;
     &lt;Key&gt;deb4e2b6-bdb9-41a6-8189-3f0abcf8713a&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1821,7 +1822,7 @@ public class Script
     &lt;ControlName&gt;cmbTerms&lt;/ControlName&gt;
     &lt;Key&gt;4ca6fe02-390a-429e-a54e-335a247f75c3&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -2002,6 +2003,18 @@ public class Script
     &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
     &lt;PropertyName&gt;Text&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;...&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;CreateOrderWizardForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTestDots&lt;/ControlName&gt;
+    &lt;Key&gt;4e3680ec-fb4a-44f0-96e9-762db467cf21&lt;/Key&gt;
+    &lt;PropertyName&gt;Visible&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;False&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
