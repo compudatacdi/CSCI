@@ -74,11 +74,11 @@
     <TypeCode>Customization</TypeCode>
     <Key1>CSCOrderEntry_20190619</Key1>
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
-    <Key3>Productization^SalesOrderForm</Key3>
+    <Key3 />
     <Description />
-    <LastUpdated>2020-05-26T00:00:00-04:00</LastUpdated>
-    <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>5/26/2020 11:06:10 A</Version>
+    <LastUpdated>2020-06-24T00:00:00-04:00</LastUpdated>
+    <LastUpdatedBy>MANAGER</LastUpdatedBy>
+    <Version>6/24/2020 4:58:30 PM</Version>
     <DataBaseVersion>30800</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -231,8 +231,8 @@ Version: f3.2.600.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>13008918882</SysRevID>
-    <SysRowID>b1edfe89-ca27-4e4b-af95-6c376cf1021e</SysRowID>
+    <SysRevID>4036904</SysRevID>
+    <SysRowID>b55b3e89-499e-4dd8-8276-b365ff6f6805</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
     <OnMenu>true</OnMenu>
@@ -280,7 +280,7 @@ Version: f3.2.600.0
     &lt;/xs:element&gt;
   &lt;/xs:schema&gt;
   &lt;Controls&gt;
-    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+  &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
     &lt;ControlName&gt;txtMarkAbove&lt;/ControlName&gt;
     &lt;Key&gt;5cf660b9-a678-4e6d-b6fb-717de74e948e&lt;/Key&gt;
     &lt;ParentControlKey&gt;492bed80-396e-4065-b9b1-8807fdfcb421&lt;/ParentControlKey&gt;
@@ -1213,6 +1213,8 @@ Version: f3.2.600.0
 //		add 6 options to baqPayType (header tab &amp;gt; detail tab &amp;gt; pay method)
 //	ebe 05/26/20 eric blackwelder @ compudata
 //		modify options in baqPayType (header tab &amp;gt; detail tab &amp;gt; pay method)
+//	ebf 06/24/20 eric blackwelder @ compudata
+//		tweak code behind the scenes to eliminate productization from mt
 //
 // **************************************************
 
@@ -44560,6 +44562,32 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;PropertiesID /&gt;
   &lt;/Properties&gt;
   &lt;Properties&gt;
+
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblShowKitDtls&lt;/ControlName&gt;
+    &lt;Key&gt;d32c8912-8bec-4e3e-a9f8-1057647043b3&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;565&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblShowKitDtls&lt;/ControlName&gt;
+    &lt;Key&gt;d32c8912-8bec-4e3e-a9f8-1057647043b3&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+
     &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
     &lt;ControlName&gt;Customization&lt;/ControlName&gt;
     &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
