@@ -76,9 +76,9 @@
     <Key2>App.SalesOrderEntry.SalesOrderForm</Key2>
     <Key3 />
     <Description />
-    <LastUpdated>2020-06-24T00:00:00-04:00</LastUpdated>
+    <LastUpdated>2020-07-13T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>MANAGER</LastUpdatedBy>
-    <Version>6/24/2020 4:58:30 PM</Version>
+    <Version>7/13/2020 11:41:51 A</Version>
     <DataBaseVersion>30800</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -231,7 +231,7 @@ Version: f3.2.600.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>4036904</SysRevID>
+    <SysRevID>4435803</SysRevID>
     <SysRowID>b55b3e89-499e-4dd8-8276-b365ff6f6805</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -280,7 +280,7 @@ Version: f3.2.600.0
     &lt;/xs:element&gt;
   &lt;/xs:schema&gt;
   &lt;Controls&gt;
-  &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
+    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
     &lt;ControlName&gt;txtMarkAbove&lt;/ControlName&gt;
     &lt;Key&gt;5cf660b9-a678-4e6d-b6fb-717de74e948e&lt;/Key&gt;
     &lt;ParentControlKey&gt;492bed80-396e-4065-b9b1-8807fdfcb421&lt;/ParentControlKey&gt;
@@ -1215,6 +1215,8 @@ Version: f3.2.600.0
 //		modify options in baqPayType (header tab &amp;gt; detail tab &amp;gt; pay method)
 //	ebf 06/24/20 eric blackwelder @ compudata
 //		tweak code behind the scenes to eliminate productization from mt
+//	ebg 07/13/20 eric blackwelder @ compudata
+//		get columns to behave more consistantly
 //
 // **************************************************
 
@@ -3465,6 +3467,9 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 					- (decimal)view.dataView[args.Row]["TotalDiscount"];
 				numNet.Text = dNet.ToString();
 
+				//ebg:
+				MoveColumns();
+
 			}
 		}
 	}
@@ -3494,6 +3499,8 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
 	}
 
 }
+
+
 
 
 
@@ -6453,7 +6460,7 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;ControlName&gt;lblShowKitDtls&lt;/ControlName&gt;
     &lt;Key&gt;d32c8912-8bec-4e3e-a9f8-1057647043b3&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;744&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;565&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -44562,32 +44569,6 @@ private static void CallCreateFreightPart(int OrderNum, int CustNum, string Part
     &lt;PropertiesID /&gt;
   &lt;/Properties&gt;
   &lt;Properties&gt;
-
-    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;lblShowKitDtls&lt;/ControlName&gt;
-    &lt;Key&gt;d32c8912-8bec-4e3e-a9f8-1057647043b3&lt;/Key&gt;
-    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;565&lt;/PropertyValue&gt;
-    &lt;Company /&gt;
-    &lt;Plant /&gt;
-    &lt;DcdUserID /&gt;
-    &lt;GroupID /&gt;
-    &lt;PropertiesID /&gt;
-  &lt;/Properties&gt;
-  &lt;Properties&gt;
-    &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
-    &lt;ControlName&gt;lblShowKitDtls&lt;/ControlName&gt;
-    &lt;Key&gt;d32c8912-8bec-4e3e-a9f8-1057647043b3&lt;/Key&gt;
-    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
-    &lt;Company /&gt;
-    &lt;Plant /&gt;
-    &lt;DcdUserID /&gt;
-    &lt;GroupID /&gt;
-    &lt;PropertiesID /&gt;
-  &lt;/Properties&gt;
-  &lt;Properties&gt;
-
     &lt;FormsID&gt;SalesOrderForm&lt;/FormsID&gt;
     &lt;ControlName&gt;Customization&lt;/ControlName&gt;
     &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
