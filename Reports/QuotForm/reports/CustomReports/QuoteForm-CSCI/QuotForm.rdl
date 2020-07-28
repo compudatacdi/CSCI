@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="dsQuotForm">
-      <DataSourceReference>/MTPilotSSRS/reports/SharedReportDataSource</DataSourceReference>
+      <DataSourceReference>/ERPCSPilotSSRS/reports/SharedReportDataSource</DataSourceReference>
       <rd:SecurityType>Integrated</rd:SecurityType>
       <rd:DataSourceID>b9a1eef5-8ead-4d6b-b800-2fce45c97d77</rd:DataSourceID>
     </DataSource>
@@ -15,6 +15,7 @@
         <CommandText>="SELECT T1.RptLiteralsLOrdBasedPrice as Calc_NetPrice,T1.DiscountPercent,T1.LeadTime,T1.PartNum,T1.PhoneNum,T1.RptLiteralsLHdngQt as QuoteNum,T1.RptLiteralsLDate,T1.RptLiteralsLDesc,T1.RptLiteralsLDiscAmount,T1.RptLiteralsLDrawing,T1.RptLiteralsLExpires,T1.RptLiteralsLFax,T1.RptLiteralsLHdngQt,T1.RptLiteralsLLine,T1.RptLiteralsLNotQuoted,T1.RptLiteralsLOurPrt,T1.RptLiteralsLPage,T1.RptLiteralsLQty,T1.RptLiteralsLQuoteNum,T1.RptLiteralsLQuoteTo,T1.RptLiteralsLRef,T1.RptLiteralsLRev,T1.RptLiteralsLShashC,T1.RptLiteralsLSlashM,T1.RptLiteralsSalesKit,T1.RptLiteralsLSalsPer,T1.RptLiteralsLUnitPrice as UnitPrice,T1.XRevisionNum, T1.Calc_Duration, T1.Calc_Mate, T1.Calc_Labor, T1.Calc_Misc, T1.RptLiteralsLExtPrice, T1.RptLiteralsLExpQty, T1.RptLiteralsLDiscount, T1.RptLiteralsLQtyBreaks, T1.RptLiteralsLTax, T1.RptLiteralsLQuoteLine, T1.RptLiteralsLTaxableAmt, T1.RptLiteralsLPercent, T1.RptLiteralsLTaxAmt, T1.RptLiteralsLSubTotal, T1.RptLiteralsLTotalTax, T1.RptLiteralsLLNMSC, T1.RptLiteralsLQuoteTotal, T1.RptLiteralsLQMSC, T1.[DecimalsGeneral], T1.[DecimalsPrice], T1.[DecimalsCost], T1.[GlbDecimalsGeneral], T1.[GlbDecimalsPrice], T1.[GlbDecimalsCost], T1.[RptLiteralsPage], T1.[RptLiteralsTime], T1.[RptLiteralsUser], T1.[RptLiteralsDate], T1.[RptLiteralsComp], T1.[RptLiteralsComponentPrice], T1.[RptLiteralsComponentPricing], T1.[RptLiteralsComponents], T1.[RptLiteralsCompPrice], T1.[RptLiteralsCompPricing], T1.[RptLiteralsKit], T1.[RptLiteralsKitSeq], T1.[RptLiteralsKitTitle], T1.[RptLiteralsLBreakList], T1.[RptLiteralsLDiscPercent], T1.[RptLiteralsLExpSalesUM], T1.[RptLiteralsLExpSellFactor], T1.[RptLiteralsLExpUnitPrice], T1.[RptLiteralsLLdTime], T1.[RptLiteralsLListPrice], T1.[RptLiteralsLMiscQtyNum], T1.[RptLiteralsLMscChrg], T1.[RptLiteralsLOrdBasedPrice], T1.[RptLiteralsLPhone], T1.[RptLiteralsLPriceGroup], T1.[RptLiteralsLPriceList], T1.[RptLiteralsLPricePer], T1.[RptLiteralsLPricingQty], T1.[RptLiteralsLPricingValue], T1.[RptLiteralsLPrimRep], T1.[RptLiteralsLPrtNum], T1.[RptLiteralsLQtyBreak], T1.[RptLiteralsLRepCode], T1.[RptLiteralsLRepRate], T1.[RptLiteralsLRepSplit], T1.[RptLiteralsLRoleCode], T1.[RptLiteralsLRoleDesc], T1.[RptLiteralsLSlashE], T1.[RptLiteralsLUM], T1.[RptLiteralsLUnitPrice], T1.[RptLiteralsPartNum], T1.[RptLiteralsPartNumber], T1.[RptLiteralsQtyPer], T1.[RptLiteralsQtyPerParent], T1.[RptLiteralsRounding], T1.[ActTypeCode], T1.[Address1], T1.[Address2], T1.[Address3], T1.[APBOECheck], T1.[ChiefAcctName], T1.[City], T1.[Company], T1.[COSequenceCert], T1.[Country], T1.[DeepCopy], T1.[DeepCopyDupOrRevEst], T1.[EpicorAccountNum], T1.[FiscalCalendarID], T1.[FRxPassWord], T1.[FrxUserid], T1.[LegalName], T1.[ManagerName], T1.[MapURL], T1.[MXMunicipio], T1.[Name], T1.[OrgRegCode], T1.[ReportTypePref], T1.[SendToFSA], T1.[StartDate], T1.[State], T1.[TaxRegReason], T1.[WIApplication], T1.[WIAutoCreateJob], T1.[WIGetDetails], T1.[WIRelease], T1.[WISchedule], T1.[WIShippingCosts], T1.[Zip], T1.[Description], T1.[AEPLOQType], T1.[ApplyChrg], T1.[AutoPrintReady], T1.[BestCsPct], T1.[BTCustNum], T1.[ChangeDate], T1.[ChangedBy], T1.[ChangeTime], T1.[ChrgAmount], T1.[COD], T1.[CODAmount], T1.[CODCheck], T1.[CODFreight], T1.[DateQuoted], T1.[DeclaredAmt], T1.[DeclaredIns], T1.[DeliveryConf], T1.[DeliveryType], T1.[DemandContractNum], T1.[DemandHeadSeq], T1.[DemandProcessDate], T1.[DemandProcessTime], T1.[DocOnly], T1.[DocQuoteAmt], T1.[DocRounding], T1.[DocTax], T1.[DocTotalBestCs], T1.[DocTotalClaimsCredit], T1.[DocTotalClaimsSATax], T1.[DocTotalClaimsTax], T1.[DocTotalClaimsWHTax], T1.[DocTotalGrossValue], T1.[DocTotalPotential], T1.[DocTotalSATax], T1.[DocTotalTax], T1.[DocTotalWHTax], T1.[DocTotalWorstCs], T1.[DropShip], T1.[DueHour], T1.[ECCCmmtRef], T1.[ECCCmmtRefSK], T1.[ECCComment], T1.[ECCConfirmed], T1.[ECCConfirmedBy], T1.[ECCExpirationDate], T1.[ECCMsgType], T1.[ECCQuoteNum], T1.[ECCSalesRepID], T1.[ECCStatus], T1.[ECCWebReady], T1.[EDIAck], T1.[EDIQuote], T1.[EDIReady], T1.[ExpirationDate], T1.[ExportRequested], T1.[ExtCompany], T1.[ExternalCRMLastSync], T1.[ExternalCRMOrderID], T1.[ExternalCRMQuote], T1.[ExternalCRMQuoteID], T1.[ExternalCRMSyncRequired], T1.[GroundType], T1.[Hazmat], T1.[HdrTaxNoUpdt], T1.[ICPONum], T1.[InPrice], T1.[LastBatchNum], T1.[LastTCtrlNum], T1.[Linked], T1.[LockQty], T1.[LockRate], T1.[LOQBookPCFinishing], T1.[LOQBookPCPaper], T1.[LOQBookPCPlates], T1.[LOQBookPCPress], T1.[LOQNewPageOnQuoteLine], T1.[LOQPrepressStyle], T1.[LOQPrepressText], T1.[LOQVariations], T1.[NeedByDate], T1.[NotifyEMail], T1.[NotifyFlag], T1.[OTSAddress1], T1.[OTSAddress2], T1.[OTSAddress3], T1.[OTSCity], T1.[OTSContact], T1.[OTSCountryNum], T1.[OTSCustSaved], T1.[OTSFaxNum], T1.[OTSName], T1.[OTSPhoneNum], T1.[OTSResaleID], T1.[OTSSaveAs], T1.[OTSSaveCustID], T1.[OTSState], T1.[OTSTaxRegionCode], T1.[OTSZIP], T1.[OutboundQuoteDocCtr], T1.[OverrideCarrier], T1.[OverrideService], T1.[QuoteAmt], T1.[QuoteComment], T1.[QuoteCSR], T1.[RateGrpCode], T1.[ReadyToCalc], T1.[Reference], T1.[RefNotes], T1.[RequestDate], T1.[ResDelivery], T1.[Rounding], T1.[Rpt1QuoteAmt], T1.[Rpt1Rounding], T1.[Rpt1Tax], T1.[Rpt1TotalBestCs], T1.[Rpt1TotalClaimsCredit], T1.[Rpt1TotalClaimsSATax], T1.[Rpt1TotalClaimsTax], T1.[Rpt1TotalClaimsWHTax], T1.[Rpt1TotalDiscount], T1.[Rpt1TotalDiscPct], T1.[Rpt1TotalExpected], T1.[Rpt1TotalGrossValue], T1.[Rpt1TotalMiscAmt], T1.[Rpt1TotalPotential], T1.[Rpt1TotalSATax], T1.[Rpt1TotalTax], T1.[Rpt1TotalWHTax], T1.[Rpt1TotalWorstCs], T1.[Rpt2QuoteAmt], T1.[Rpt2Rounding], T1.[Rpt2Tax], T1.[Rpt2TotalBestCs], T1.[Rpt2TotalClaimsCredit], T1.[Rpt2TotalClaimsSATax], T1.[Rpt2TotalClaimsTax], T1.[Rpt2TotalClaimsWHTax], T1.[Rpt2TotalDiscount], T1.[Rpt2TotalDiscPct], T1.[Rpt2TotalExpected], T1.[Rpt2TotalGrossValue], T1.[Rpt2TotalMiscAmt], T1.[Rpt2TotalPotential], T1.[Rpt2TotalSATax], T1.[Rpt2TotalTax], T1.[Rpt2TotalWHTax], T1.[Rpt2TotalWorstCs], T1.[Rpt3QuoteAmt], T1.[Rpt3Rounding], T1.[Rpt3Tax], T1.[Rpt3TotalBestCs], T1.[Rpt3TotalClaimsCredit], T1.[Rpt3TotalClaimsSATax], T1.[Rpt3TotalClaimsTax], T1.[Rpt3TotalClaimsWHTax], T1.[Rpt3TotalDiscount], T1.[Rpt3TotalDiscPct], T1.[Rpt3TotalExpected], T1.[Rpt3TotalGrossValue], T1.[Rpt3TotalMiscAmt], T1.[Rpt3TotalPotential], T1.[Rpt3TotalSATax], T1.[Rpt3TotalTax], T1.[Rpt3TotalWHTax], T1.[Rpt3TotalWorstCs], T1.[SatPickup], T1.[ServAlert], T1.[ServAuthNum], T1.[ServDeliveryDate], T1.[ServHomeDel], T1.[ServInstruct], T1.[ServPhone], T1.[ServRef1], T1.[ServRef2], T1.[ServRef3], T1.[ServRef4], T1.[ServRef5], T1.[ServRelease], T1.[ServSignature], T1.[ShipToCustNum], T1.[Tax], T1.[TaxPoint], T1.[TaxRateDate], T1.[TaxRegionCode], T1.[TotalBestCs], T1.[TotalClaimsCredit], T1.[TotalClaimsSATax], T1.[TotalClaimsTax], T1.[TotalClaimsWHTax], T1.[TotalDiscount], T1.[TotalDiscPct], T1.[TotalExpected], T1.[TotalGrossValue], T1.[TotalMiscAmt], T1.[TotalPotential], T1.[TotalSATax], T1.[TotalTax], T1.[TotalWHTax], T1.[TotalWorstCs], T1.[UseOTS], T1.[VoidQuote], T1.[WorstCsPct], T1.[Calc_CompanyAddr], T1.[Calc_CompFax], T1.[Calc_CompPhone], T1.[Calc_CurDocDesc], T1.[Calc_CurSymbol], T1.[Calc_CustContact], T1.[Calc_CustContactEMail], T1.[Calc_CustFax], T1.[Calc_CustID], T1.[Calc_CustPartOpts], T1.[Calc_CustPhone], T1.[Calc_EMail], T1.[Calc_Fob], T1.[Calc_FOBDesc], T1.[Calc_HasHeadMisc], T1.[Calc_HeadMiscTotal], T1.[Calc_LineMiscTotal], T1.[Calc_Message1], T1.[Calc_Message2], T1.[Calc_QuoteAddr], T1.[Calc_RptUserID], T1.[Calc_SalesPerson], T1.[Calc_TaxMethod], T1.[Calc_TermsDesc], T1.[Calc_TotalTaxAmt], T1.[TaskDescription], T1.[CurrDesc], T1.[CurrName], T1.[CurrSymbol], T1.[DocumentDesc], T1.[BTName], T1.[CustomerCharacter09], T1.[CustomerCharacter10], T1.[CustID], T1.[EMailAddress], T1.[FaxNum], T1.[CampDescription], T1.[EvntDescription], T1.[CallTypeDesc], T1.[WebDesc], T1.[TaskSetDescription], T1.[WorkflowType], T1.[TerritoryDesc], T1.[BestCsRevenue], T1.[ContractCode], T1.[ContractID], T1.[ContractNum], T1.[CreateEstimate], T1.[DemandContractLine], T1.[DemandDtlSeq], T1.[DemandHedSeq], T1.[DiscBreakListCode], T1.[DiscListPrice], T1.[DisplaySeq], T1.[DocBestCsRevenue], T1.[DocDiscount], T1.[DocEndCustomerPrice], T1.[DocExpUnitPrice], T1.[DocExtPriceDtl], T1.[DocInDiscount], T1.[DocInExpectedRevenue], T1.[DocInExpUnitPrice], T1.[DocInExtPriceDtl], T1.[DocInListPrice], T1.[DocInOrdBasedPrice], T1.[DocMSRP], T1.[DocPromotionalPrice], T1.[DocWorstCsRevenue], T1.[DrawNum], T1.[ECCQuoteLine], T1.[EndCustomerPrice], T1.[EntityUseCode], T1.[EstimateGUID], T1.[EstimateUserID], T1.[ExternalCRMQuoteLineID], T1.[ExternalMES], T1.[ExtPriceDtl], T1.[GroupSeq], T1.[ICPOLine], T1.[InDiscount], T1.[InExpectedRevenue], T1.[InExpUnitPrice], T1.[InExtPriceDtl], T1.[InListPrice], T1.[InOrdBasedPrice], T1.[KitAllowUpdate], T1.[KitBackFlush], T1.[KitCompOrigPart], T1.[KitCompOrigSeq], T1.[KitFlag], T1.[KitParentLine], T1.[KitPricing], T1.[KitPrintCompsInv], T1.[KitPrintCompsPS], T1.[KitQtyPer], T1.[KitShipComplete], T1.[KitsLoaded], T1.[LineDesc], T1.[LineType], T1.[LockPrice], T1.[MakeDirect], T1.[MFCustNum], T1.[MFShipToNum], T1.[MSRP], T1.[NoTaxRecalc], T1.[OTMFAddress1], T1.[OTMFAddress2], T1.[OTMFAddress3], T1.[OTMFCity], T1.[OTMFContact], T1.[OTMFCountryNum], T1.[OTMFFaxNum], T1.[OTMFName], T1.[OTMFPhoneNum], T1.[OTMFState], T1.[OTMFZIP], T1.[OverrideDiscPriceList], T1.[OwnershipStatus], T1.[PCLinkRemoved], T1.[PhaseID], T1.[ProcessMode], T1.[ProjectID], T1.[PromotionalPrice], T1.[QuoteLine], T1.[Rating], T1.[RenewalNbr], T1.[ReturnLineType], T1.[RevisionNum], T1.[RFQCurrBaseEst], T1.[RFQTemplate], T1.[Rpt1BestCsRevenue], T1.[Rpt1Discount], T1.[Rpt1EndCustomerPrice], T1.[Rpt1ExpectedRevenue], T1.[Rpt1ExpUnitPrice], T1.[Rpt1ExtPriceDtl], T1.[Rpt1InDiscount], T1.[Rpt1InExpectedRevenue], T1.[Rpt1InExpUnitPrice], T1.[Rpt1InExtPriceDtl], T1.[Rpt1InListPrice], T1.[Rpt1InOrdBasedPrice], T1.[Rpt1ListPrice], T1.[Rpt1MSRP], T1.[Rpt1OrdBasedPrice], T1.[Rpt1PromotionalPrice], T1.[Rpt1WorstCsRevenue], T1.[Rpt2BestCsRevenue], T1.[Rpt2Discount], T1.[Rpt2EndCustomerPrice], T1.[Rpt2ExpectedRevenue], T1.[Rpt2ExpUnitPrice], T1.[Rpt2ExtPriceDtl], T1.[Rpt2InDiscount], T1.[Rpt2InExpectedRevenue], T1.[Rpt2InExpUnitPrice], T1.[Rpt2InExtPriceDtl], T1.[Rpt2InListPrice], T1.[Rpt2InOrdBasedPrice], T1.[Rpt2ListPrice], T1.[Rpt2MSRP], T1.[Rpt2OrdBasedPrice], T1.[Rpt2PromotionalPrice], T1.[Rpt2WorstCsRevenue], T1.[Rpt3BestCsRevenue], T1.[Rpt3Discount], T1.[Rpt3EndCustomerPrice], T1.[Rpt3ExpectedRevenue], T1.[Rpt3ExpUnitPrice], T1.[Rpt3ExtPriceDtl], T1.[Rpt3InDiscount], T1.[Rpt3InExpectedRevenue], T1.[Rpt3InExpUnitPrice], T1.[Rpt3InExtPriceDtl], T1.[Rpt3InListPrice], T1.[Rpt3InOrdBasedPrice], T1.[Rpt3ListPrice], T1.[Rpt3MSRP], T1.[Rpt3OrdBasedPrice], T1.[Rpt3PromotionalPrice], T1.[Rpt3WorstCsRevenue], T1.[SellingExpectedQty], T1.[SellingExpectedUM], T1.[SellingFactorDirection], T1.[SmartString], T1.[SmartStringProcessed], T1.[TaxConnectCalc], T1.[TaxExempt], T1.[UseOTMF], T1.[VoidLine], T1.[Warranty], T1.[WarrantyCode], T1.[WarrantyComment], T1.[WorstCsRevenue], T1.[XPartNum], T1.[Calc_HasMisc], T1.[Calc_LineDesc], T1.[Calc_LineTaxAmt], T1.[Calc_Modifier], T1.[MfgComment], T1.[PartDescription], T1.[PurComment], T1.[TrackDimension], T1.[TrackLots], T1.[TrackSerialNum], T1.[CurrencyCode], T1.[UOMSymbol], T1.[DocInUnitPrice], T1.[DocPricePerAdl1000], T1.[DocTotalSellPrice], T1.[DocUnitPrice], T1.[InUnitPrice], T1.[MarkUpID], T1.[PricePerAdl1000], T1.[PricePerCode], T1.[PriceSource], T1.[QtyNum], T1.[Rpt1InUnitPrice], T1.[Rpt1UnitPrice], T1.[Rpt2InUnitPrice], T1.[Rpt2UnitPrice], T1.[Rpt3InUnitPrice], T1.[Rpt3UnitPrice], T1.[SalesUM], T1.[SellingQuantity], T1.[TotalSellPrice], T1.[UserChangedUnitPrice], T1.[Calc_QtyDiscAmt], T1.[Calc_UMDescription], T1.[DocInMiscAmt], T1.[DocMiscAmt], T1.[FreqCode], T1.[InMiscAmt], T1.[MiscAmt], T1.[MiscCode], T1.[Percentage], T1.[Rpt1InMiscAmt], T1.[Rpt1MiscAmt], T1.[Rpt2InMiscAmt], T1.[Rpt2MiscAmt], T1.[Rpt3InMiscAmt], T1.[Rpt3MiscAmt], T1.[SeqNum], T1.[Type], T1.[PrimeRep], T1.[SalesRepCode], T1.[Calc_RoleDesc], T1.[RoleDescription], T1.[FaxPhoneNum], T1.[Calc_ChargeDesc], T1.[BillEndDate], T1.[BillStartDate], T1.[CommentText], T1.[ContractComment], T1.[ContractLine], T1.[ContractQty], T1.[ContractType], T1.[CustNum], T1.[DateInactivated], T1.[DateInvoiced], T1.[DocPricePerUnit], T1.[Inactive], T1.[InvoiceComment], T1.[Invoiced], T1.[IUM], T1.[OrderLine], T1.[OrderNum], T1.[PricePerUnit], T1.[ProdCode], T1.[Rpt1PricePerUnit], T1.[Rpt2PricePerUnit], T1.[Rpt3PricePerUnit], T1.[SoldOrderLine], T1.[SoldOrderNum], T1.[Calc_ContPrice], T1.[Calc_QuoteLine], T1.[Calc_QuoteNum], T1.[IncreasePct], T1.[RefRenewalNbr], T1.[RenewalLine], T1.[ChangedOn], T1.[CollectionType], T1.[CreatedBy], T1.[CreatedOn], T1.[DedTaxAmt], T1.[DefTaxableAmt], T1.[DefTaxAmt], T1.[Discount], T1.[DocDedTaxAmt], T1.[DocDefTaxableAmt], T1.[DocDefTaxAmt], T1.[DocFixedAmount], T1.[DocReportableAmt], T1.[DocTaxableAmt], T1.[DocTaxAmt], T1.[ECAcquisitionSeq], T1.[ExemptPercent], T1.[ExemptType], T1.[FixedAmount], T1.[ManAdd], T1.[Manual], T1.[Percent], T1.[RateCode], T1.[ReportableAmt], T1.[ResolutionDate], T1.[ResolutionNum], T1.[ReverseCharge], T1.[Rpt1DedTaxAmt], T1.[Rpt1DefTaxableAmt], T1.[Rpt1DefTaxAmt], T1.[Rpt1FixedAmount], T1.[Rpt1ReportableAmt], T1.[Rpt1TaxableAmt], T1.[Rpt1TaxAmt], T1.[Rpt2DedTaxAmt], T1.[Rpt2DefTaxableAmt], T1.[Rpt2DefTaxAmt], T1.[Rpt2FixedAmount], T1.[Rpt2ReportableAmt], T1.[Rpt2TaxableAmt], T1.[Rpt2TaxAmt], T1.[Rpt3DedTaxAmt], T1.[Rpt3DefTaxableAmt], T1.[Rpt3DefTaxAmt], T1.[Rpt3FixedAmount], T1.[Rpt3ReportableAmt], T1.[Rpt3TaxableAmt], T1.[Rpt3TaxAmt], T1.[TaxableAmt], T1.[TaxAmt], T1.[TaxCode], T1.[TextCode], T1.[Timing], T1.[Calc_TaxDescr], T1.[IsServices], T1.[PEDetrGoodServiceCode], T1.[PEProductServiceCode], T1.[Calc_ClassID]
 , T1.[ShipToNum]
 , T1.[CountryNum]
+, T1.[CheckOff1], T1.[CheckOff2]
  FROM RptLabels_" + Parameters!TableGuid.Value + " T1"</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
@@ -2715,6 +2716,14 @@
           <DataField>CountryNum</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CheckOff1">
+          <DataField>CheckOff1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CheckOff2">
+          <DataField>CheckOff2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="RptParameter">
@@ -2740,6 +2749,7 @@
 , T1.[ShipToNum], T9.[Address1], T9.[Address2], T9.[Address3], T9.[City], T9.[Country], T9.[State], T9.[ZIP]
 , T9.[FaxNum], T9.[PhoneNum], T9.[Name] AS ShipToName
 , T5.[Name], T10.[CountryNum], T10.[Description] AS OTSShipToCountry
+, T1.[CheckOff1], T1.[CheckOff2], T1.[Character01] as QuoteHed_Character01, T1.[Character02] as QuoteHed_Character02, T1.[Character03] as QuoteHed_Character03, T1.[Character04] as QuoteHed_Character04, T1.[Character05] as QuoteHed_Character05, T1.[Character06] as QuoteHed_Character06, T1.[Character07] as QuoteHed_Character07, T1.[Character08] as QuoteHed_Character08, T1.[Character09] as QuoteHed_Character09, T1.[Character10] as QuoteHed_Character10, T1.[Character11] as QuoteHed_Character11, T1.[Character12] as QuoteHed_Character12, T1.[Character13] as QuoteHed_Character13, T1.[Character14] as QuoteHed_Character14, T1.[Character15] as QuoteHed_Character15, T1.[CheckBox01] as QuoteHed_CheckBox01, T1.[CheckBox02] as QuoteHed_CheckBox02, T1.[CheckBox03] as QuoteHed_CheckBox03, T1.[CheckBox04] as QuoteHed_CheckBox04, T1.[CheckBox05] as QuoteHed_CheckBox05, T1.[CheckBox06] as QuoteHed_CheckBox06, T1.[CheckBox07] as QuoteHed_CheckBox07, T1.[CheckBox08] as QuoteHed_CheckBox08, T1.[CheckBox09] as QuoteHed_CheckBox09, T1.[CheckBox10] as QuoteHed_CheckBox10, T1.[CheckBox11] as QuoteHed_CheckBox11, T1.[CheckBox12] as QuoteHed_CheckBox12, T1.[CheckBox13] as QuoteHed_CheckBox13, T1.[CheckBox14] as QuoteHed_CheckBox14, T1.[CheckBox15] as QuoteHed_CheckBox15, T1.[CheckBox16] as QuoteHed_CheckBox16, T1.[CheckBox17] as QuoteHed_CheckBox17, T1.[CheckBox18] as QuoteHed_CheckBox18, T1.[CheckBox19] as QuoteHed_CheckBox19, T1.[CheckBox20] as QuoteHed_CheckBox20, T1.[Date01] as QuoteHed_Date01, T1.[Date02] as QuoteHed_Date02, T1.[Date03] as QuoteHed_Date03, T1.[Date04] as QuoteHed_Date04, T1.[Date05] as QuoteHed_Date05, T1.[Date06] as QuoteHed_Date06, T1.[Date07] as QuoteHed_Date07, T1.[Date08] as QuoteHed_Date08, T1.[Date09] as QuoteHed_Date09, T1.[Date10] as QuoteHed_Date10, T1.[Date11] as QuoteHed_Date11, T1.[Date12] as QuoteHed_Date12, T1.[Date13] as QuoteHed_Date13, T1.[Date14] as QuoteHed_Date14, T1.[Date15] as QuoteHed_Date15, T1.[Date16] as QuoteHed_Date16, T1.[Date17] as QuoteHed_Date17, T1.[Date18] as QuoteHed_Date18, T1.[Date19] as QuoteHed_Date19, T1.[Date20] as QuoteHed_Date20, T1.[Number01] as QuoteHed_Number01, T1.[Number02] as QuoteHed_Number02, T1.[Number03] as QuoteHed_Number03, T1.[Number04] as QuoteHed_Number04, T1.[Number05] as QuoteHed_Number05, T1.[Number06] as QuoteHed_Number06, T1.[Number07] as QuoteHed_Number07, T1.[Number08] as QuoteHed_Number08, T1.[Number09] as QuoteHed_Number09, T1.[Number10] as QuoteHed_Number10, T1.[Number11] as QuoteHed_Number11, T1.[Number12] as QuoteHed_Number12, T1.[Number13] as QuoteHed_Number13, T1.[Number14] as QuoteHed_Number14, T1.[Number15] as QuoteHed_Number15, T1.[Number16] as QuoteHed_Number16, T1.[Number17] as QuoteHed_Number17, T1.[Number18] as QuoteHed_Number18, T1.[Number19] as QuoteHed_Number19, T1.[Number20] as QuoteHed_Number20, T1.[ShortChar01] as QuoteHed_ShortChar01, T1.[ShortChar02] as QuoteHed_ShortChar02, T1.[ShortChar03] as QuoteHed_ShortChar03, T1.[ShortChar04] as QuoteHed_ShortChar04, T1.[ShortChar05] as QuoteHed_ShortChar05, T1.[ShortChar06] as QuoteHed_ShortChar06, T1.[ShortChar07] as QuoteHed_ShortChar07, T1.[ShortChar08] as QuoteHed_ShortChar08, T1.[ShortChar09] as QuoteHed_ShortChar09, T1.[ShortChar10] as QuoteHed_ShortChar10, T1.[ShortChar11] as QuoteHed_ShortChar11, T1.[ShortChar12] as QuoteHed_ShortChar12, T1.[ShortChar13] as QuoteHed_ShortChar13, T1.[ShortChar14] as QuoteHed_ShortChar14, T1.[ShortChar15] as QuoteHed_ShortChar15, T1.[ShortChar16] as QuoteHed_ShortChar16, T1.[ShortChar17] as QuoteHed_ShortChar17, T1.[ShortChar18] as QuoteHed_ShortChar18, T1.[ShortChar19] as QuoteHed_ShortChar19, T1.[ShortChar20] as QuoteHed_ShortChar20, T1.[Customer_Character09] as QuoteHed_Customer_Character09, T1.[Customer_Character10] as QuoteHed_Customer_Character10, T2.[Character01] as QuoteDtl_Character01, T2.[Character02] as QuoteDtl_Character02, T2.[Character03] as QuoteDtl_Character03, T2.[Character04] as QuoteDtl_Character04, T2.[Character05] as QuoteDtl_Character05, T2.[CheckBox01] as QuoteDtl_CheckBox01, T2.[CheckBox02] as QuoteDtl_CheckBox02, T2.[CheckBox03] as QuoteDtl_CheckBox03, T2.[CheckBox04] as QuoteDtl_CheckBox04, T2.[CheckBox05] as QuoteDtl_CheckBox05, T2.[Date01] as QuoteDtl_Date01, T2.[Date02] as QuoteDtl_Date02, T2.[Number01] as QuoteDtl_Number01, T2.[Number02] as QuoteDtl_Number02, T2.[Number03] as QuoteDtl_Number03, T2.[Number04] as QuoteDtl_Number04, T2.[Number05] as QuoteDtl_Number05, T2.[Number06] as QuoteDtl_Number06, T2.[Number07] as QuoteDtl_Number07, T2.[Number08] as QuoteDtl_Number08, T2.[Number09] as QuoteDtl_Number09, T2.[Number10] as QuoteDtl_Number10, T2.[Number11] as QuoteDtl_Number11, T2.[Number12] as QuoteDtl_Number12, T2.[Number13] as QuoteDtl_Number13, T2.[Number14] as QuoteDtl_Number14, T2.[Number15] as QuoteDtl_Number15, T2.[Number16] as QuoteDtl_Number16, T2.[Number17] as QuoteDtl_Number17, T2.[Number18] as QuoteDtl_Number18, T2.[Number19] as QuoteDtl_Number19, T2.[Number20] as QuoteDtl_Number20, T2.[ShortChar01] as QuoteDtl_ShortChar01, T2.[ShortChar02] as QuoteDtl_ShortChar02, T2.[ShortChar03] as QuoteDtl_ShortChar03, T2.[ShortChar04] as QuoteDtl_ShortChar04, T2.[ShortChar05] as QuoteDtl_ShortChar05, T2.[ShortChar06] as QuoteDtl_ShortChar06, T2.[ShortChar07] as QuoteDtl_ShortChar07, T2.[ShortChar08] as QuoteDtl_ShortChar08, T2.[ShortChar09] as QuoteDtl_ShortChar09, T2.[ShortChar10] as QuoteDtl_ShortChar10, T4.[PbsPartGroupLevel1_c] as Part_PbsPartGroupLevel1_c, T4.[PbsPartGroupLevel2_c] as Part_PbsPartGroupLevel2_c, T4.[PbsPartGroupLevel3_c] as Part_PbsPartGroupLevel3_c, T3.[Character01] as QuoteQty_Character01, T3.[Character02] as QuoteQty_Character02, T3.[Character03] as QuoteQty_Character03, T3.[CheckBox01] as QuoteQty_CheckBox01, T3.[CheckBox02] as QuoteQty_CheckBox02, T3.[CheckBox03] as QuoteQty_CheckBox03, T3.[CheckBox04] as QuoteQty_CheckBox04, T3.[CheckBox05] as QuoteQty_CheckBox05, T3.[Number01] as QuoteQty_Number01, T3.[Number02] as QuoteQty_Number02, T3.[Number03] as QuoteQty_Number03, T3.[Number04] as QuoteQty_Number04, T3.[Number05] as QuoteQty_Number05, T8.[Description]
  FROM QuoteHed_" + Parameters!TableGuid.Value + " T1  
           
 LEFT OUTER JOIN QuoteDtl_" + Parameters!TableGuid.Value + " T2  ON T1.Company = T2.Company AND T1.QuoteNum = T2.QuoteNum
@@ -5284,6 +5294,638 @@ ON T2.Company = T3.Company AND T2.QuoteNum = T3.QuoteNum AND T2.QuoteLine = T3.Q
           <DataField>CountryNum</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="CheckOff1">
+          <DataField>CheckOff1</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="CheckOff2">
+          <DataField>CheckOff2</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character01">
+          <DataField>QuoteHed_Character01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character02">
+          <DataField>QuoteHed_Character02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character03">
+          <DataField>QuoteHed_Character03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character04">
+          <DataField>QuoteHed_Character04</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character05">
+          <DataField>QuoteHed_Character05</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character06">
+          <DataField>QuoteHed_Character06</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character07">
+          <DataField>QuoteHed_Character07</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character08">
+          <DataField>QuoteHed_Character08</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character09">
+          <DataField>QuoteHed_Character09</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character10">
+          <DataField>QuoteHed_Character10</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character11">
+          <DataField>QuoteHed_Character11</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character12">
+          <DataField>QuoteHed_Character12</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character13">
+          <DataField>QuoteHed_Character13</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character14">
+          <DataField>QuoteHed_Character14</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character15">
+          <DataField>QuoteHed_Character15</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox01">
+          <DataField>QuoteHed_CheckBox01</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox02">
+          <DataField>QuoteHed_CheckBox02</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox03">
+          <DataField>QuoteHed_CheckBox03</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox04">
+          <DataField>QuoteHed_CheckBox04</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox05">
+          <DataField>QuoteHed_CheckBox05</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox06">
+          <DataField>QuoteHed_CheckBox06</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox07">
+          <DataField>QuoteHed_CheckBox07</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox08">
+          <DataField>QuoteHed_CheckBox08</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox09">
+          <DataField>QuoteHed_CheckBox09</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox10">
+          <DataField>QuoteHed_CheckBox10</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox11">
+          <DataField>QuoteHed_CheckBox11</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox12">
+          <DataField>QuoteHed_CheckBox12</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox13">
+          <DataField>QuoteHed_CheckBox13</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox14">
+          <DataField>QuoteHed_CheckBox14</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox15">
+          <DataField>QuoteHed_CheckBox15</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox16">
+          <DataField>QuoteHed_CheckBox16</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox17">
+          <DataField>QuoteHed_CheckBox17</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox18">
+          <DataField>QuoteHed_CheckBox18</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox19">
+          <DataField>QuoteHed_CheckBox19</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox20">
+          <DataField>QuoteHed_CheckBox20</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date01">
+          <DataField>QuoteHed_Date01</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date02">
+          <DataField>QuoteHed_Date02</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date03">
+          <DataField>QuoteHed_Date03</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date04">
+          <DataField>QuoteHed_Date04</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date05">
+          <DataField>QuoteHed_Date05</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date06">
+          <DataField>QuoteHed_Date06</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date07">
+          <DataField>QuoteHed_Date07</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date08">
+          <DataField>QuoteHed_Date08</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date09">
+          <DataField>QuoteHed_Date09</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date10">
+          <DataField>QuoteHed_Date10</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date11">
+          <DataField>QuoteHed_Date11</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date12">
+          <DataField>QuoteHed_Date12</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date13">
+          <DataField>QuoteHed_Date13</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date14">
+          <DataField>QuoteHed_Date14</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date15">
+          <DataField>QuoteHed_Date15</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date16">
+          <DataField>QuoteHed_Date16</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date17">
+          <DataField>QuoteHed_Date17</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date18">
+          <DataField>QuoteHed_Date18</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date19">
+          <DataField>QuoteHed_Date19</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date20">
+          <DataField>QuoteHed_Date20</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number01">
+          <DataField>QuoteHed_Number01</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number02">
+          <DataField>QuoteHed_Number02</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number03">
+          <DataField>QuoteHed_Number03</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number04">
+          <DataField>QuoteHed_Number04</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number05">
+          <DataField>QuoteHed_Number05</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number06">
+          <DataField>QuoteHed_Number06</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number07">
+          <DataField>QuoteHed_Number07</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number08">
+          <DataField>QuoteHed_Number08</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number09">
+          <DataField>QuoteHed_Number09</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number10">
+          <DataField>QuoteHed_Number10</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number11">
+          <DataField>QuoteHed_Number11</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number12">
+          <DataField>QuoteHed_Number12</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number13">
+          <DataField>QuoteHed_Number13</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number14">
+          <DataField>QuoteHed_Number14</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number15">
+          <DataField>QuoteHed_Number15</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number16">
+          <DataField>QuoteHed_Number16</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number17">
+          <DataField>QuoteHed_Number17</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number18">
+          <DataField>QuoteHed_Number18</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number19">
+          <DataField>QuoteHed_Number19</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number20">
+          <DataField>QuoteHed_Number20</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar01">
+          <DataField>QuoteHed_ShortChar01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar02">
+          <DataField>QuoteHed_ShortChar02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar03">
+          <DataField>QuoteHed_ShortChar03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar04">
+          <DataField>QuoteHed_ShortChar04</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar05">
+          <DataField>QuoteHed_ShortChar05</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar06">
+          <DataField>QuoteHed_ShortChar06</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar07">
+          <DataField>QuoteHed_ShortChar07</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar08">
+          <DataField>QuoteHed_ShortChar08</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar09">
+          <DataField>QuoteHed_ShortChar09</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar10">
+          <DataField>QuoteHed_ShortChar10</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar11">
+          <DataField>QuoteHed_ShortChar11</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar12">
+          <DataField>QuoteHed_ShortChar12</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar13">
+          <DataField>QuoteHed_ShortChar13</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar14">
+          <DataField>QuoteHed_ShortChar14</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar15">
+          <DataField>QuoteHed_ShortChar15</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar16">
+          <DataField>QuoteHed_ShortChar16</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar17">
+          <DataField>QuoteHed_ShortChar17</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar18">
+          <DataField>QuoteHed_ShortChar18</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar19">
+          <DataField>QuoteHed_ShortChar19</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar20">
+          <DataField>QuoteHed_ShortChar20</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Customer_Character09">
+          <DataField>QuoteHed_Customer_Character09</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Customer_Character10">
+          <DataField>QuoteHed_Customer_Character10</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Character01">
+          <DataField>QuoteDtl_Character01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Character02">
+          <DataField>QuoteDtl_Character02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Character03">
+          <DataField>QuoteDtl_Character03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Character04">
+          <DataField>QuoteDtl_Character04</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Character05">
+          <DataField>QuoteDtl_Character05</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_CheckBox01">
+          <DataField>QuoteDtl_CheckBox01</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_CheckBox02">
+          <DataField>QuoteDtl_CheckBox02</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_CheckBox03">
+          <DataField>QuoteDtl_CheckBox03</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_CheckBox04">
+          <DataField>QuoteDtl_CheckBox04</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_CheckBox05">
+          <DataField>QuoteDtl_CheckBox05</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Date01">
+          <DataField>QuoteDtl_Date01</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Date02">
+          <DataField>QuoteDtl_Date02</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number01">
+          <DataField>QuoteDtl_Number01</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number02">
+          <DataField>QuoteDtl_Number02</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number03">
+          <DataField>QuoteDtl_Number03</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number04">
+          <DataField>QuoteDtl_Number04</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number05">
+          <DataField>QuoteDtl_Number05</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number06">
+          <DataField>QuoteDtl_Number06</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number07">
+          <DataField>QuoteDtl_Number07</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number08">
+          <DataField>QuoteDtl_Number08</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number09">
+          <DataField>QuoteDtl_Number09</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number10">
+          <DataField>QuoteDtl_Number10</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number11">
+          <DataField>QuoteDtl_Number11</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number12">
+          <DataField>QuoteDtl_Number12</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number13">
+          <DataField>QuoteDtl_Number13</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number14">
+          <DataField>QuoteDtl_Number14</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number15">
+          <DataField>QuoteDtl_Number15</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number16">
+          <DataField>QuoteDtl_Number16</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number17">
+          <DataField>QuoteDtl_Number17</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number18">
+          <DataField>QuoteDtl_Number18</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number19">
+          <DataField>QuoteDtl_Number19</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number20">
+          <DataField>QuoteDtl_Number20</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar01">
+          <DataField>QuoteDtl_ShortChar01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar02">
+          <DataField>QuoteDtl_ShortChar02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar03">
+          <DataField>QuoteDtl_ShortChar03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar04">
+          <DataField>QuoteDtl_ShortChar04</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar05">
+          <DataField>QuoteDtl_ShortChar05</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar06">
+          <DataField>QuoteDtl_ShortChar06</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar07">
+          <DataField>QuoteDtl_ShortChar07</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar08">
+          <DataField>QuoteDtl_ShortChar08</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar09">
+          <DataField>QuoteDtl_ShortChar09</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar10">
+          <DataField>QuoteDtl_ShortChar10</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Part_PbsPartGroupLevel1_c">
+          <DataField>Part_PbsPartGroupLevel1_c</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Part_PbsPartGroupLevel2_c">
+          <DataField>Part_PbsPartGroupLevel2_c</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Part_PbsPartGroupLevel3_c">
+          <DataField>Part_PbsPartGroupLevel3_c</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Character01">
+          <DataField>QuoteQty_Character01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Character02">
+          <DataField>QuoteQty_Character02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Character03">
+          <DataField>QuoteQty_Character03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_CheckBox01">
+          <DataField>QuoteQty_CheckBox01</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_CheckBox02">
+          <DataField>QuoteQty_CheckBox02</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_CheckBox03">
+          <DataField>QuoteQty_CheckBox03</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_CheckBox04">
+          <DataField>QuoteQty_CheckBox04</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_CheckBox05">
+          <DataField>QuoteQty_CheckBox05</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Number01">
+          <DataField>QuoteQty_Number01</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Number02">
+          <DataField>QuoteQty_Number02</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Number03">
+          <DataField>QuoteQty_Number03</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Number04">
+          <DataField>QuoteQty_Number04</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Number05">
+          <DataField>QuoteQty_Number05</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="SalesPerson">
@@ -5294,6 +5936,7 @@ ON T2.Company = T3.Company AND T2.QuoteNum = T3.QuoteNum AND T2.QuoteLine = T3.Q
 , T2.[ShipToNum], T3.[BestCsRevenue], T3.[ContractCode], T3.[ContractID], T3.[ContractNum], T3.[CreateEstimate], T3.[DemandContractLine], T3.[DemandDtlSeq], T3.[DemandHedSeq], T3.[DiscBreakListCode], T3.[DiscListPrice], T3.[DiscountPercent], T3.[DisplaySeq], T3.[DocBestCsRevenue], T3.[DocDiscount], T3.[DocEndCustomerPrice], T3.[DocExpUnitPrice], T3.[DocExtPriceDtl], T3.[DocInDiscount], T3.[DocInExpectedRevenue], T3.[DocInExpUnitPrice], T3.[DocInExtPriceDtl], T3.[DocInListPrice], T3.[DocInOrdBasedPrice], T3.[DocMSRP], T3.[DocPromotionalPrice], T3.[DocWorstCsRevenue], T3.[DrawNum], T3.[ECCQuoteLine], T3.[EndCustomerPrice], T3.[EntityUseCode], T3.[EstimateGUID], T3.[EstimateUserID], T3.[ExternalCRMQuoteLineID], T3.[ExternalMES], T3.[ExtPriceDtl], T3.[GroupSeq], T3.[ICPOLine], T3.[InDiscount], T3.[InExpectedRevenue], T3.[InExpUnitPrice], T3.[InExtPriceDtl], T3.[InListPrice], T3.[InOrdBasedPrice], T3.[KitAllowUpdate], T3.[KitBackFlush], T3.[KitCompOrigPart], T3.[KitCompOrigSeq], T3.[KitFlag], T3.[KitParentLine], T3.[KitPricing], T3.[KitPrintCompsInv], T3.[KitPrintCompsPS], T3.[KitQtyPer], T3.[KitShipComplete], T3.[KitsLoaded], T3.[LeadTime], T3.[LineDesc], T3.[LineType], T3.[LockPrice], T3.[MakeDirect], T3.[MFCustNum], T3.[MFShipToNum], T3.[MSRP], T3.[NoTaxRecalc], T3.[OTMFAddress1], T3.[OTMFAddress2], T3.[OTMFAddress3], T3.[OTMFCity], T3.[OTMFContact], T3.[OTMFCountryNum], T3.[OTMFFaxNum], T3.[OTMFName], T3.[OTMFPhoneNum], T3.[OTMFState], T3.[OTMFZIP], T3.[OverrideDiscPriceList], T3.[OwnershipStatus], T3.[PartNum], T3.[PCLinkRemoved], T3.[PhaseID], T3.[ProcessMode], T3.[ProjectID], T3.[PromotionalPrice], T3.[QuoteLine], T3.[Rating], T3.[RenewalNbr], T3.[ReturnLineType], T3.[RevisionNum], T3.[RFQCurrBaseEst], T3.[RFQTemplate], T3.[Rpt1BestCsRevenue], T3.[Rpt1Discount], T3.[Rpt1EndCustomerPrice], T3.[Rpt1ExpectedRevenue], T3.[Rpt1ExpUnitPrice], T3.[Rpt1ExtPriceDtl], T3.[Rpt1InDiscount], T3.[Rpt1InExpectedRevenue], T3.[Rpt1InExpUnitPrice], T3.[Rpt1InExtPriceDtl], T3.[Rpt1InListPrice], T3.[Rpt1InOrdBasedPrice], T3.[Rpt1ListPrice], T3.[Rpt1MSRP], T3.[Rpt1OrdBasedPrice], T3.[Rpt1PromotionalPrice], T3.[Rpt1WorstCsRevenue], T3.[Rpt2BestCsRevenue], T3.[Rpt2Discount], T3.[Rpt2EndCustomerPrice], T3.[Rpt2ExpectedRevenue], T3.[Rpt2ExpUnitPrice], T3.[Rpt2ExtPriceDtl], T3.[Rpt2InDiscount], T3.[Rpt2InExpectedRevenue], T3.[Rpt2InExpUnitPrice], T3.[Rpt2InExtPriceDtl], T3.[Rpt2InListPrice], T3.[Rpt2InOrdBasedPrice], T3.[Rpt2ListPrice], T3.[Rpt2MSRP], T3.[Rpt2OrdBasedPrice], T3.[Rpt2PromotionalPrice], T3.[Rpt2WorstCsRevenue], T3.[Rpt3BestCsRevenue], T3.[Rpt3Discount], T3.[Rpt3EndCustomerPrice], T3.[Rpt3ExpectedRevenue], T3.[Rpt3ExpUnitPrice], T3.[Rpt3ExtPriceDtl], T3.[Rpt3InDiscount], T3.[Rpt3InExpectedRevenue], T3.[Rpt3InExpUnitPrice], T3.[Rpt3InExtPriceDtl], T3.[Rpt3InListPrice], T3.[Rpt3InOrdBasedPrice], T3.[Rpt3ListPrice], T3.[Rpt3MSRP], T3.[Rpt3OrdBasedPrice], T3.[Rpt3PromotionalPrice], T3.[Rpt3WorstCsRevenue], T3.[SellingExpectedQty], T3.[SellingExpectedUM], T3.[SellingFactorDirection], T3.[SmartString], T3.[SmartStringProcessed], T3.[TaxConnectCalc], T3.[TaxExempt], T3.[UseOTMF], T3.[VoidLine], T3.[Warranty], T3.[WarrantyCode], T3.[WarrantyComment], T3.[WorstCsRevenue], T3.[XPartNum], T3.[XRevisionNum], T3.[Calc_Duration], T3.[Calc_HasMisc], T3.[Calc_Labor], T3.[Calc_LineDesc], T3.[Calc_LineTaxAmt], T3.[Calc_Mate], T3.[Calc_Misc], T3.[Calc_Modifier], T3.[PartNum_MfgComment], T3.[PartNum_PartDescription], T3.[PartNum_PurComment], T3.[PartNum_TrackDimension], T3.[PartNum_TrackLots], T3.[PartNum_TrackSerialNum], T3.[PriceGroup_Description], T3.[ProdCode_Description], T3.[SalesCatID_Description], T3.[SellingExpectedUM_UOMSymbol], T3.[TaxCatID_Description], T3.[TerritoryID_TerritoryDesc], T4.[ClassID], T4.[IsServices], T4.[NetWeight], T4.[PEDetrGoodServiceCode], T4.[PEProductServiceCode], T4.[PbsPartGroupLevel1_c], T4.[PbsPartGroupLevel2_c], T4.[PbsPartGroupLevel3_c], T4.[Calc_ClassID], T5.[BillEndDate], T5.[BillStartDate], T5.[ContractLine], T5.[ContractQty], T5.[CustNum], T5.[DateInactivated], T5.[DateInvoiced], T5.[DocPricePerUnit], T5.[Inactive], T5.[IncreasePct], T5.[Invoiced], T5.[IUM], T5.[OrderLine], T5.[OrderNum], T5.[PricePerUnit], T5.[ProdCode], T5.[RefRenewalNbr], T5.[RenewalLine], T5.[Rpt1PricePerUnit], T5.[Rpt2PricePerUnit], T5.[Rpt3PricePerUnit], T5.[SoldOrderLine], T5.[SoldOrderNum], T5.[Calc_ContPrice], T5.[Calc_QuoteLine], T5.[Calc_QuoteNum], T6.[CommentText], T6.[ContractComment], T6.[ContractType], T6.[InvoiceComment], T7.[DocInUnitPrice], T7.[DocPricePerAdl1000], T7.[DocTotalSellPrice], T7.[DocUnitPrice], T7.[InUnitPrice], T7.[MarkUpID], T7.[PricePerAdl1000], T7.[PricePerCode], T7.[PriceSource], T7.[QtyNum], T7.[Rpt1InUnitPrice], T7.[Rpt1UnitPrice], T7.[Rpt2InUnitPrice], T7.[Rpt2UnitPrice], T7.[Rpt3InUnitPrice], T7.[Rpt3UnitPrice], T7.[SalesUM], T7.[SellingQuantity], T7.[TotalSellPrice], T7.[UnitPrice], T7.[UserChangedUnitPrice], T7.[Calc_NetPrice], T7.[Calc_QtyDiscAmt], T7.[Calc_UMDescription], T7.[SalesUM_UOMSymbol], T8.[Description], T8.[DocInMiscAmt], T8.[DocMiscAmt], T8.[FreqCode], T8.[InMiscAmt], T8.[MiscAmt], T8.[MiscCode], T8.[Percentage], T8.[Rpt1InMiscAmt], T8.[Rpt1MiscAmt], T8.[Rpt2InMiscAmt], T8.[Rpt2MiscAmt], T8.[Rpt3InMiscAmt], T8.[Rpt3MiscAmt], T8.[SeqNum], T8.[Type], T8.[MiscCode_Description], T9.[Address1], T9.[Address2], T9.[Address3], T9.[City], T9.[Country], T9.[State], T9.[ZIP]
 , T9.[FaxNum], T9.[PhoneNum]
 , T10.[CountryNum]
+, T2.[CheckOff1], T2.[CheckOff2], T2.[Character01] as QuoteHed_Character01, T2.[Character02] as QuoteHed_Character02, T2.[Character03] as QuoteHed_Character03, T2.[Character04] as QuoteHed_Character04, T2.[Character05] as QuoteHed_Character05, T2.[Character06] as QuoteHed_Character06, T2.[Character07] as QuoteHed_Character07, T2.[Character08] as QuoteHed_Character08, T2.[Character09] as QuoteHed_Character09, T2.[Character10] as QuoteHed_Character10, T2.[Character11] as QuoteHed_Character11, T2.[Character12] as QuoteHed_Character12, T2.[Character13] as QuoteHed_Character13, T2.[Character14] as QuoteHed_Character14, T2.[Character15] as QuoteHed_Character15, T2.[CheckBox01] as QuoteHed_CheckBox01, T2.[CheckBox02] as QuoteHed_CheckBox02, T2.[CheckBox03] as QuoteHed_CheckBox03, T2.[CheckBox04] as QuoteHed_CheckBox04, T2.[CheckBox05] as QuoteHed_CheckBox05, T2.[CheckBox06] as QuoteHed_CheckBox06, T2.[CheckBox07] as QuoteHed_CheckBox07, T2.[CheckBox08] as QuoteHed_CheckBox08, T2.[CheckBox09] as QuoteHed_CheckBox09, T2.[CheckBox10] as QuoteHed_CheckBox10, T2.[CheckBox11] as QuoteHed_CheckBox11, T2.[CheckBox12] as QuoteHed_CheckBox12, T2.[CheckBox13] as QuoteHed_CheckBox13, T2.[CheckBox14] as QuoteHed_CheckBox14, T2.[CheckBox15] as QuoteHed_CheckBox15, T2.[CheckBox16] as QuoteHed_CheckBox16, T2.[CheckBox17] as QuoteHed_CheckBox17, T2.[CheckBox18] as QuoteHed_CheckBox18, T2.[CheckBox19] as QuoteHed_CheckBox19, T2.[CheckBox20] as QuoteHed_CheckBox20, T2.[Date01] as QuoteHed_Date01, T2.[Date02] as QuoteHed_Date02, T2.[Date03] as QuoteHed_Date03, T2.[Date04] as QuoteHed_Date04, T2.[Date05] as QuoteHed_Date05, T2.[Date06] as QuoteHed_Date06, T2.[Date07] as QuoteHed_Date07, T2.[Date08] as QuoteHed_Date08, T2.[Date09] as QuoteHed_Date09, T2.[Date10] as QuoteHed_Date10, T2.[Date11] as QuoteHed_Date11, T2.[Date12] as QuoteHed_Date12, T2.[Date13] as QuoteHed_Date13, T2.[Date14] as QuoteHed_Date14, T2.[Date15] as QuoteHed_Date15, T2.[Date16] as QuoteHed_Date16, T2.[Date17] as QuoteHed_Date17, T2.[Date18] as QuoteHed_Date18, T2.[Date19] as QuoteHed_Date19, T2.[Date20] as QuoteHed_Date20, T2.[Number01] as QuoteHed_Number01, T2.[Number02] as QuoteHed_Number02, T2.[Number03] as QuoteHed_Number03, T2.[Number04] as QuoteHed_Number04, T2.[Number05] as QuoteHed_Number05, T2.[Number06] as QuoteHed_Number06, T2.[Number07] as QuoteHed_Number07, T2.[Number08] as QuoteHed_Number08, T2.[Number09] as QuoteHed_Number09, T2.[Number10] as QuoteHed_Number10, T2.[Number11] as QuoteHed_Number11, T2.[Number12] as QuoteHed_Number12, T2.[Number13] as QuoteHed_Number13, T2.[Number14] as QuoteHed_Number14, T2.[Number15] as QuoteHed_Number15, T2.[Number16] as QuoteHed_Number16, T2.[Number17] as QuoteHed_Number17, T2.[Number18] as QuoteHed_Number18, T2.[Number19] as QuoteHed_Number19, T2.[Number20] as QuoteHed_Number20, T2.[ShortChar01] as QuoteHed_ShortChar01, T2.[ShortChar02] as QuoteHed_ShortChar02, T2.[ShortChar03] as QuoteHed_ShortChar03, T2.[ShortChar04] as QuoteHed_ShortChar04, T2.[ShortChar05] as QuoteHed_ShortChar05, T2.[ShortChar06] as QuoteHed_ShortChar06, T2.[ShortChar07] as QuoteHed_ShortChar07, T2.[ShortChar08] as QuoteHed_ShortChar08, T2.[ShortChar09] as QuoteHed_ShortChar09, T2.[ShortChar10] as QuoteHed_ShortChar10, T2.[ShortChar11] as QuoteHed_ShortChar11, T2.[ShortChar12] as QuoteHed_ShortChar12, T2.[ShortChar13] as QuoteHed_ShortChar13, T2.[ShortChar14] as QuoteHed_ShortChar14, T2.[ShortChar15] as QuoteHed_ShortChar15, T2.[ShortChar16] as QuoteHed_ShortChar16, T2.[ShortChar17] as QuoteHed_ShortChar17, T2.[ShortChar18] as QuoteHed_ShortChar18, T2.[ShortChar19] as QuoteHed_ShortChar19, T2.[ShortChar20] as QuoteHed_ShortChar20, T2.[Customer_Character09] as QuoteHed_Customer_Character09, T2.[Customer_Character10] as QuoteHed_Customer_Character10, T3.[Character01] as QuoteDtl_Character01, T3.[Character02] as QuoteDtl_Character02, T3.[Character03] as QuoteDtl_Character03, T3.[Character04] as QuoteDtl_Character04, T3.[Character05] as QuoteDtl_Character05, T3.[CheckBox01] as QuoteDtl_CheckBox01, T3.[CheckBox02] as QuoteDtl_CheckBox02, T3.[CheckBox03] as QuoteDtl_CheckBox03, T3.[CheckBox04] as QuoteDtl_CheckBox04, T3.[CheckBox05] as QuoteDtl_CheckBox05, T3.[Date01] as QuoteDtl_Date01, T3.[Date02] as QuoteDtl_Date02, T3.[Number01] as QuoteDtl_Number01, T3.[Number02] as QuoteDtl_Number02, T3.[Number03] as QuoteDtl_Number03, T3.[Number04] as QuoteDtl_Number04, T3.[Number05] as QuoteDtl_Number05, T3.[Number06] as QuoteDtl_Number06, T3.[Number07] as QuoteDtl_Number07, T3.[Number08] as QuoteDtl_Number08, T3.[Number09] as QuoteDtl_Number09, T3.[Number10] as QuoteDtl_Number10, T3.[Number11] as QuoteDtl_Number11, T3.[Number12] as QuoteDtl_Number12, T3.[Number13] as QuoteDtl_Number13, T3.[Number14] as QuoteDtl_Number14, T3.[Number15] as QuoteDtl_Number15, T3.[Number16] as QuoteDtl_Number16, T3.[Number17] as QuoteDtl_Number17, T3.[Number18] as QuoteDtl_Number18, T3.[Number19] as QuoteDtl_Number19, T3.[Number20] as QuoteDtl_Number20, T3.[ShortChar01] as QuoteDtl_ShortChar01, T3.[ShortChar02] as QuoteDtl_ShortChar02, T3.[ShortChar03] as QuoteDtl_ShortChar03, T3.[ShortChar04] as QuoteDtl_ShortChar04, T3.[ShortChar05] as QuoteDtl_ShortChar05, T3.[ShortChar06] as QuoteDtl_ShortChar06, T3.[ShortChar07] as QuoteDtl_ShortChar07, T3.[ShortChar08] as QuoteDtl_ShortChar08, T3.[ShortChar09] as QuoteDtl_ShortChar09, T3.[ShortChar10] as QuoteDtl_ShortChar10, T4.[PbsPartGroupLevel1_c] as Part_PbsPartGroupLevel1_c, T4.[PbsPartGroupLevel2_c] as Part_PbsPartGroupLevel2_c, T4.[PbsPartGroupLevel3_c] as Part_PbsPartGroupLevel3_c, T7.[Character01] as QuoteQty_Character01, T7.[Character02] as QuoteQty_Character02, T7.[Character03] as QuoteQty_Character03, T7.[CheckBox01] as QuoteQty_CheckBox01, T7.[CheckBox02] as QuoteQty_CheckBox02, T7.[CheckBox03] as QuoteQty_CheckBox03, T7.[CheckBox04] as QuoteQty_CheckBox04, T7.[CheckBox05] as QuoteQty_CheckBox05, T7.[Number01] as QuoteQty_Number01, T7.[Number02] as QuoteQty_Number02, T7.[Number03] as QuoteQty_Number03, T7.[Number04] as QuoteQty_Number04, T7.[Number05] as QuoteQty_Number05
  FROM QSalesRP_" + Parameters!TableGuid.Value + " T1
  LEFT OUTER JOIN QuoteHed_" + Parameters!TableGuid.Value + " T2 ON  T2.[Company] = T1.[Company] AND T2.[QuoteNum] = T1.[QuoteNum]
 
@@ -7802,12 +8445,641 @@ ON T2.Company = T3.Company AND T2.QuoteNum = T3.QuoteNum AND T2.QuoteLine = T3.Q
           <DataField>CountryNum</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="CheckOff1">
+          <DataField>CheckOff1</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="CheckOff2">
+          <DataField>CheckOff2</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character01">
+          <DataField>QuoteHed_Character01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character02">
+          <DataField>QuoteHed_Character02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character03">
+          <DataField>QuoteHed_Character03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character04">
+          <DataField>QuoteHed_Character04</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character05">
+          <DataField>QuoteHed_Character05</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character06">
+          <DataField>QuoteHed_Character06</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character07">
+          <DataField>QuoteHed_Character07</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character08">
+          <DataField>QuoteHed_Character08</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character09">
+          <DataField>QuoteHed_Character09</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character10">
+          <DataField>QuoteHed_Character10</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character11">
+          <DataField>QuoteHed_Character11</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character12">
+          <DataField>QuoteHed_Character12</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character13">
+          <DataField>QuoteHed_Character13</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character14">
+          <DataField>QuoteHed_Character14</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Character15">
+          <DataField>QuoteHed_Character15</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox01">
+          <DataField>QuoteHed_CheckBox01</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox02">
+          <DataField>QuoteHed_CheckBox02</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox03">
+          <DataField>QuoteHed_CheckBox03</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox04">
+          <DataField>QuoteHed_CheckBox04</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox05">
+          <DataField>QuoteHed_CheckBox05</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox06">
+          <DataField>QuoteHed_CheckBox06</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox07">
+          <DataField>QuoteHed_CheckBox07</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox08">
+          <DataField>QuoteHed_CheckBox08</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox09">
+          <DataField>QuoteHed_CheckBox09</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox10">
+          <DataField>QuoteHed_CheckBox10</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox11">
+          <DataField>QuoteHed_CheckBox11</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox12">
+          <DataField>QuoteHed_CheckBox12</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox13">
+          <DataField>QuoteHed_CheckBox13</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox14">
+          <DataField>QuoteHed_CheckBox14</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox15">
+          <DataField>QuoteHed_CheckBox15</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox16">
+          <DataField>QuoteHed_CheckBox16</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox17">
+          <DataField>QuoteHed_CheckBox17</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox18">
+          <DataField>QuoteHed_CheckBox18</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox19">
+          <DataField>QuoteHed_CheckBox19</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_CheckBox20">
+          <DataField>QuoteHed_CheckBox20</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date01">
+          <DataField>QuoteHed_Date01</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date02">
+          <DataField>QuoteHed_Date02</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date03">
+          <DataField>QuoteHed_Date03</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date04">
+          <DataField>QuoteHed_Date04</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date05">
+          <DataField>QuoteHed_Date05</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date06">
+          <DataField>QuoteHed_Date06</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date07">
+          <DataField>QuoteHed_Date07</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date08">
+          <DataField>QuoteHed_Date08</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date09">
+          <DataField>QuoteHed_Date09</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date10">
+          <DataField>QuoteHed_Date10</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date11">
+          <DataField>QuoteHed_Date11</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date12">
+          <DataField>QuoteHed_Date12</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date13">
+          <DataField>QuoteHed_Date13</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date14">
+          <DataField>QuoteHed_Date14</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date15">
+          <DataField>QuoteHed_Date15</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date16">
+          <DataField>QuoteHed_Date16</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date17">
+          <DataField>QuoteHed_Date17</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date18">
+          <DataField>QuoteHed_Date18</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date19">
+          <DataField>QuoteHed_Date19</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Date20">
+          <DataField>QuoteHed_Date20</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number01">
+          <DataField>QuoteHed_Number01</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number02">
+          <DataField>QuoteHed_Number02</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number03">
+          <DataField>QuoteHed_Number03</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number04">
+          <DataField>QuoteHed_Number04</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number05">
+          <DataField>QuoteHed_Number05</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number06">
+          <DataField>QuoteHed_Number06</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number07">
+          <DataField>QuoteHed_Number07</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number08">
+          <DataField>QuoteHed_Number08</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number09">
+          <DataField>QuoteHed_Number09</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number10">
+          <DataField>QuoteHed_Number10</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number11">
+          <DataField>QuoteHed_Number11</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number12">
+          <DataField>QuoteHed_Number12</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number13">
+          <DataField>QuoteHed_Number13</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number14">
+          <DataField>QuoteHed_Number14</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number15">
+          <DataField>QuoteHed_Number15</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number16">
+          <DataField>QuoteHed_Number16</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number17">
+          <DataField>QuoteHed_Number17</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number18">
+          <DataField>QuoteHed_Number18</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number19">
+          <DataField>QuoteHed_Number19</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Number20">
+          <DataField>QuoteHed_Number20</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar01">
+          <DataField>QuoteHed_ShortChar01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar02">
+          <DataField>QuoteHed_ShortChar02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar03">
+          <DataField>QuoteHed_ShortChar03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar04">
+          <DataField>QuoteHed_ShortChar04</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar05">
+          <DataField>QuoteHed_ShortChar05</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar06">
+          <DataField>QuoteHed_ShortChar06</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar07">
+          <DataField>QuoteHed_ShortChar07</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar08">
+          <DataField>QuoteHed_ShortChar08</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar09">
+          <DataField>QuoteHed_ShortChar09</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar10">
+          <DataField>QuoteHed_ShortChar10</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar11">
+          <DataField>QuoteHed_ShortChar11</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar12">
+          <DataField>QuoteHed_ShortChar12</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar13">
+          <DataField>QuoteHed_ShortChar13</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar14">
+          <DataField>QuoteHed_ShortChar14</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar15">
+          <DataField>QuoteHed_ShortChar15</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar16">
+          <DataField>QuoteHed_ShortChar16</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar17">
+          <DataField>QuoteHed_ShortChar17</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar18">
+          <DataField>QuoteHed_ShortChar18</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar19">
+          <DataField>QuoteHed_ShortChar19</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_ShortChar20">
+          <DataField>QuoteHed_ShortChar20</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Customer_Character09">
+          <DataField>QuoteHed_Customer_Character09</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteHed_Customer_Character10">
+          <DataField>QuoteHed_Customer_Character10</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Character01">
+          <DataField>QuoteDtl_Character01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Character02">
+          <DataField>QuoteDtl_Character02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Character03">
+          <DataField>QuoteDtl_Character03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Character04">
+          <DataField>QuoteDtl_Character04</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Character05">
+          <DataField>QuoteDtl_Character05</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_CheckBox01">
+          <DataField>QuoteDtl_CheckBox01</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_CheckBox02">
+          <DataField>QuoteDtl_CheckBox02</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_CheckBox03">
+          <DataField>QuoteDtl_CheckBox03</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_CheckBox04">
+          <DataField>QuoteDtl_CheckBox04</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_CheckBox05">
+          <DataField>QuoteDtl_CheckBox05</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Date01">
+          <DataField>QuoteDtl_Date01</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Date02">
+          <DataField>QuoteDtl_Date02</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number01">
+          <DataField>QuoteDtl_Number01</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number02">
+          <DataField>QuoteDtl_Number02</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number03">
+          <DataField>QuoteDtl_Number03</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number04">
+          <DataField>QuoteDtl_Number04</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number05">
+          <DataField>QuoteDtl_Number05</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number06">
+          <DataField>QuoteDtl_Number06</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number07">
+          <DataField>QuoteDtl_Number07</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number08">
+          <DataField>QuoteDtl_Number08</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number09">
+          <DataField>QuoteDtl_Number09</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number10">
+          <DataField>QuoteDtl_Number10</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number11">
+          <DataField>QuoteDtl_Number11</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number12">
+          <DataField>QuoteDtl_Number12</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number13">
+          <DataField>QuoteDtl_Number13</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number14">
+          <DataField>QuoteDtl_Number14</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number15">
+          <DataField>QuoteDtl_Number15</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number16">
+          <DataField>QuoteDtl_Number16</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number17">
+          <DataField>QuoteDtl_Number17</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number18">
+          <DataField>QuoteDtl_Number18</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number19">
+          <DataField>QuoteDtl_Number19</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_Number20">
+          <DataField>QuoteDtl_Number20</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar01">
+          <DataField>QuoteDtl_ShortChar01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar02">
+          <DataField>QuoteDtl_ShortChar02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar03">
+          <DataField>QuoteDtl_ShortChar03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar04">
+          <DataField>QuoteDtl_ShortChar04</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar05">
+          <DataField>QuoteDtl_ShortChar05</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar06">
+          <DataField>QuoteDtl_ShortChar06</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar07">
+          <DataField>QuoteDtl_ShortChar07</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar08">
+          <DataField>QuoteDtl_ShortChar08</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar09">
+          <DataField>QuoteDtl_ShortChar09</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteDtl_ShortChar10">
+          <DataField>QuoteDtl_ShortChar10</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Part_PbsPartGroupLevel1_c">
+          <DataField>Part_PbsPartGroupLevel1_c</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Part_PbsPartGroupLevel2_c">
+          <DataField>Part_PbsPartGroupLevel2_c</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Part_PbsPartGroupLevel3_c">
+          <DataField>Part_PbsPartGroupLevel3_c</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Character01">
+          <DataField>QuoteQty_Character01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Character02">
+          <DataField>QuoteQty_Character02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Character03">
+          <DataField>QuoteQty_Character03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_CheckBox01">
+          <DataField>QuoteQty_CheckBox01</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_CheckBox02">
+          <DataField>QuoteQty_CheckBox02</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_CheckBox03">
+          <DataField>QuoteQty_CheckBox03</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_CheckBox04">
+          <DataField>QuoteQty_CheckBox04</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_CheckBox05">
+          <DataField>QuoteQty_CheckBox05</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Number01">
+          <DataField>QuoteQty_Number01</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Number02">
+          <DataField>QuoteQty_Number02</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Number03">
+          <DataField>QuoteQty_Number03</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Number04">
+          <DataField>QuoteQty_Number04</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="QuoteQty_Number05">
+          <DataField>QuoteQty_Number05</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="Company">
       <Query>
         <DataSourceName>dsQuotForm</DataSourceName>
         <CommandText>="SELECT  T1.[ActTypeCode], T1.[Address1], T1.[Address2], T1.[Address3], T1.[APBOECheck], T1.[ChiefAcctName], T1.[City], T1.[Company], T1.[COSequenceCert], T1.[Country], T1.[DeepCopy], T1.[DeepCopyDupOrRevEst], T1.[EpicorAccountNum], T1.[FiscalCalendarID], T1.[FRxPassWord], T1.[FrxUserid], T1.[LegalName], T1.[ManagerName], T1.[MapURL], T1.[MXMunicipio], T1.[Name], T1.[OrgRegCode], T1.[PhoneNum], T1.[ReportTypePref], T1.[SendToFSA], T1.[StartDate], T1.[State], T1.[TaxRegReason], T1.[WIApplication], T1.[WIAutoCreateJob], T1.[WIGetDetails], T1.[WIRelease], T1.[WISchedule], T1.[WIShippingCosts], T1.[Zip], T1.[Character01], T1.[Character02], T1.[Character03], T1.[Character04], T1.[Character05], T1.[Character06], T1.[Character07], T1.[Character08], T1.[Character09], T1.[Character10], T1.[CheckBox01], T1.[CheckBox02], T1.[CheckBox03], T1.[CheckBox04], T1.[CheckBox05], T1.[CheckBox06], T1.[CheckBox07], T1.[CheckBox08], T1.[CheckBox09], T1.[CheckBox10], T1.[CheckBox11], T1.[CheckBox12], T1.[CheckBox13], T1.[CheckBox14], T1.[CheckBox15], T1.[CheckBox16], T1.[CheckBox17], T1.[CheckBox18], T1.[CheckBox19], T1.[CheckBox20], T1.[Date01], T1.[Date02], T1.[Date03], T1.[Date04], T1.[Date05], T1.[Date06], T1.[Date07], T1.[Date08], T1.[Date09], T1.[Date10], T1.[Date11], T1.[Date12], T1.[Date13], T1.[Date14], T1.[Date15], T1.[Date16], T1.[Date17], T1.[Date18], T1.[Date19], T1.[Date20], T1.[Number01], T1.[Number02], T1.[Number03], T1.[Number04], T1.[Number05], T1.[Number06], T1.[Number07], T1.[Number08], T1.[Number09], T1.[Number10], T1.[Number11], T1.[Number12], T1.[Number13], T1.[Number14], T1.[Number15], T1.[Number16], T1.[Number17], T1.[Number18], T1.[Number19], T1.[Number20], T1.[ShortChar01], T1.[ShortChar02], T1.[ShortChar03], T1.[ShortChar04], T1.[ShortChar05], T1.[ShortChar06], T1.[ShortChar07], T1.[ShortChar08], T1.[ShortChar09], T1.[ShortChar10], T1.[TaxRegion_Description]
+, T1.[Character01] as Company_Character01, T1.[Character02] as Company_Character02, T1.[Character03] as Company_Character03, T1.[Character04] as Company_Character04, T1.[Character05] as Company_Character05, T1.[Character06] as Company_Character06, T1.[Character07] as Company_Character07, T1.[Character08] as Company_Character08, T1.[Character09] as Company_Character09, T1.[Character10] as Company_Character10, T1.[CheckBox01] as Company_CheckBox01, T1.[CheckBox02] as Company_CheckBox02, T1.[CheckBox03] as Company_CheckBox03, T1.[CheckBox04] as Company_CheckBox04, T1.[CheckBox05] as Company_CheckBox05, T1.[CheckBox06] as Company_CheckBox06, T1.[CheckBox07] as Company_CheckBox07, T1.[CheckBox08] as Company_CheckBox08, T1.[CheckBox09] as Company_CheckBox09, T1.[CheckBox10] as Company_CheckBox10, T1.[CheckBox11] as Company_CheckBox11, T1.[CheckBox12] as Company_CheckBox12, T1.[CheckBox13] as Company_CheckBox13, T1.[CheckBox14] as Company_CheckBox14, T1.[CheckBox15] as Company_CheckBox15, T1.[CheckBox16] as Company_CheckBox16, T1.[CheckBox17] as Company_CheckBox17, T1.[CheckBox18] as Company_CheckBox18, T1.[CheckBox19] as Company_CheckBox19, T1.[CheckBox20] as Company_CheckBox20, T1.[Date01] as Company_Date01, T1.[Date02] as Company_Date02, T1.[Date03] as Company_Date03, T1.[Date04] as Company_Date04, T1.[Date05] as Company_Date05, T1.[Date06] as Company_Date06, T1.[Date07] as Company_Date07, T1.[Date08] as Company_Date08, T1.[Date09] as Company_Date09, T1.[Date10] as Company_Date10, T1.[Date11] as Company_Date11, T1.[Date12] as Company_Date12, T1.[Date13] as Company_Date13, T1.[Date14] as Company_Date14, T1.[Date15] as Company_Date15, T1.[Date16] as Company_Date16, T1.[Date17] as Company_Date17, T1.[Date18] as Company_Date18, T1.[Date19] as Company_Date19, T1.[Date20] as Company_Date20, T1.[Number01] as Company_Number01, T1.[Number02] as Company_Number02, T1.[Number03] as Company_Number03, T1.[Number04] as Company_Number04, T1.[Number05] as Company_Number05, T1.[Number06] as Company_Number06, T1.[Number07] as Company_Number07, T1.[Number08] as Company_Number08, T1.[Number09] as Company_Number09, T1.[Number10] as Company_Number10, T1.[Number11] as Company_Number11, T1.[Number12] as Company_Number12, T1.[Number13] as Company_Number13, T1.[Number14] as Company_Number14, T1.[Number15] as Company_Number15, T1.[Number16] as Company_Number16, T1.[Number17] as Company_Number17, T1.[Number18] as Company_Number18, T1.[Number19] as Company_Number19, T1.[Number20] as Company_Number20, T1.[ShortChar01] as Company_ShortChar01, T1.[ShortChar02] as Company_ShortChar02, T1.[ShortChar03] as Company_ShortChar03, T1.[ShortChar04] as Company_ShortChar04, T1.[ShortChar05] as Company_ShortChar05, T1.[ShortChar06] as Company_ShortChar06, T1.[ShortChar07] as Company_ShortChar07, T1.[ShortChar08] as Company_ShortChar08, T1.[ShortChar09] as Company_ShortChar09, T1.[ShortChar10] as Company_ShortChar10
  FROM 
 Company_" + Parameters!TableGuid.Value + " T1
 "</CommandText>
@@ -8276,6 +9548,326 @@ Company_" + Parameters!TableGuid.Value + " T1
         </Field>
         <Field Name="TaxRegion_Description">
           <DataField>TaxRegion_Description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_Character01">
+          <DataField>Company_Character01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_Character02">
+          <DataField>Company_Character02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_Character03">
+          <DataField>Company_Character03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_Character04">
+          <DataField>Company_Character04</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_Character05">
+          <DataField>Company_Character05</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_Character06">
+          <DataField>Company_Character06</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_Character07">
+          <DataField>Company_Character07</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_Character08">
+          <DataField>Company_Character08</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_Character09">
+          <DataField>Company_Character09</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_Character10">
+          <DataField>Company_Character10</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox01">
+          <DataField>Company_CheckBox01</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox02">
+          <DataField>Company_CheckBox02</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox03">
+          <DataField>Company_CheckBox03</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox04">
+          <DataField>Company_CheckBox04</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox05">
+          <DataField>Company_CheckBox05</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox06">
+          <DataField>Company_CheckBox06</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox07">
+          <DataField>Company_CheckBox07</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox08">
+          <DataField>Company_CheckBox08</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox09">
+          <DataField>Company_CheckBox09</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox10">
+          <DataField>Company_CheckBox10</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox11">
+          <DataField>Company_CheckBox11</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox12">
+          <DataField>Company_CheckBox12</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox13">
+          <DataField>Company_CheckBox13</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox14">
+          <DataField>Company_CheckBox14</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox15">
+          <DataField>Company_CheckBox15</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox16">
+          <DataField>Company_CheckBox16</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox17">
+          <DataField>Company_CheckBox17</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox18">
+          <DataField>Company_CheckBox18</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox19">
+          <DataField>Company_CheckBox19</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_CheckBox20">
+          <DataField>Company_CheckBox20</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date01">
+          <DataField>Company_Date01</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date02">
+          <DataField>Company_Date02</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date03">
+          <DataField>Company_Date03</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date04">
+          <DataField>Company_Date04</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date05">
+          <DataField>Company_Date05</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date06">
+          <DataField>Company_Date06</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date07">
+          <DataField>Company_Date07</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date08">
+          <DataField>Company_Date08</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date09">
+          <DataField>Company_Date09</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date10">
+          <DataField>Company_Date10</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date11">
+          <DataField>Company_Date11</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date12">
+          <DataField>Company_Date12</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date13">
+          <DataField>Company_Date13</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date14">
+          <DataField>Company_Date14</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date15">
+          <DataField>Company_Date15</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date16">
+          <DataField>Company_Date16</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date17">
+          <DataField>Company_Date17</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date18">
+          <DataField>Company_Date18</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date19">
+          <DataField>Company_Date19</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Date20">
+          <DataField>Company_Date20</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number01">
+          <DataField>Company_Number01</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number02">
+          <DataField>Company_Number02</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number03">
+          <DataField>Company_Number03</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number04">
+          <DataField>Company_Number04</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number05">
+          <DataField>Company_Number05</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number06">
+          <DataField>Company_Number06</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number07">
+          <DataField>Company_Number07</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number08">
+          <DataField>Company_Number08</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number09">
+          <DataField>Company_Number09</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number10">
+          <DataField>Company_Number10</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number11">
+          <DataField>Company_Number11</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number12">
+          <DataField>Company_Number12</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number13">
+          <DataField>Company_Number13</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number14">
+          <DataField>Company_Number14</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number15">
+          <DataField>Company_Number15</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number16">
+          <DataField>Company_Number16</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number17">
+          <DataField>Company_Number17</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number18">
+          <DataField>Company_Number18</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number19">
+          <DataField>Company_Number19</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_Number20">
+          <DataField>Company_Number20</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Company_ShortChar01">
+          <DataField>Company_ShortChar01</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_ShortChar02">
+          <DataField>Company_ShortChar02</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_ShortChar03">
+          <DataField>Company_ShortChar03</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_ShortChar04">
+          <DataField>Company_ShortChar04</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_ShortChar05">
+          <DataField>Company_ShortChar05</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_ShortChar06">
+          <DataField>Company_ShortChar06</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_ShortChar07">
+          <DataField>Company_ShortChar07</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_ShortChar08">
+          <DataField>Company_ShortChar08</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_ShortChar09">
+          <DataField>Company_ShortChar09</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_ShortChar10">
+          <DataField>Company_ShortChar10</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -13325,6 +14917,18 @@ County, State of Pennsylvania.</Value>
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundImage>
+                <Source>Embedded</Source>
+                <Value>=iif(
+(First(Fields!CheckBox15.Value, "Quote") = true AND First(Fields!CheckOff1.Value, "Quote") = false)
+OR
+(First(Fields!CheckBox16.Value, "Quote") = true AND First(Fields!CheckOff2.Value, "Quote") = false)
+OR
+(First(Fields!CheckBox01.Value, "Quote") = true)
+OR
+(First(Fields!CheckBox02.Value, "Quote") = true)
+,"watermark","")</Value>
+              </BackgroundImage>
             </Style>
           </Tablix>
         </ReportItems>
@@ -13535,6 +15139,19 @@ County, State of Pennsylvania.</Value>
       <Prompt>TableGuid</Prompt>
     </ReportParameter>
   </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>1</NumberOfColumns>
+      <NumberOfRows>1</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>TableGuid</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>  Public Function SplitNextLine(ByVal strSplit As String) As String
         Dim strArr() As String
         Dim i As Integer
@@ -13750,6 +15367,52 @@ zz/CX/vMT4sf+lB9S/8A2Xe/f1k5d/6P9l/zni/6C69/rDe+X/hGea/+5RuH/bP17/Z5/hL/AN5ifFj/
 37r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3X0Z/5c//AGQd8Rv/ABAXW3/vN0XvLDlP/lWti/55Y/8Ajo6+bX7yX/T/AH3g/wDFhvf+rzdHQ9iDqEuve/de697917r3v3Xuv//XrA94X9fVv1737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+69173
 7r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+6919Gf+XP/wBkHfEb/wAQF1t/7zdF7yw5T/5VrYv+eWP/AI6Ovm1+8l/0/wB94P8AxYb3/q83R0PYg6hLr3v3Xuve/de697917r//0KwPeF/X1b9e9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737
 r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3XvfuvdfRn/lz/8AZB3xG/8AEBdbf+83Re8sOU/+Va2L/nlj/wCOjr5tfvJf9P8AfeD/AMWG9/6vN0dD2IOoS697917r3v3Xuve/de6//9k=</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="watermark">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
   <Language>=User!Language</Language>
