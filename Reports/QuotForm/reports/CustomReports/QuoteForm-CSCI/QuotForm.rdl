@@ -10491,7 +10491,7 @@ QuoteDtlTax_" + Parameters!TableGuid.Value + " T1
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>7.87708in</Width>
+                  <Width>7.88992in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -10508,7 +10508,7 @@ QuoteDtlTax_" + Parameters!TableGuid.Value + " T1
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Bill To:</Value>
+                                      <Value>Sold To:</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
                                         <FontWeight>Bold</FontWeight>
@@ -10521,7 +10521,7 @@ QuoteDtlTax_" + Parameters!TableGuid.Value + " T1
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>3.08716in</Top>
+                              <Top>3.29446in</Top>
                               <Left>1.47203in</Left>
                               <Height>0.1825in</Height>
                               <Width>0.74449in</Width>
@@ -10639,7 +10639,7 @@ IIf(Fields!UseOTS.Value = true, Fields!OTSName.Value, "Same as Bill To") )</Valu
                                 </Textbox>
                               </ReportItems>
                               <KeepTogether>true</KeepTogether>
-                              <Top>3.3274in</Top>
+                              <Top>3.5347in</Top>
                               <Left>4.03901in</Left>
                               <Height>2.06113in</Height>
                               <Width>3.70176in</Width>
@@ -10768,7 +10768,7 @@ IIf(Fields!UseOTS.Value = true, Fields!OTSName.Value, "Same as Bill To") )</Valu
                                           <Value>=First(Fields!RptLiteralsLQuoteNum.Value, "RptLabels") &amp; Microsoft.VisualBasic.Strings.chr(160) &amp; First(Fields!QuoteNum.Value, "Quote")</Value>
                                           <Style>
                                             <FontFamily>Arial Unicode MS</FontFamily>
-                                            <FontSize>8pt</FontSize>
+                                            <FontSize>12pt</FontSize>
                                             <FontWeight>Bold</FontWeight>
                                           </Style>
                                         </TextRun>
@@ -10780,7 +10780,7 @@ IIf(Fields!UseOTS.Value = true, Fields!OTSName.Value, "Same as Bill To") )</Valu
                                   </Paragraphs>
                                   <Top>1.88609in</Top>
                                   <Left>2.54186in</Left>
-                                  <Height>0.12833in</Height>
+                                  <Height>0.25055in</Height>
                                   <Width>2.37644in</Width>
                                   <ZIndex>1</ZIndex>
                                   <Style>
@@ -10832,7 +10832,7 @@ IIf(Fields!UseOTS.Value = true, Fields!OTSName.Value, "Same as Bill To") )</Valu
                                     </Paragraph>
                                   </Paragraphs>
                                   <rd:DefaultName>Textbox4</rd:DefaultName>
-                                  <Top>2.50568in</Top>
+                                  <Top>2.73124in</Top>
                                   <Left>2.35626in</Left>
                                   <Height>0.37861in</Height>
                                   <Width>2.81221in</Width>
@@ -10867,7 +10867,7 @@ IIf(Fields!UseOTS.Value = true, Fields!OTSName.Value, "Same as Bill To") )</Valu
                                     </Paragraph>
                                   </Paragraphs>
                                   <rd:DefaultName>Textbox26</rd:DefaultName>
-                                  <Top>2.02831in</Top>
+                                  <Top>2.25387in</Top>
                                   <Left>2.54186in</Left>
                                   <Height>0.18236in</Height>
                                   <Width>2.37644in</Width>
@@ -10901,7 +10901,7 @@ IIf(Fields!UseOTS.Value = true, Fields!OTSName.Value, "Same as Bill To") )</Valu
                                       </Style>
                                     </Paragraph>
                                   </Paragraphs>
-                                  <Top>2.28012in</Top>
+                                  <Top>2.50568in</Top>
                                   <Left>1.61982in</Left>
                                   <Height>0.17in</Height>
                                   <Width>3.66022in</Width>
@@ -10916,7 +10916,7 @@ IIf(Fields!UseOTS.Value = true, Fields!OTSName.Value, "Same as Bill To") )</Valu
                               <KeepTogether>true</KeepTogether>
                               <Top>0.03788in</Top>
                               <Left>0.18782in</Left>
-                              <Height>2.9415in</Height>
+                              <Height>3.17543in</Height>
                               <Width>7.58771in</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
@@ -11223,7 +11223,7 @@ First(Fields!Calc_CustFax.Value, "Quote"))</Value>
                                 </Textbox>
                               </ReportItems>
                               <KeepTogether>true</KeepTogether>
-                              <Top>3.32521in</Top>
+                              <Top>3.53251in</Top>
                               <Left>0.08in</Left>
                               <Height>2.03619in</Height>
                               <Width>3.73611in</Width>
@@ -11260,7 +11260,7 @@ First(Fields!Calc_CustFax.Value, "Quote"))</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Ship To</Value>
+                                      <Value>Ship To:</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
                                         <FontWeight>Bold</FontWeight>
@@ -11273,10 +11273,10 @@ First(Fields!Calc_CustFax.Value, "Quote"))</Value>
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>3.07545in</Top>
+                              <Top>3.28275in</Top>
                               <Left>5.33631in</Left>
                               <Height>0.1825in</Height>
-                              <Width>1.06199in</Width>
+                              <Width>0.73305in</Width>
                               <ZIndex>4</ZIndex>
                               <Style>
                                 <Border>
@@ -11302,7 +11302,7 @@ First(Fields!Calc_CustFax.Value, "Quote"))</Value>
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>5.38918in</Top>
+                              <Top>5.59648in</Top>
                               <Left>0.54068in</Left>
                               <Height>0.17in</Height>
                               <Width>1.10311in</Width>
@@ -11332,7 +11332,7 @@ First(Fields!Calc_CustFax.Value, "Quote"))</Value>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>5.38918in</Top>
+                              <Top>5.59648in</Top>
                               <Left>1.67157in</Left>
                               <Height>0.17in</Height>
                               <Width>2.025in</Width>
@@ -11359,7 +11359,7 @@ First(Fields!Calc_CustFax.Value, "Quote"))</Value>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>5.41696in</Top>
+                              <Top>5.62426in</Top>
                               <Left>4.62396in</Left>
                               <Height>0.17in</Height>
                               <Width>2.58412in</Width>
@@ -11371,6 +11371,70 @@ First(Fields!Calc_CustFax.Value, "Quote"))</Value>
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="Customer_CustID">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=First(Fields!Customer_CustID.Value)</Value>
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Customer_CustID</rd:DefaultName>
+                              <Top>3.25473in</Top>
+                              <Left>2.28596in</Left>
+                              <Height>0.25in</Height>
+                              <Width>1in</Width>
+                              <ZIndex>8</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="ShipToCustNum3">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=First(Fields!ShipToNum.Value)</Value>
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>ShipToCustNum</rd:DefaultName>
+                              <Top>3.25473in</Top>
+                              <Left>6.11103in</Left>
+                              <Height>0.25in</Height>
+                              <Width>1in</Width>
+                              <ZIndex>9</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </ReportItems>
@@ -14912,7 +14976,7 @@ County, State of Pennsylvania.</Value>
             <Top>0.04167in</Top>
             <Left>0.0175in</Left>
             <Height>52.20251in</Height>
-            <Width>7.87708in</Width>
+            <Width>7.88992in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -14935,7 +14999,7 @@ OR
         <Height>52.24418in</Height>
         <Style />
       </Body>
-      <Width>7.89458in</Width>
+      <Width>7.90742in</Width>
       <Page>
         <PageHeader>
           <Height>0.79424in</Height>
@@ -14953,7 +15017,7 @@ OR
                           <Value>=First(Fields!RptLiteralsLQuoteNum.Value, "RptLabels") &amp; chr(160) &amp; First(Fields!QuoteNum.Value, "Quote")</Value>
                           <Style>
                             <FontFamily>Arial Unicode MS</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>12pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -14963,9 +15027,9 @@ OR
                     </Paragraph>
                   </Paragraphs>
                   <Top>0.27792in</Top>
-                  <Left>0.06375in</Left>
-                  <Height>0.20125in</Height>
-                  <Width>1.78625in</Width>
+                  <Left>0.10625in</Left>
+                  <Height>0.24292in</Height>
+                  <Width>2.15277in</Width>
                   <Style>
                     <Border>
                       <Style>None</Style>
