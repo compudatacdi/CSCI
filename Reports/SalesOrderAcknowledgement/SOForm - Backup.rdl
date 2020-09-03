@@ -12,7 +12,7 @@
     <DataSet Name="OrderHed">
       <Query>
         <DataSourceName>dsSOForm</DataSourceName>
-        <CommandText>="SELECT T1.RptLanguageID,T1.CardNumber,T1.NeedByDate,T1.OrderComment,T1.OrderDate,T1.OrderNum,T1.PONum,T1.ShipToCustNum,T1.ShipToNum, T1.Number10,T1.ShortChar10,T1.ShortChar13,T2.DocOrdBasedPrice,T1.Calc_BillToAddressList,T1.Calc_BillToContact,T1.Calc_CardNumber,T1.Calc_CustPartOpts,T1.Calc_FobDesc,T1.Calc_MultiNeedDate,T1.Calc_MultiRef,T1.Calc_MultiShipContacts,T1.Calc_MultiShipTo,T1.Calc_MultiShipVia,T1.Calc_PrcEmail,T1.Calc_PrcFax,T1.Calc_PrcPhone,T1.Calc_SalesPerson,T1.Calc_ShipToAddressList,T1.Calc_ShipToContact,T1.Calc_ShipToEmail,T1.Calc_ShipToFax,T1.Calc_ShipToPhone,T1.Calc_ShipViaDesc,T1.Calc_TermsDesc,T1.CurrencyCode_CurrDesc,T1.CurrencyCode_CurrSymbol,T1.Customer_ResaleID, T1.Calc_CurrSymbol, T1.Calc_MiscTotal, T1.Calc_LineMiscTotal, T5.[ShortChar01] AS PaintColor, T2.[ShortChar02] AS PaintCode,T2.Company, T5.[PartDescription] AS PartDescriptn,T2.ContractNum,T2.DisplaySeq,T2.DocDiscount,T2.DocUnitPrice,T2.KitFlag,T2.KitPricing,T2.KitPrintCompsInv,T2.KitShipComplete,T2.OrderComment AS OrderDtl_OrderComment,T2.OrderLine,T2.PartNum,T2.POLine,T2.PricePerCode,T2.Reference,T2.RevisionNum,T2.SalesUM,T2.SellingQuantity,T2.WarrantyComment,T2.XPartNum,T2.XRevisionNum,T2.Calc_ExtPrice,T2.Calc_LineDesc,T2.PartNum_PartDescription,T2.WarrantyCode_WarrDescription,T2.Calc_UOMForeignDesc,T3.NeedByDate AS OrderRel_NeedByDate,T3.OrderRelNum,T3.Reference AS OrderRel_Reference,T3.ReqDate,T3.SellingReqQty,T3.ShipViaCode,T3.Calc_ResaleID,T3.Calc_ShipToAddressList AS OrderRel_Calc_ShipToAddressList,T3.Calc_ShipToContact AS OrderRel_Calc_ShipToContact,T3.ShipViaCode_Description,T3.Calc_OrderRelCounter,T4.Calc_ExtPrice AS RptLiteralsCalc_ExtPrice,T4.Calc_OrderTotal AS RptLiteralsCalc_OrderTotal,T4.Calc_SalesPerson AS RptLiteralsCalc_SalesPerson,T4.Calc_ShipToContact AS RptLiteralsCalc_ShipToContact,T4.RptLiteralsDiscount,T4.FaxNum AS RptLiteralsFaxNum,T4.FOB AS RptLiteralsFOB,T4.NeedByDate AS RptLiteralsNeedByDate,T4.OrderDate AS RptLiteralsOrderDate,T4.RptLiteralsLLine,T4.OrderQty AS RptLiteralsOrderQty,T4.OrderRelNum AS RptLiteralsOrderRelNum,T4.PhoneNum AS RptLiteralsPhoneNum,T4.Reference AS RptLiteralsReference,T4.ResaleID AS RptLiteralsResaleID,T4.RevisionNum AS RptLiteralsRevisionNum,T4.RptLiteralsLCrdNum,T4.RptLiteralsLCustPart,T4.RptLiteralsLDate,T4.RptLiteralsLEmail,T4.RptLiteralsLFax,T4.RptLiteralsLPhone,T4.RptLiteralsLLNMSC,T4.RptLiteralsLOrderAck,T4.RptLiteralsLORMSC,T4.RptLiteralsLORNUM,T4.RptLiteralsLOurPart,T4.RptLiteralsLPage,T4.RptLiteralsLPONum,T4.RptLiteralsLPriPer,T4.RptLiteralsLPrtDes,T4.RptLiteralsLQty,T4.RptLiteralsLShipTo,T4.RptLiteralsLSHSHC,T4.RptLiteralsLSHSHM,T4.RptLiteralsLSLSHE,T4.RptLiteralsLSoldTo,T4.RptLiteralsLSubTotal,T4.RptLiteralsLTerms,T4.RptLiteralsLYURPOLN,T4.RptLiteralsSalesKit,T4.UnitPrice AS RptLiteralsUnitPrice,T4.Warranty AS RptLiteralsWarranty,T4.ShipViaCode AS RptLiteralsShipViaCode,T4.OrderLine AS RptLiteralsOrderLine, T4.RptLiteralsSeeBelow, T1.Calc_TaxMethod, T9.CustID, T4.RptLiteralsLTotalTax, T1.DocTotalTax, T1.DocOrderAmt, T1.Calc_TotalTaxAmt
+        <CommandText>="SELECT T1.RptLanguageID,T1.CardNumber,T1.NeedByDate,T1.OrderComment,T1.OrderDate,T1.OrderNum,T1.PONum,T1.ShipToCustNum,T1.ShipToNum, T1.ShortChar10,T1.ShortChar13,T2.DocOrdBasedPrice,T1.Calc_BillToAddressList,T1.Calc_BillToContact,T1.Calc_CardNumber,T1.Calc_CustPartOpts,T1.Calc_FobDesc,T1.Calc_MultiNeedDate,T1.Calc_MultiRef,T1.Calc_MultiShipContacts,T1.Calc_MultiShipTo,T1.Calc_MultiShipVia,T1.Calc_PrcEmail,T1.Calc_PrcFax,T1.Calc_PrcPhone,T1.Calc_SalesPerson,T1.Calc_ShipToAddressList,T1.Calc_ShipToContact,T1.Calc_ShipToEmail,T1.Calc_ShipToFax,T1.Calc_ShipToPhone,T1.Calc_ShipViaDesc,T1.Calc_TermsDesc,T1.CurrencyCode_CurrDesc,T1.CurrencyCode_CurrSymbol,T1.Customer_ResaleID, T1.Calc_CurrSymbol, T1.Calc_MiscTotal, T1.Calc_LineMiscTotal, T5.[ShortChar01] AS PaintColor, T2.[ShortChar02] AS PaintCode,T2.Company, T5.[PartDescription] AS PartDescriptn,T2.ContractNum,T2.DisplaySeq,T2.DocDiscount,T2.DocUnitPrice,T2.KitFlag,T2.KitPricing,T2.KitPrintCompsInv,T2.KitShipComplete,T2.OrderComment AS OrderDtl_OrderComment,T2.OrderLine,T2.PartNum,T2.POLine,T2.PricePerCode,T2.Reference,T2.RevisionNum,T2.SalesUM,T2.SellingQuantity,T2.WarrantyComment,T2.XPartNum,T2.XRevisionNum,T2.Calc_ExtPrice,T2.Calc_LineDesc,T2.PartNum_PartDescription,T2.WarrantyCode_WarrDescription,T2.Calc_UOMForeignDesc,T3.NeedByDate AS OrderRel_NeedByDate,T3.OrderRelNum,T3.Reference AS OrderRel_Reference,T3.ReqDate,T3.SellingReqQty,T3.ShipViaCode,T3.Calc_ResaleID,T3.Calc_ShipToAddressList AS OrderRel_Calc_ShipToAddressList,T3.Calc_ShipToContact AS OrderRel_Calc_ShipToContact,T3.ShipViaCode_Description,T3.Calc_OrderRelCounter,T4.Calc_ExtPrice AS RptLiteralsCalc_ExtPrice,T4.Calc_OrderTotal AS RptLiteralsCalc_OrderTotal,T4.Calc_SalesPerson AS RptLiteralsCalc_SalesPerson,T4.Calc_ShipToContact AS RptLiteralsCalc_ShipToContact,T4.RptLiteralsDiscount,T4.FaxNum AS RptLiteralsFaxNum,T4.FOB AS RptLiteralsFOB,T4.NeedByDate AS RptLiteralsNeedByDate,T4.OrderDate AS RptLiteralsOrderDate,T4.RptLiteralsLLine,T4.OrderQty AS RptLiteralsOrderQty,T4.OrderRelNum AS RptLiteralsOrderRelNum,T4.PhoneNum AS RptLiteralsPhoneNum,T4.Reference AS RptLiteralsReference,T4.ResaleID AS RptLiteralsResaleID,T4.RevisionNum AS RptLiteralsRevisionNum,T4.RptLiteralsLCrdNum,T4.RptLiteralsLCustPart,T4.RptLiteralsLDate,T4.RptLiteralsLEmail,T4.RptLiteralsLFax,T4.RptLiteralsLPhone,T4.RptLiteralsLLNMSC,T4.RptLiteralsLOrderAck,T4.RptLiteralsLORMSC,T4.RptLiteralsLORNUM,T4.RptLiteralsLOurPart,T4.RptLiteralsLPage,T4.RptLiteralsLPONum,T4.RptLiteralsLPriPer,T4.RptLiteralsLPrtDes,T4.RptLiteralsLQty,T4.RptLiteralsLShipTo,T4.RptLiteralsLSHSHC,T4.RptLiteralsLSHSHM,T4.RptLiteralsLSLSHE,T4.RptLiteralsLSoldTo,T4.RptLiteralsLSubTotal,T4.RptLiteralsLTerms,T4.RptLiteralsLYURPOLN,T4.RptLiteralsSalesKit,T4.UnitPrice AS RptLiteralsUnitPrice,T4.Warranty AS RptLiteralsWarranty,T4.ShipViaCode AS RptLiteralsShipViaCode,T4.OrderLine AS RptLiteralsOrderLine, T4.RptLiteralsSeeBelow, T1.Calc_TaxMethod, T9.CustID, T4.RptLiteralsLTotalTax, T1.DocTotalTax, T1.DocOrderAmt, T1.Calc_TotalTaxAmt
  FROM OrderHed_" + Parameters!TableGuid.Value + " T1 
  LEFT OUTER JOIN OrderDtl_" + Parameters!TableGuid.Value + " T2 
 	ON T1.Company = T2.Company AND T1.OrderNum = T2.OrderNum 
@@ -9701,7 +9701,7 @@ CustomerDocs_" + Parameters!TableGuid.Value + " T1
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>23.1316in</Height>
+                  <Height>22.57604in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -12101,9 +12101,9 @@ County, State of Pennsylvania.</Value>
                                 <BreakLocation>Start</BreakLocation>
                               </PageBreak>
                               <KeepTogether>true</KeepTogether>
-                              <Top>1.79451in</Top>
+                              <Top>1.54451in</Top>
                               <Left>0.1368in</Left>
-                              <Height>21.33709in</Height>
+                              <Height>20.96209in</Height>
                               <Width>7.81223in</Width>
                               <ZIndex>10</ZIndex>
                               <Style>
@@ -12143,60 +12143,6 @@ County, State of Pennsylvania.</Value>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
                                 <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
-                            <Textbox Name="LblSalesPerson3">
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>="Total Weight:"</Value>
-                                      <Style>
-                                        <FontFamily>Arial Unicode MS</FontFamily>
-                                        <FontSize>9pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                              </Paragraphs>
-                              <Top>1.49191in</Top>
-                              <Left>5.02534in</Left>
-                              <Height>0.17in</Height>
-                              <Width>1.07549in</Width>
-                              <ZIndex>12</ZIndex>
-                              <Style>
-                                <Border />
-                                <BackgroundColor>White</BackgroundColor>
-                              </Style>
-                            </Textbox>
-                            <Textbox Name="TxtSalesPerson3">
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>=FormatNumber(Fields!Number10.Value, First(Fields!DecimalsGeneral.Value, "RptParameter")) + " lb"</Value>
-                                      <Style>
-                                        <FontFamily>Arial Unicode MS</FontFamily>
-                                        <FontSize>9pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style />
-                                </Paragraph>
-                              </Paragraphs>
-                              <Top>1.49191in</Top>
-                              <Left>6.11472in</Left>
-                              <Height>0.17in</Height>
-                              <Width>1.75in</Width>
-                              <ZIndex>13</ZIndex>
-                              <Style>
-                                <Border />
-                                <BackgroundColor>White</BackgroundColor>
                               </Style>
                             </Textbox>
                           </ReportItems>
@@ -12292,8 +12238,9 @@ County, State of Pennsylvania.</Value>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>OrderHed</DataSetName>
+            <Top>0in</Top>
             <Left>0.01125in</Left>
-            <Height>30.19817in</Height>
+            <Height>29.64261in</Height>
             <Width>8.01292in</Width>
             <Style />
           </Tablix>
