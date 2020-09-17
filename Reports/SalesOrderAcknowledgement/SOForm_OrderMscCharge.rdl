@@ -7678,9 +7678,10 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber((Code.SetMiscExt((iif(Fields!FreqCode.Value = "E", Fields!Calc_NumRels.Value,1)) * Fields!DocMiscAmt.Value)),2)</Value>
+                                      <Value>=FormatNumber((Code.SetMiscExt((iif(Fields!FreqCode.Value = "E", Fields!Calc_NumRels.Value,1)) * Fields!DocMiscAmt.Value)),2 )  - 0</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
+                                        <Format>'$'0.00;('$'0.00)</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -7697,6 +7698,7 @@
                               <Style>
                                 <Border />
                                 <BackgroundColor>White</BackgroundColor>
+                                <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                               </Style>
                             </Textbox>
                           </ReportItems>

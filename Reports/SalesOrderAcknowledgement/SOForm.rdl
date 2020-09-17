@@ -9795,7 +9795,7 @@ CustomerDocs_" + Parameters!TableGuid.Value + " T1
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber(Fields!Calc_LineMiscTotal.Value,First(Fields!DecimalsGeneral.Value, "RptParameter"))</Value>
+                                      <Value>=FormatNumber(Fields!Calc_LineMiscTotal.Value,First(Fields!DecimalsGeneral.Value, "RptParameter")) - 0</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
                                         <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -9824,7 +9824,7 @@ CustomerDocs_" + Parameters!TableGuid.Value + " T1
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=(FormatNumber((Fields!Calc_MiscTotal.Value),First(Fields!DecimalsGeneral.Value, "RptParameter")))</Value>
+                                      <Value>=(FormatNumber((Fields!Calc_MiscTotal.Value),First(Fields!DecimalsGeneral.Value, "RptParameter"))) - 0</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
                                         <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -9915,7 +9915,7 @@ CustomerDocs_" + Parameters!TableGuid.Value + " T1
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=FormatNumber(Fields!DocOrderAmt.Value, First(Fields!DecimalsGeneral.Value, "RptParameter"))</Value>
+                                          <Value>=FormatNumber(Fields!DocOrderAmt.Value, First(Fields!DecimalsGeneral.Value, "RptParameter")) - 0</Value>
                                           <Style>
                                             <FontWeight>Bold</FontWeight>
                                             <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -10014,7 +10014,7 @@ CustomerDocs_" + Parameters!TableGuid.Value + " T1
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber(Fields!Calc_TotalTaxAmt.Value, First(Fields!DecimalsGeneral.Value, "RptParameter"))</Value>
+                                      <Value>=FormatNumber(Fields!Calc_TotalTaxAmt.Value, First(Fields!DecimalsGeneral.Value, "RptParameter")) - 0</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
                                         <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -12292,6 +12292,7 @@ County, State of Pennsylvania.</Value>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>OrderHed</DataSetName>
+            <Top>0in</Top>
             <Left>0.01125in</Left>
             <Height>30.19817in</Height>
             <Width>8.01292in</Width>
