@@ -12471,10 +12471,10 @@ Len(Fields!XPartNum.Value)=0,Fields!PartNum.Value,Fields!XPartNum.Value)</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber(Fields!Calc_LineMiscTotal.Value, 2)</Value>
+                                      <Value>=FormatNumber(Fields!Calc_LineMiscTotal.Value, 2) - 0</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
-                                        <Format>0.00;(0.00)</Format>
+                                        <Format>'$'0.00;('$'0.00)</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -12491,6 +12491,7 @@ Len(Fields!XPartNum.Value)=0,Fields!PartNum.Value,Fields!XPartNum.Value)</Value>
                               <Style>
                                 <Border />
                                 <BackgroundColor>White</BackgroundColor>
+                                <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                               </Style>
                             </Textbox>
                             <Rectangle Name="Box14">
@@ -12599,10 +12600,10 @@ Len(Fields!XPartNum.Value)=0,Fields!PartNum.Value,Fields!XPartNum.Value)</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber(Fields!Calc_TotalTaxAmt.Value, 2)</Value>
+                                      <Value>=FormatNumber(Fields!Calc_TotalTaxAmt.Value, 2) - 0</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
-                                        <Format>0.00</Format>
+                                        <Format>'$'0.00;('$'0.00)</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -12619,6 +12620,7 @@ Len(Fields!XPartNum.Value)=0,Fields!PartNum.Value,Fields!XPartNum.Value)</Value>
                               <Style>
                                 <Border />
                                 <BackgroundColor>White</BackgroundColor>
+                                <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                               </Style>
                             </Textbox>
                             <Textbox Name="LblTotLLNMSC2">
@@ -12654,10 +12656,10 @@ Len(Fields!XPartNum.Value)=0,Fields!PartNum.Value,Fields!XPartNum.Value)</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Microsoft.VisualBasic.Strings.FormatNumber(Fields!Calc_HeadMiscTotal.Value, 2)</Value>
+                                      <Value>=Microsoft.VisualBasic.Strings.FormatNumber(Fields!Calc_HeadMiscTotal.Value, 2) - 0</Value>
                                       <Style>
                                         <FontFamily>Arial Unicode MS</FontFamily>
-                                        <Format>0.00;(0.00)</Format>
+                                        <Format>'$'0.00;('$'0.00)</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -12674,6 +12676,7 @@ Len(Fields!XPartNum.Value)=0,Fields!PartNum.Value,Fields!XPartNum.Value)</Value>
                               <Style>
                                 <Border />
                                 <BackgroundColor>White</BackgroundColor>
+                                <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                               </Style>
                             </Textbox>
                             <Rectangle Name="Rectangle8">
