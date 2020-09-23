@@ -45,9 +45,9 @@
                 <xs:element name="SysRowID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:SystemColumn="True" msprop:Format="X(36)" type="xs:string" minOccurs="0" />
                 <xs:element name="SysCheckBox06" type="xs:boolean" minOccurs="0" />
                 <xs:element name="SysCheckBox07" type="xs:boolean" minOccurs="0" />
-                <xs:element name="OnMenu" type="xs:boolean" minOccurs="0" />
-                <xs:element name="Duplicate" type="xs:boolean" minOccurs="0" />
-                <xs:element name="Cosmetic" type="xs:boolean" minOccurs="0" />
+                <xs:element name="OnMenu" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
+                <xs:element name="Duplicate" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
+                <xs:element name="Cosmetic" msprop:ReadOnly="True" type="xs:boolean" minOccurs="0" />
                 <xs:element name="Content" msprop:Format="x(16000)" type="xs:string" minOccurs="0" />
                 <xs:element name="BitFlag" msdata:Caption="Bit Flag" msprop:ReadOnly="True" msprop:SystemColumn="True" msprop:External="True" type="xs:int" minOccurs="0" />
                 <xs:element name="RowMod" msprop:SystemColumn="True" msprop:External="True" type="xs:string" minOccurs="0" />
@@ -76,15 +76,15 @@
     <Key2>App.StageShipConfirmEntry.StageShipConfirmForm</Key2>
     <Key3 />
     <Description>Stage Ship Confirm Entry Customization</Description>
-    <LastUpdated>2020-03-10T00:00:00-04:00</LastUpdated>
-    <LastUpdatedBy>19289-LCurcio</LastUpdatedBy>
-    <Version>3/10/2020 11:20:20 A</Version>
-    <DataBaseVersion>0</DataBaseVersion>
+    <LastUpdated>2020-09-23T00:00:00-04:00</LastUpdated>
+    <LastUpdatedBy>MANAGER</LastUpdatedBy>
+    <Version>9/23/2020 11:19:34 A</Version>
+    <DataBaseVersion>30800</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
     <SysCharacter03 />
     <SysCharacter04>Pass</SysCharacter04>
-    <SysCharacter05>3.2.500.0</SysCharacter05>
+    <SysCharacter05>3.2.600.0</SysCharacter05>
     <SysNumber01>0.000000000</SysNumber01>
     <SysNumber02>0.000000000</SysNumber02>
     <SysNumber03>0.000000000</SysNumber03>
@@ -94,20 +94,28 @@
     <SysCheckBox02>false</SysCheckBox02>
     <SysCheckBox03>false</SysCheckBox03>
     <SysCheckBox04>false</SysCheckBox04>
-    <SysCheckBox05>false</SysCheckBox05>
-    <CommentText />
+    <SysCheckBox05>true</SysCheckBox05>
+    <CommentText>
+
+*----------------------------------------------------------*
+Validation for Version: 3.2.600.0
+Status: Pass
+Version: 3.2.600.0
+
+[EpicAdmin: 5/17/2020 3:34:56 AM]
+*----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>11999244209</SysRevID>
-    <SysRowID>9a648adc-d12e-497c-b3f5-6ce2415af0b4</SysRowID>
+    <SysRevID>5175101</SysRevID>
+    <SysRowID>2a6ad7f6-3b0a-4c44-9523-835da10de925</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
-    <OnMenu>false</OnMenu>
+    <OnMenu>true</OnMenu>
     <Duplicate>false</Duplicate>
     <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
-    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.500.0"&gt;
+    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.600.0"&gt;
       &lt;xs:complexType&gt;
         &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
           &lt;xs:element name="Controls"&gt;
@@ -238,6 +246,9 @@
 //			Ice.Core.Session.dll
 //			Epicor.ServiceModel.dll
 //
+//	eb2 09/23/20 eric blackwelder @ compudata
+//		make work for non-masterpack shipments
+//
 // **************************************************
 
 using System;
@@ -282,6 +293,8 @@ public class Script
 
 	private DynamicQueryImpl dynamicQuery;
 	private DynamicQueryDataSet dqds;
+	//eb2:
+	private DynamicQueryDataSet dqds2;
 
 	public void InitializeCustomCode()
 	{
@@ -316,6 +329,25 @@ public class Script
 			    || (ex.ToString().Contains("id is not found")) )
 			{
 				MessageBox.Show("The BAQ ‘GetSOfromMP’ does not exist.");
+			}
+			else
+			{
+				MessageBox.Show(ex.ToString());
+			}
+		}
+
+		//eb2:
+		dqds2 = new DynamicQueryDataSet();
+		try
+		{
+			dqds2 = dynamicQuery.GetByID("GetSOfromSH");
+		}
+		catch (BusinessObjectException ex)
+		{
+			if (   (ex.ToString().Contains("does not exist"))
+			    || (ex.ToString().Contains("id is not found")) )
+			{
+				MessageBox.Show("The BAQ ‘GetSOfromSH’ does not exist.");
 			}
 			else
 			{
@@ -377,6 +409,13 @@ public class Script
 		execDS.AcceptChanges();
 		DataTable results = dynamicQuery.Execute(dqds, execDS).Tables["Results"];
 
+		//eb2:
+		if(results.Rows.Count == 0)
+		{
+			results = dynamicQuery.Execute(dqds2, execDS).Tables["Results"];
+		}
+
+
 		try
 		{
 			SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(this.oTrans);
@@ -437,6 +476,9 @@ public class Script
 
 
 
+
+
+
 &lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
@@ -450,6 +492,126 @@ public class Script
     &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
     &lt;PropertyName&gt;Language&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;CSharp&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;StageShipConfirmForm&lt;/ControlName&gt;
+    &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;328&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;StageShipConfirmForm&lt;/ControlName&gt;
+    &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;156&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;StageShipConfirmForm&lt;/ControlName&gt;
+    &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;328&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;StageShipConfirmForm&lt;/ControlName&gt;
+    &lt;Key&gt;2dcd1674-5e34-4d98-b493-c75747027376&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;156&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;groupBox1&lt;/ControlName&gt;
+    &lt;Key&gt;c205404a-5523-4c79-8a60-d9271a99b21d&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;groupBox1&lt;/ControlName&gt;
+    &lt;Key&gt;c205404a-5523-4c79-8a60-d9271a99b21d&lt;/Key&gt;
+    &lt;PropertyName&gt;Anchor&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;Top, Left&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;groupBox1&lt;/ControlName&gt;
+    &lt;Key&gt;c205404a-5523-4c79-8a60-d9271a99b21d&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;groupBox1&lt;/ControlName&gt;
+    &lt;Key&gt;c205404a-5523-4c79-8a60-d9271a99b21d&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;16&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;groupBox1&lt;/ControlName&gt;
+    &lt;Key&gt;c205404a-5523-4c79-8a60-d9271a99b21d&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;688&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;groupBox1&lt;/ControlName&gt;
+    &lt;Key&gt;c205404a-5523-4c79-8a60-d9271a99b21d&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;47&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
