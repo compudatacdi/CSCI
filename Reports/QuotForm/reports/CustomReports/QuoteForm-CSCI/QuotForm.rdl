@@ -10521,8 +10521,8 @@ QuoteDtlTax_" + Parameters!TableGuid.Value + " T1
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>3.29446in</Top>
-                              <Left>1.47203in</Left>
+                              <Top>3.29445in</Top>
+                              <Left>0.34042in</Left>
                               <Height>0.1825in</Height>
                               <Width>0.74449in</Width>
                               <Style>
@@ -11274,7 +11274,7 @@ First(Fields!Calc_CustFax.Value, "Quote"))</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <Top>3.28275in</Top>
-                              <Left>5.33631in</Left>
+                              <Left>4.11688in</Left>
                               <Height>0.1825in</Height>
                               <Width>0.73305in</Width>
                               <ZIndex>4</ZIndex>
@@ -11390,8 +11390,8 @@ First(Fields!Calc_CustFax.Value, "Quote"))</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Customer_CustID</rd:DefaultName>
-                              <Top>3.25473in</Top>
-                              <Left>2.28596in</Left>
+                              <Top>3.25472in</Top>
+                              <Left>1.15435in</Left>
                               <Height>0.25in</Height>
                               <Width>1in</Width>
                               <ZIndex>8</ZIndex>
@@ -11423,7 +11423,7 @@ First(Fields!Calc_CustFax.Value, "Quote"))</Value>
                               </Paragraphs>
                               <rd:DefaultName>ShipToCustNum</rd:DefaultName>
                               <Top>3.25473in</Top>
-                              <Left>6.11103in</Left>
+                              <Left>4.8916in</Left>
                               <Height>0.25in</Height>
                               <Width>1in</Width>
                               <ZIndex>9</ZIndex>
@@ -12770,7 +12770,7 @@ our website for additional details and to fill out an application at</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>="Quote Creator: " + Fields!InsideSale.Value</Value>
+                                          <Value>="Quote Creator: " + Fields!Name.Value</Value>
                                           <Style>
                                             <FontSize>8pt</FontSize>
                                             <FontWeight>Bold</FontWeight>
