@@ -78,7 +78,7 @@
     <Description>FWB Customization</Description>
     <LastUpdated>2021-01-29T00:00:00-05:00</LastUpdated>
     <LastUpdatedBy>MANAGER</LastUpdatedBy>
-    <Version>1/29/2021 10:04:29 A</Version>
+    <Version>1/29/2021 10:06:48 A</Version>
     <DataBaseVersion>0</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -98,12 +98,12 @@
     <CommentText />
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>14455229</SysRevID>
+    <SysRevID>14455246</SysRevID>
     <SysRowID>1935671a-4c66-4de7-8e71-498770719fd8</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
     <OnMenu>false</OnMenu>
-    <Duplicate>false</Duplicate>
+    <Duplicate>true</Duplicate>
     <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
@@ -393,56 +393,29 @@ public class Script
 
 		grdList = null;
 		grdList.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.grdList_MouseUp);
-		
 
 	}
 
 
 	private void grdList_MouseUp(object sender, System.Windows.Forms.MouseEventArgs args)
 	{
-
-		// Declare and retrieve a reference to the UIElement
 		UIElement aUIElement = this. grdList.DisplayLayout.UIElement.ElementFromPoint(
 			new System.Drawing.Point(args.X, args.Y));
-		// Declare and retrieve a reference to the cell
 		UltraGridCell aCell = (UltraGridCell)aUIElement.GetContext(typeof(UltraGridCell));
 	
-		// If a cell was found display the band and column key
 		if(aCell != null)
 		{
-			//MessageBox.Show(aCell.Value.ToString());	   //gives cell value
-			//MessageBox.Show(aCell.Band.Index.ToString());  //gives row number
-			//MessageBox.Show(aCell.Column.ToString());	  //gives column name	
-
-			if(   aCell.Column.ToString() == "SelectedForAction")
+			if(aCell.Column.ToString() == "SelectedForAction")
 			{
 				if((string)aCell.Row.Cells["KitFlag"].Value == "C"
 				   &amp;amp;&amp;amp; (decimal)aCell.Row.Cells["AvailablePercent"].Value != 100)
 				{
-//MessageBox.Show("KitFlag: " + aCell.Row.Cells["KitFlag"].Value.ToString());
-//MessageBox.Show("KitParentLine: " + aCell.Row.Cells["KitParentLine"].Value.ToString());
-//MessageBox.Show("KitShipComplete: " + aCell.Row.Cells["KitShipComplete"].Value.ToString());
-//MessageBox.Show("AvailablePercent: " + aCell.Row.Cells["AvailablePercent"].Value.ToString());
-
 					MessageBox.Show("Can't select kit component if short inventory");
 					aCell.Value = false;
 
-/*
-				// Override the read only aspect of the datagrid for the select column
-				if ((bool)aCell.Value == false)
-				{
-					aCell.Value = true;
-				}
-				else
-				{
-					aCell.Value = false;
-				}
-*/
 				}
 			}
-
-		}	
-		
+		}
 
 	}
 
