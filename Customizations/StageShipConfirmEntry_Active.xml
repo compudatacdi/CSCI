@@ -78,7 +78,7 @@
     <Description />
     <LastUpdated>2021-02-01T00:00:00-05:00</LastUpdated>
     <LastUpdatedBy>MANAGER</LastUpdatedBy>
-    <Version>2/1/2021 3:49:21 PM</Version>
+    <Version>2/1/2021 4:25:24 PM</Version>
     <DataBaseVersion>30900</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -106,7 +106,7 @@ Version: 3.2.700.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>14600592</SysRevID>
+    <SysRevID>14600938</SysRevID>
     <SysRowID>2a6ad7f6-3b0a-4c44-9523-835da10de925</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -411,7 +411,7 @@ public class Script
 
 		// ** Use MessageBox to find adapter method name
 
-//		MessageBox.Show("oTrans_adapter_AfterAdapterMethod: " + args.MethodName);
+		//MessageBox.Show("oTrans_adapter_AfterAdapterMethod: " + args.MethodName);
 
 		switch (args.MethodName)
 		{
@@ -431,13 +431,12 @@ public class Script
 	//eb3:
 	public void UpdateKitParentShipQty()
 	{
-
 		QueryExecutionDataSet execDS = new QueryExecutionDataSet();
 		foreach(DataRow row in CartonStage_Column.Rows)
 		{
 			//NOTE:  PackNum is the master pack number
 			execDS.ExecutionParameter.AddExecutionParameterRow("PackNum", ((int)row["PackNum"]).ToString(), "integer", false, Guid.NewGuid(), "");
-//MessageBox.Show("add packnum: " + (int)row["PackNum"]);
+			//MessageBox.Show("add packnum: " + (int)row["PackNum"]);
 		}
 		execDS.AcceptChanges();
 		DataTable results = dynamicQuery.Execute(dqds, execDS).Tables["Results"];
@@ -446,14 +445,12 @@ public class Script
 		{
 			results = dynamicQuery.Execute(dqds3, execDS).Tables["Results"];
 		}
-//MessageBox.Show("baq count: " + results.Rows.Count);
 
 		try
 		{
 			SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(this.oTrans);
 			adapterSalesOrder.BOConnect();
 
-//			List&amp;lt;int&amp;gt; lstSalesOrders = new List&amp;lt;int&amp;gt;();
 			int intOrderNum = 0;
 			int intOrderLine = 0;
 			int intOrderRelNum = 0;
@@ -462,24 +459,6 @@ public class Script
 				intOrderNum = (int)row["ShipDtl_OrderNum"];
 				intOrderLine = (int)row["ShipDtl_OrderLine"];
 				intOrderRelNum = (int)row["ShipDtl_OrderRelNum"];
-/*
-MessageBox.Show(
-"from baq... order: " + intOrderNum +
-" / line: " + intOrderLine +
-" / rel: " + intOrderRelNum);
-*/
-
-//				if(!lstSalesOrders.Contains(intOrderNum))
-//				{
-//					lstSalesOrders.Add(intOrderNum);
-//				}
-//			}
-
-
-//			foreach(int intListOrderNum in lstSalesOrders)
-//			{			
-
-//				System.Data.DataSet dsSalesOrder = adapterSalesOrder.GetData(intListOrderNum);
 				System.Data.DataSet dsSalesOrder = adapterSalesOrder.GetData(intOrderNum);
 				if (dsSalesOrder != null)
 				{
@@ -490,32 +469,11 @@ MessageBox.Show(
 						&amp;amp;&amp;amp; (int)dr["OrderLine"] == intOrderLine
 						&amp;amp;&amp;amp; (int)dr["OrderRelNum"] == intOrderRelNum)
 						{
-//							dOrderAmt += System.Convert.ToDouble((decimal)dr["ExtPriceDtl"])
-//										- System.Convert.ToDouble((decimal)dr["DocDspDiscount"]);
-
-//						}
-//					}
-//					foreach (DataRow dr in dsSalesOrder.Tables["OHOrderMsc"].Rows)
-//					{
-//						if((string)dr["MiscCode"] == "SURC")
-//						{
-
-/*
-MessageBox.Show(
-"found order... order: " + intOrderNum +
-" / line: " + intOrderLine +
-" / rel: " + intOrderRelNum);
-*/
-
 							dr.BeginEdit();
-//							dr["MiscAmt"] = dOrderAmt * (Convert.ToDouble(dr["Percentage"])/100);
-//							dr["DocMiscAmt"] = dOrderAmt * (Convert.ToDouble(dr["Percentage"])/100);		
 							dr["SellingStockShippedQty"] = (decimal)(dr["OurReqQty"]);
 							dr["RowMod"] = "U";
 							dr.EndEdit();
 							adapterSalesOrder.Update();
-
-
 						}
 					}
 				}
