@@ -75,16 +75,16 @@
     <Key1>StageShipConfirmEntry_Active</Key1>
     <Key2>App.StageShipConfirmEntry.StageShipConfirmForm</Key2>
     <Key3 />
-    <Description>Stage Ship Confirm Entry Customization</Description>
-    <LastUpdated>2020-09-23T00:00:00-04:00</LastUpdated>
+    <Description />
+    <LastUpdated>2021-02-01T00:00:00-05:00</LastUpdated>
     <LastUpdatedBy>MANAGER</LastUpdatedBy>
-    <Version>9/23/2020 11:19:34 A</Version>
-    <DataBaseVersion>30800</DataBaseVersion>
+    <Version>2/1/2021 3:49:21 PM</Version>
+    <DataBaseVersion>30900</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
     <SysCharacter03 />
     <SysCharacter04>Pass</SysCharacter04>
-    <SysCharacter05>3.2.600.0</SysCharacter05>
+    <SysCharacter05>3.2.700.0</SysCharacter05>
     <SysNumber01>0.000000000</SysNumber01>
     <SysNumber02>0.000000000</SysNumber02>
     <SysNumber03>0.000000000</SysNumber03>
@@ -95,18 +95,18 @@
     <SysCheckBox03>false</SysCheckBox03>
     <SysCheckBox04>false</SysCheckBox04>
     <SysCheckBox05>true</SysCheckBox05>
-    <CommentText>
+    <CommentText>*----------------------------------------------------------*Validation for Version: 3.2.600.0Status: PassVersion: 3.2.600.0[EpicAdmin: 5/17/2020 3:34:56 AM]*----------------------------------------------------------*
 
 *----------------------------------------------------------*
-Validation for Version: 3.2.600.0
+Validation for Version: 3.2.700.0
 Status: Pass
-Version: 3.2.600.0
+Version: 3.2.700.0
 
-[EpicAdmin: 5/17/2020 3:34:56 AM]
+[MANAGER: 12/7/2020 1:03:44 PM]
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>5175101</SysRevID>
+    <SysRevID>14600592</SysRevID>
     <SysRowID>2a6ad7f6-3b0a-4c44-9523-835da10de925</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
@@ -115,7 +115,7 @@ Version: 3.2.600.0
     <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
-    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.600.0"&gt;
+    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:BuildVersion="3.2.700.0"&gt;
       &lt;xs:complexType&gt;
         &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
           &lt;xs:element name="Controls"&gt;
@@ -249,6 +249,10 @@ Version: 3.2.600.0
 //	eb2 09/23/20 eric blackwelder @ compudata
 //		make work for non-masterpack shipments
 //
+//	eb3 02/01/21 eric blackwelder @ compudata
+//		fix shipped qty on so for partial kit shipments
+//		reason: if partial ship components of a kit, subsequent shipments add to the shipped qty of a kit
+//
 // **************************************************
 
 using System;
@@ -277,6 +281,7 @@ using Ice.BO;
 using Ice.Common;
 
 
+
 public class Script
 {
 	// ** Wizard Insert Location - Do Not Remove 'Begin/End Wizard Added Module Level Variables' Comments! **
@@ -295,6 +300,9 @@ public class Script
 	private DynamicQueryDataSet dqds;
 	//eb2:
 	private DynamicQueryDataSet dqds2;
+	//eb3:
+	private DynamicQueryDataSet dqds3;
+
 
 	public void InitializeCustomCode()
 	{
@@ -355,6 +363,24 @@ public class Script
 			}
 		}
 
+		//eb3:
+		try
+		{
+			dqds3 = dynamicQuery.GetByID("GetKitDoubleShipments");
+		}
+		catch (BusinessObjectException ex)
+		{
+			if (   (ex.ToString().Contains("does not exist"))
+			    || (ex.ToString().Contains("id is not found")) )
+			{
+				MessageBox.Show("The BAQ ‘GetKitDoubleShipments’ does not exist.");
+			}
+			else
+			{
+				MessageBox.Show(ex.ToString());
+			}
+		}
+
 	}
 
 	public void DestroyCustomCode()
@@ -385,17 +411,123 @@ public class Script
 
 		// ** Use MessageBox to find adapter method name
 
-		//MessageBox.Show("oTrans_adapter_AfterAdapterMethod: " + args.MethodName);
+//		MessageBox.Show("oTrans_adapter_AfterAdapterMethod: " + args.MethodName);
 
 		switch (args.MethodName)
 		{
 			case "ShipConfirm":
-				RecalcOrderSteelSurcharge();	
+				//NOTE: this method is also hit when selecting "Unship Confirm"
+				RecalcOrderSteelSurcharge();
+
+				//eb3:
+				UpdateKitParentShipQty();
+
 				break;
 		}
 
 	}
 
+
+	//eb3:
+	public void UpdateKitParentShipQty()
+	{
+
+		QueryExecutionDataSet execDS = new QueryExecutionDataSet();
+		foreach(DataRow row in CartonStage_Column.Rows)
+		{
+			//NOTE:  PackNum is the master pack number
+			execDS.ExecutionParameter.AddExecutionParameterRow("PackNum", ((int)row["PackNum"]).ToString(), "integer", false, Guid.NewGuid(), "");
+//MessageBox.Show("add packnum: " + (int)row["PackNum"]);
+		}
+		execDS.AcceptChanges();
+		DataTable results = dynamicQuery.Execute(dqds, execDS).Tables["Results"];
+
+		if(results.Rows.Count == 0)
+		{
+			results = dynamicQuery.Execute(dqds3, execDS).Tables["Results"];
+		}
+//MessageBox.Show("baq count: " + results.Rows.Count);
+
+		try
+		{
+			SalesOrderAdapter adapterSalesOrder = new SalesOrderAdapter(this.oTrans);
+			adapterSalesOrder.BOConnect();
+
+//			List&amp;lt;int&amp;gt; lstSalesOrders = new List&amp;lt;int&amp;gt;();
+			int intOrderNum = 0;
+			int intOrderLine = 0;
+			int intOrderRelNum = 0;
+			foreach (DataRow row in results.Rows)
+			{
+				intOrderNum = (int)row["ShipDtl_OrderNum"];
+				intOrderLine = (int)row["ShipDtl_OrderLine"];
+				intOrderRelNum = (int)row["ShipDtl_OrderRelNum"];
+/*
+MessageBox.Show(
+"from baq... order: " + intOrderNum +
+" / line: " + intOrderLine +
+" / rel: " + intOrderRelNum);
+*/
+
+//				if(!lstSalesOrders.Contains(intOrderNum))
+//				{
+//					lstSalesOrders.Add(intOrderNum);
+//				}
+//			}
+
+
+//			foreach(int intListOrderNum in lstSalesOrders)
+//			{			
+
+//				System.Data.DataSet dsSalesOrder = adapterSalesOrder.GetData(intListOrderNum);
+				System.Data.DataSet dsSalesOrder = adapterSalesOrder.GetData(intOrderNum);
+				if (dsSalesOrder != null)
+				{
+					double dOrderAmt = (double)0;
+					foreach (DataRow dr in dsSalesOrder.Tables["OrderRel"].Rows)
+					{
+						if((int)dr["OrderNum"] == intOrderNum
+						&amp;amp;&amp;amp; (int)dr["OrderLine"] == intOrderLine
+						&amp;amp;&amp;amp; (int)dr["OrderRelNum"] == intOrderRelNum)
+						{
+//							dOrderAmt += System.Convert.ToDouble((decimal)dr["ExtPriceDtl"])
+//										- System.Convert.ToDouble((decimal)dr["DocDspDiscount"]);
+
+//						}
+//					}
+//					foreach (DataRow dr in dsSalesOrder.Tables["OHOrderMsc"].Rows)
+//					{
+//						if((string)dr["MiscCode"] == "SURC")
+//						{
+
+/*
+MessageBox.Show(
+"found order... order: " + intOrderNum +
+" / line: " + intOrderLine +
+" / rel: " + intOrderRelNum);
+*/
+
+							dr.BeginEdit();
+//							dr["MiscAmt"] = dOrderAmt * (Convert.ToDouble(dr["Percentage"])/100);
+//							dr["DocMiscAmt"] = dOrderAmt * (Convert.ToDouble(dr["Percentage"])/100);		
+							dr["SellingStockShippedQty"] = (decimal)(dr["OurReqQty"]);
+							dr["RowMod"] = "U";
+							dr.EndEdit();
+							adapterSalesOrder.Update();
+
+
+						}
+					}
+				}
+			}
+			adapterSalesOrder.Dispose();
+
+		} catch (System.Exception ex)
+		{
+			ExceptionBox.Show(ex);
+		}
+
+	}
 
 	//eb1:
 	public void RecalcOrderSteelSurcharge()
@@ -473,6 +605,7 @@ public class Script
 
 
 }
+
 
 
 
@@ -612,6 +745,90 @@ public class Script
     &lt;Key&gt;c205404a-5523-4c79-8a60-d9271a99b21d&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;47&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblDateShift&lt;/ControlName&gt;
+    &lt;Key&gt;d95afb7d-756f-49c6-b15b-4bf14a982630&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cmbDateShift&lt;/ControlName&gt;
+    &lt;Key&gt;54e3ac9f-93bc-47eb-9203-2f7636c21dff&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblDateShift&lt;/ControlName&gt;
+    &lt;Key&gt;d95afb7d-756f-49c6-b15b-4bf14a982630&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;12&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblDateShift&lt;/ControlName&gt;
+    &lt;Key&gt;d95afb7d-756f-49c6-b15b-4bf14a982630&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;405&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblDateShift&lt;/ControlName&gt;
+    &lt;Key&gt;d95afb7d-756f-49c6-b15b-4bf14a982630&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;81&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblDateShift&lt;/ControlName&gt;
+    &lt;Key&gt;d95afb7d-756f-49c6-b15b-4bf14a982630&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;StageShipConfirmForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;cmbDateShift&lt;/ControlName&gt;
+    &lt;Key&gt;54e3ac9f-93bc-47eb-9203-2f7636c21dff&lt;/Key&gt;
+    &lt;PropertyName&gt;EpiBinding&lt;/PropertyName&gt;
+    &lt;PropertyValue /&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
