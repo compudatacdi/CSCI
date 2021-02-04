@@ -328,6 +328,9 @@
 //
 //	eb1 01/29/21 eric blackwelder @ cdi
 //		prevent user from selecting kit component if not complete
+//		ultimately they didn't want this change, 
+//			so deleted the process calling in pilot and left the 
+//			rest alone to be overwritten by live the following weekend
 //
 //
 // **************************************************
