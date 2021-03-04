@@ -7123,7 +7123,7 @@ CustomerDocs_" + Parameters!TableGuid.Value + " T1
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!Calc_ShipToContactName.Value</Value>
+                                      <Value>=Fields!Calc_ShipToContactName.Value + " / " + Fields!Calc_ShipToAddressList.Value</Value>
                                       <Style>
                                         <FontSize>9pt</FontSize>
                                       </Style>
@@ -11663,7 +11663,6 @@ CustomerDocs_" + Parameters!TableGuid.Value + " T1
                             </Border>
                           </Style>
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
