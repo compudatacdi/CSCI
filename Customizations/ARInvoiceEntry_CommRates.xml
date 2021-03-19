@@ -76,9 +76,9 @@
     <Key2>App.ARInvoiceEntry.ARInvoiceForm</Key2>
     <Key3 />
     <Description />
-    <LastUpdated>2021-02-05T00:00:00-05:00</LastUpdated>
+    <LastUpdated>2021-03-19T00:00:00-04:00</LastUpdated>
     <LastUpdatedBy>MANAGER</LastUpdatedBy>
-    <Version>2/5/2021 5:36:41 PM</Version>
+    <Version>3/19/2021 2:31:31 PM</Version>
     <DataBaseVersion>30900</DataBaseVersion>
     <SysCharacter01 />
     <SysCharacter02 />
@@ -133,16 +133,16 @@ Version: 3.2.700.0
 *----------------------------------------------------------*</CommentText>
     <CGCCode />
     <SystemFlag>false</SystemFlag>
-    <SysRevID>14693955</SysRevID>
+    <SysRevID>11359292</SysRevID>
     <SysRowID>c9e14429-2099-4334-86dd-19e5448ce613</SysRowID>
     <SysCheckBox06>false</SysCheckBox06>
     <SysCheckBox07>false</SysCheckBox07>
     <OnMenu>true</OnMenu>
-    <Duplicate>false</Duplicate>
+    <Duplicate>true</Duplicate>
     <Cosmetic>false</Cosmetic>
     <Content>&lt;CustomizationDS xmlns="http://tempuri.org/XMLSchema.xsd"&gt;
   &lt;xs:schema id="CustomizationDS" targetNamespace="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd" xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified"&gt;
-    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:Key3="" msprop:CGCCode="" msprop:ProductID="EP" msprop:TypeCode="Customization" msprop:CommentText="joe&amp;#xA;[19289-LCurcio: 8/20/2018 4:39:05 PM]" msprop:BuildVersion="3.2.700.0" msprop:Company="19289" msprop:Description="Commission Rates" msprop:Key2="App.ARInvoiceEntry.ARInvoiceForm" msprop:Key1="CommRates"&gt;
+    &lt;xs:element name="CustomizationDS" msdata:IsDataSet="true" msdata:Locale="" msprop:Key3="" msprop:CGCCode="" msprop:ProductID="EP" msprop:TypeCode="Customization" msprop:Key2="App.ARInvoiceEntry.ARInvoiceForm" msprop:BuildVersion="3.2.700.0" msprop:Company="19289" msprop:Description="Commission Rates" msprop:CommentText="joe&amp;#xA;[19289-LCurcio: 8/20/2018 4:39:05 PM]" msprop:Key1="CommRates"&gt;
       &lt;xs:complexType&gt;
         &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
           &lt;xs:element name="Controls"&gt;
@@ -313,6 +313,42 @@ Version: 3.2.700.0
     &lt;GroupID /&gt;
     &lt;ControlsID /&gt;
   &lt;/Controls&gt;
+  &lt;Controls&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;ParentControlKey&gt;d65adf17-ac82-4b1c-a67a-c8f8ff24615e&lt;/ParentControlKey&gt;
+    &lt;ControlType&gt;Ice.Lib.Framework.EpiLabel&lt;/ControlType&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserId /&gt;
+    &lt;GroupID /&gt;
+    &lt;ControlsID /&gt;
+  &lt;/Controls&gt;
+  &lt;Controls&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;erp.contracts.bo.custship.dll&lt;/ControlName&gt;
+    &lt;Key&gt;EpiString.ExecutionPath*erp.contracts.bo.custship.dll&lt;/Key&gt;
+    &lt;ParentControlKey /&gt;
+    &lt;ControlType&gt;AssemblyReference&lt;/ControlType&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserId /&gt;
+    &lt;GroupID /&gt;
+    &lt;ControlsID /&gt;
+  &lt;/Controls&gt;
+  &lt;Controls&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;erp.adapters.custship.dll&lt;/ControlName&gt;
+    &lt;Key&gt;EpiString.ExecutionPath*erp.adapters.custship.dll&lt;/Key&gt;
+    &lt;ParentControlKey /&gt;
+    &lt;ControlType&gt;AssemblyReference&lt;/ControlType&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserId /&gt;
+    &lt;GroupID /&gt;
+    &lt;ControlsID /&gt;
+  &lt;/Controls&gt;
   &lt;Properties&gt;
     &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
     &lt;ControlName&gt;numRepSplit1&lt;/ControlName&gt;
@@ -375,6 +411,12 @@ Version: 3.2.700.0
 //						Erp.Contracts.BO.SalesOrder.dll
 //						Erp.Adapters.SalesOrder.dll
 //
+//	eb3 02/22/21	eric blackwelder @ cdi
+//					update pack related to deleted dup invoice line as invoiced
+//					add ref to:
+//						Erp.Contracts.BO.CustShip.dll
+//						Erp.Adapters.CustShip.dll
+//
 // **************************************************
 
 extern alias Erp_Contracts_BO_OrderRelSearch;
@@ -392,6 +434,8 @@ extern alias Ice_Contracts_Lib_BOReader;
 extern alias Erp_Adapters_SalesOrder;
 extern alias Erp_Common_ContractInterfaces;
 extern alias Erp_Contracts_BO_SalesOrder;
+extern alias Erp_Contracts_BO_CustShip;
+extern alias Erp_Adapters_CustShip;
 
 using System;
 using System.ComponentModel;
@@ -414,7 +458,6 @@ using System.Collections.Generic;
 using Ice.Proxy.Lib;
 using Erp.Proxy.BO;
 using Ice.Core;
-//using System.Collections.Generic;
 using Epicor.Mfg.Lib;
 using Epicor.ServiceModel.Channels;
 using Erp.Contracts;
@@ -437,7 +480,12 @@ public class Script
 	//eb2:
 	public static Erp.Proxy.BO.SalesOrderImpl SalesOrderImpl;
 	public SalesOrderImpl salesOrder;
-	public SalesOrderDataSet SalesOrderDS;
+	public SalesOrderDataSet salesOrderDS;
+
+	//eb3:
+	public static Erp.Proxy.BO.CustShipImpl CustShipImpl;
+	public CustShipImpl custShip;
+	public CustShipDataSet custShipDS;
 
 	public void InitializeCustomCode()
 	{
@@ -457,7 +505,11 @@ public class Script
 		//eb2:
 		Session session = (Session)oTrans.Session;
 		salesOrder = WCFServiceSupport.CreateImpl&amp;lt;SalesOrderImpl&amp;gt;(session, ImplBase&amp;lt;SalesOrderSvcContract&amp;gt;.UriPath);
-		SalesOrderDS = new SalesOrderDataSet();
+		salesOrderDS = new SalesOrderDataSet();
+
+		//eb3:
+		custShip = WCFServiceSupport.CreateImpl&amp;lt;CustShipImpl&amp;gt;(session, ImplBase&amp;lt;CustShipSvcContract&amp;gt;.UriPath);
+		custShipDS = new CustShipDataSet();
 
 	}
 
@@ -479,8 +531,14 @@ public class Script
 		//eb2:
 		salesOrder = null;
 		salesOrder.Dispose();
-		SalesOrderDS = null;
-		SalesOrderDS.Dispose();
+		salesOrderDS = null;
+		salesOrderDS.Dispose();
+
+		//eb2:
+		custShip = null;
+		custShip.Dispose();
+		custShipDS = null;
+		custShipDS.Dispose();
 
 
 	}
@@ -505,11 +563,16 @@ public class Script
 //eb2:
 //add test for kit parent to original code
 //add code to combine fields: 
-MessageBox.Show("test message");
+//MessageBox.Show("test message to let you know you have the latest code");
 //DataTable dtOrderDtl = new DataTable();
 int intOrderNum = 0;
 int intOrderLine = 0;
 string strKitFlag = "";
+
+// !!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!  TAKE OUT THE TEST MESSAGE ON THE MAIN TAB !!!
+// !!!!!!!!!!!!!!!!!!!!!!!!
+
 
 				foreach(DataRowView row in edvInvcDtl.dataView)
 				{
@@ -517,18 +580,17 @@ string strKitFlag = "";
 //eb2:
 //dtOrderDtl.Clear();
 //Unable to call method Erp.BO.OrderDtl.GetRows()
-
 intOrderNum = (int)row["OrderNum"];
 intOrderLine = (int)row["OrderLine"];
 bool morePages = false;
-SalesOrderDS.Clear();
-SalesOrderDS = salesOrder.GetRows("OrderNum = " + intOrderNum, "", "", "OrderNum = " + intOrderNum + "and OrderLine = " + intOrderLine, 
+salesOrderDS.Clear();
+salesOrderDS = salesOrder.GetRows("OrderNum = " + intOrderNum, "", "", "OrderNum = " + intOrderNum + "and OrderLine = " + intOrderLine, 
 	"", "", "", "", "", "", "", "", "", "", "", "", "", 0, 1, out morePages);
 strKitFlag = "";
-if(SalesOrderDS.OrderDtl.Rows.Count &amp;gt; 0)
+if(salesOrderDS.OrderDtl.Rows.Count &amp;gt; 0)
 {
 //	MessageBox.Show("SO Line: " + SalesOrderDS.OrderDtl[0]["OrderLine"] + " / KitFlag: " + SalesOrderDS.OrderDtl[0]["KitFlag"]);
-	strKitFlag = (string)SalesOrderDS.OrderDtl[0]["KitFlag"];
+	strKitFlag = (string)salesOrderDS.OrderDtl[0]["KitFlag"];
 }
 
 if(strKitFlag == "P")
@@ -612,21 +674,23 @@ if (foundRow != null)
 						{
 
 
+//eb3:
+int intUpdatePackNum = 0;
+
 //eb2:
 //dtOrderDtl.Clear();
 //Unable to call method Erp.BO.OrderDtl.GetRows()
-
 intOrderNum = (int)row["OrderNum"];
 intOrderLine = (int)row["OrderLine"];
 bool morePages = false;
-SalesOrderDS.Clear();
-SalesOrderDS = salesOrder.GetRows("OrderNum = " + intOrderNum, "", "", "OrderNum = " + intOrderNum + "and OrderLine = " + intOrderLine, 
+salesOrderDS.Clear();
+salesOrderDS = salesOrder.GetRows("OrderNum = " + intOrderNum, "", "", "OrderNum = " + intOrderNum + "and OrderLine = " + intOrderLine, 
 	"", "", "", "", "", "", "", "", "", "", "", "", "", 0, 1, out morePages);
 strKitFlag = "";
-if(SalesOrderDS.OrderDtl.Rows.Count &amp;gt; 0)
+if(salesOrderDS.OrderDtl.Rows.Count &amp;gt; 0)
 {
 //	MessageBox.Show("SO Line: " + SalesOrderDS.OrderDtl[0]["OrderLine"] + " / KitFlag: " + SalesOrderDS.OrderDtl[0]["KitFlag"]);
-	strKitFlag = (string)SalesOrderDS.OrderDtl[0]["KitFlag"];
+	strKitFlag = (string)salesOrderDS.OrderDtl[0]["KitFlag"];
 }
 
 if(strKitFlag == "P")
@@ -639,10 +703,28 @@ if(strKitFlag == "P")
 								"/" +
 								((decimal)row["DspSellingShipQty"]).ToString();
 						
+							// this will keep the first row found and delete all subsequent dup rows
 							if(lstInvcDtl.Contains(strTestData))
 							{
-								//this will keep the first row found and delete all subsequent dup rows
+//eb2:
+//MessageBox.Show("delete row: " + strTestData);
+
+//eb3:
+//save pack info into variables
+intUpdatePackNum = (int)row["PackNum"];
+
+
+
 								row.Delete();
+
+//eb3:
+//started with shiphead logic here, then moved down
+
+
+
+//eb2: not deleting anymore, so add this here, keep below for now, then added the update further below
+//oTrans.NotifyAll();
+
 //eb2:
 string[] strMatchKey = new string[1];
 //strMatchKey[0] = row.Cells["Company"].Value.ToString();
@@ -653,7 +735,8 @@ DataRow foundRow = dtDeletedRows.Rows.Find(strMatchKey);
 if (foundRow == null)
 {
 //	row.Cells["RestrictedCountry"].Value = (bool)foundRow[3];
-	MessageBox.Show("add row to table for: " + strTestData);
+//	MessageBox.Show("add row to table for: " + strTestData + " / mtl cost = " + ((decimal)row["MtlUnitCost"]).ToString());
+
 	DataRow rowDeletedRows;
 	rowDeletedRows = dtDeletedRows.NewRow();
 	rowDeletedRows["Key"] = 
@@ -668,11 +751,13 @@ if (foundRow == null)
 	rowDeletedRows["SubUnitCost"] = (decimal)row["SubUnitCost"];
 	rowDeletedRows["MtlBurUnitCost"] = (decimal)row["MtlBurUnitCost"];
 	dtDeletedRows.Rows.Add(rowDeletedRows);
+
+//	MessageBox.Show("after add, dt row count: " + dtDeletedRows.Rows.Count);
 }
 else
 {
 //	row.Cells["RestrictedCountry"].Value = (bool)foundRow[3];
-	MessageBox.Show("update row in table for: " + strTestData);
+//	MessageBox.Show("update row in table for: " + strTestData + " / mtl cost = " + ((decimal)row["MtlUnitCost"]).ToString());
 
 	foundRow["MtlUnitCost"] = (decimal)foundRow["MtlUnitCost"] + (decimal)row["MtlUnitCost"];
 	foundRow["LbrUnitCost"] = (decimal)foundRow["LbrUnitCost"] + (decimal)row["LbrUnitCost"];
@@ -689,6 +774,33 @@ else
 								lstInvcDtl.Add(strTestData);
 							}
 							oTrans.NotifyAll();
+//zzz added 02/15/21 to make sure the deletion is finalized
+oTrans.Update(true);
+
+
+//eb3:
+// update shiphead
+if(intUpdatePackNum != 0)
+{
+	morePages = false;
+	custShipDS.Clear();
+	custShipDS = custShip.GetRows("PackNum  = " + intUpdatePackNum, "", "", "PackLine = 0", 
+		"", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, 1, out morePages);
+	strKitFlag = "";
+	//MessageBox.Show("custship for " + intUpdatePackNum.ToString() + " rows found: " + custShipDS.ShipHead.Rows.Count.ToString());
+	if(custShipDS.ShipHead.Rows.Count &amp;gt; 0)
+	{
+		//MessageBox.Show("b4 update shiphead");
+	
+	//	strKitFlag = (string)salesOrderDS.OrderDtl[0]["KitFlag"];
+		custShipDS.ShipHead[0]["Invoiced"] = true;
+		custShipDS.ShipHead[0]["RowMod"] = "U";
+		custShip.Update(custShipDS);
+	
+		//MessageBox.Show("after update shiphead");
+	}
+}
+
 
 //eb2:
 }
@@ -706,7 +818,7 @@ foreach(DataRowView row in edvInvcDtl.dataView)
 	if (foundRow != null)
 	{
 //zzz
-		MessageBox.Show("b4 update row on invoice");
+//		MessageBox.Show("b4 update row on invoice");
 
 		row.BeginEdit();
 
@@ -719,7 +831,11 @@ foreach(DataRowView row in edvInvcDtl.dataView)
 		row.EndEdit();
 		edvInvcDtl.Notify(new EpiNotifyArgs(oTrans, edvInvcDtl.Row, 0));
 
-		MessageBox.Show("after update row on invoice");
+//zzz added 02/15/21 to make sure the deletion is finalized
+oTrans.Update(true);
+
+//		MessageBox.Show("after update row on invoice");
+
 
 	}
 }
@@ -824,6 +940,9 @@ foreach(DataRowView row in edvInvcDtl.dataView)
 
 
 
+
+
+
 &lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
@@ -896,7 +1015,7 @@ foreach(DataRowView row in edvInvcDtl.dataView)
     &lt;ControlName&gt;epiLabelC1&lt;/ControlName&gt;
     &lt;Key&gt;1c0f0c68-6d08-40b7-bfdf-adb3a91b6896&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -968,7 +1087,7 @@ foreach(DataRowView row in edvInvcDtl.dataView)
     &lt;ControlName&gt;epiLabelC1&lt;/ControlName&gt;
     &lt;Key&gt;1c0f0c68-6d08-40b7-bfdf-adb3a91b6896&lt;/Key&gt;
     &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;692&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;717&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -992,7 +1111,7 @@ foreach(DataRowView row in edvInvcDtl.dataView)
     &lt;ControlName&gt;epiLabelC1&lt;/ControlName&gt;
     &lt;Key&gt;1c0f0c68-6d08-40b7-bfdf-adb3a91b6896&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;692&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;717&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1028,7 +1147,7 @@ foreach(DataRowView row in edvInvcDtl.dataView)
     &lt;ControlName&gt;epiLabelC1&lt;/ControlName&gt;
     &lt;Key&gt;1c0f0c68-6d08-40b7-bfdf-adb3a91b6896&lt;/Key&gt;
     &lt;PropertyName&gt;Text&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;CSCI:08:20:2018&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;CSCI:03:19:2021&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1280,7 +1399,7 @@ foreach(DataRowView row in edvInvcDtl.dataView)
     &lt;ControlName&gt;lblInvoiceDate&lt;/ControlName&gt;
     &lt;Key&gt;4ee443d4-d5ac-4492-91d7-467755263578&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -1292,7 +1411,7 @@ foreach(DataRowView row in edvInvcDtl.dataView)
     &lt;ControlName&gt;edtInvoiceDate&lt;/ControlName&gt;
     &lt;Key&gt;652af306-26f4-4c49-8176-732c091b6d2f&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -3020,7 +3139,7 @@ foreach(DataRowView row in edvInvcDtl.dataView)
     &lt;ControlName&gt;btnKeyField&lt;/ControlName&gt;
     &lt;Key&gt;591a9945-eceb-4e46-b428-27571c63ee63&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;1&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;4&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -3044,7 +3163,7 @@ foreach(DataRowView row in edvInvcDtl.dataView)
     &lt;ControlName&gt;lblFiscalYear&lt;/ControlName&gt;
     &lt;Key&gt;13cc773e-bc7d-4cf7-9b2f-a330c1cf82f3&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;3&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -3056,7 +3175,7 @@ foreach(DataRowView row in edvInvcDtl.dataView)
     &lt;ControlName&gt;grpGroupInfo&lt;/ControlName&gt;
     &lt;Key&gt;d65adf17-ac82-4b1c-a67a-c8f8ff24615e&lt;/Key&gt;
     &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
-    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;PropertyValue&gt;2&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
@@ -3117,6 +3236,294 @@ foreach(DataRowView row in edvInvcDtl.dataView)
     &lt;Key&gt;d65adf17-ac82-4b1c-a67a-c8f8ff24615e&lt;/Key&gt;
     &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
     &lt;PropertyValue&gt;103&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;Parent&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;d65adf17-ac82-4b1c-a67a-c8f8ff24615e&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;126&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;126&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;265&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;73&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;265&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;73&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;Text&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;!!! LATEST CODE !!!&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpGroupInfo&lt;/ControlName&gt;
+    &lt;Key&gt;d65adf17-ac82-4b1c-a67a-c8f8ff24615e&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;grpGroupInfo&lt;/ControlName&gt;
+    &lt;Key&gt;d65adf17-ac82-4b1c-a67a-c8f8ff24615e&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;8&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;baseStatusBar&lt;/ControlName&gt;
+    &lt;Key&gt;ARInvoiceForm.baseStatusBar&lt;/Key&gt;
+    &lt;PropertyName&gt;ChildIndex&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;txtKeyField&lt;/ControlName&gt;
+    &lt;Key&gt;c20af09f-9d42-413f-9bea-3d4d27e24c02&lt;/Key&gt;
+    &lt;PropertyName&gt;EpiBinding&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;InvcGrp.GroupID&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;baseStatusBar&lt;/ControlName&gt;
+    &lt;Key&gt;ARInvoiceForm.baseStatusBar&lt;/Key&gt;
+    &lt;PropertyName&gt;Width&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;baseStatusBar&lt;/ControlName&gt;
+    &lt;Key&gt;ARInvoiceForm.baseStatusBar&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorWidth&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;baseStatusBar&lt;/ControlName&gt;
+    &lt;Key&gt;ARInvoiceForm.baseStatusBar&lt;/Key&gt;
+    &lt;PropertyName&gt;Height&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;baseStatusBar&lt;/ControlName&gt;
+    &lt;Key&gt;ARInvoiceForm.baseStatusBar&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorHeight&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;baseStatusBar&lt;/ControlName&gt;
+    &lt;Key&gt;ARInvoiceForm.baseStatusBar&lt;/Key&gt;
+    &lt;PropertyName&gt;Left&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;baseStatusBar&lt;/ControlName&gt;
+    &lt;Key&gt;ARInvoiceForm.baseStatusBar&lt;/Key&gt;
+    &lt;PropertyName&gt;Top&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;-20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;baseStatusBar&lt;/ControlName&gt;
+    &lt;Key&gt;ARInvoiceForm.baseStatusBar&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorLeft&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;0&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;baseStatusBar&lt;/ControlName&gt;
+    &lt;Key&gt;ARInvoiceForm.baseStatusBar&lt;/Key&gt;
+    &lt;PropertyName&gt;AnchorTop&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;-20&lt;/PropertyValue&gt;
+    &lt;Company /&gt;
+    &lt;Plant /&gt;
+    &lt;DcdUserID /&gt;
+    &lt;GroupID /&gt;
+    &lt;PropertiesID /&gt;
+  &lt;/Properties&gt;
+  &lt;Properties&gt;
+    &lt;FormsID&gt;ARInvoiceForm&lt;/FormsID&gt;
+    &lt;ControlName&gt;lblTest&lt;/ControlName&gt;
+    &lt;Key&gt;d0e76534-08bb-4257-9321-8279cdc7aaf9&lt;/Key&gt;
+    &lt;PropertyName&gt;Visible&lt;/PropertyName&gt;
+    &lt;PropertyValue&gt;False&lt;/PropertyValue&gt;
     &lt;Company /&gt;
     &lt;Plant /&gt;
     &lt;DcdUserID /&gt;
